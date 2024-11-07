@@ -1,15 +1,16 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
-import { IonicModule } from '@ionic/angular';
+import {IonicModule} from '@ionic/angular';
 
-import { StepOneOperationPageRoutingModule } from './step-one-operation-routing.module';
+import {StepOneOperationPageRoutingModule} from './step-one-operation-routing.module';
 
-import { StepOneOperationPage } from './step-one-operation.page';
+import {StepOneOperationPage} from './step-one-operation.page';
 import {HomePageModule} from "../../../home/home.module";
 import {ListPageModule} from "../../list/list.module";
 import {AutoHyphenDirective} from "../../../core/directives/auto-hyphen.directive";
+import {WeightInputDirective} from "../../../core/directives/weight-input.directive";
 
 @NgModule({
   imports: [
@@ -20,8 +21,10 @@ import {AutoHyphenDirective} from "../../../core/directives/auto-hyphen.directiv
     HomePageModule,
     ListPageModule,
     ReactiveFormsModule,
-    AutoHyphenDirective
+    AutoHyphenDirective,
+    WeightInputDirective
   ],
   declarations: [StepOneOperationPage]
 })
-export class StepOneOperationPageModule {}
+export class StepOneOperationPageModule {
+}
