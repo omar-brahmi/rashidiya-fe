@@ -1,5 +1,6 @@
 <ion-title style="margin: 20px 0 0 0; padding: 0">Card ID:</ion-title>
-<ion-card *ngIf="processImage === ProcessImageState.UPLOAD_IMAGE || processImage === ProcessImageState.IN_PROCESS" style="height: 200px;align-content: center;">
+<ion-card *ngIf="processImage === ProcessImageState.UPLOAD_IMAGE || processImage === ProcessImageState.IN_PROCESS"
+          style="height: 200px;align-content: center;">
   <ion-card-header *ngIf="processImage === ProcessImageState.UPLOAD_IMAGE" (click)="openCamera()"
                    style="display: flex; align-items: center; place-content: center;">
     <ion-icon color="dark" class="icon-cardID" name="camera-outline" size="large"></ion-icon>
@@ -21,3 +22,9 @@
                 class="image-upload-viewer"
 >
 </ion-img-viewer>
+
+@if (showError) {
+  <ion-text color="danger">Unable to extract card details. Please retake the photo, ensuring the card is well-focused
+    and in good lighting.
+  </ion-text>
+}

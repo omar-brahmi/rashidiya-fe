@@ -59,8 +59,14 @@ export async function detectTextFromImage(base64Image: string): Promise<{
           rotateAuto: true
         });
 
+        const cardNumber = extractIdNumber(text);
+        if (!cardNumber) {
+          reject(`card number not found`);
+          return;
+        }
+
         resolve({
-          cardID: extractIdNumber(text),
+          cardID: cardNumber,
           ...extractName(text) || {firstName: "", lastname: ""}
         });
       } catch (error) {
@@ -72,10 +78,10 @@ export async function detectTextFromImage(base64Image: string): Promise<{
   });
 }
 
-export function extractIdNumber(text: string): string {
+export function extractIdNumber(text: string): string | null {
   const idRegex = /\d{3}-\d{4}-\d{7}-\d{1}/;
   const match = text.match(idRegex);
-  return match ? match[0] : "ID not found";
+  return match ? match[0] : null;
 }
 
 export function extractName(text: string): { firstName: string, lastname: string } | null {

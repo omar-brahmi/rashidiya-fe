@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Output} from '@angular/core';
-import {detectTextFromImage} from './utils/detectTextFromImage';
+import {detectTextFromImage, terminateWorker} from './utils/detectTextFromImage';
 import {getPhoto, ProcessImageState} from "../../../../../shared/utils/getPhoto";
 
 @Component({
@@ -21,7 +21,10 @@ export class UploadCardIdComponent {
 
   imageUrl: string | undefined = undefined;
 
+  showError: boolean = false;
+
   openCamera() {
+    this.showError = false;
     this.processImage = ProcessImageState.IN_PROCESS;
     getPhoto().then((image) => {
       if (image) {
@@ -39,10 +42,12 @@ export class UploadCardIdComponent {
               firstName: text.firstName,
               lastName: text.lastname
             });
+            terminateWorker();
           })
           .catch((error: any) => {
             console.error("Error detecting text:", error);
             this.processImage = ProcessImageState.UPLOAD_IMAGE;
+            this.showError = true;
           });
       } else {
         this.processImage = ProcessImageState.UPLOAD_IMAGE;
