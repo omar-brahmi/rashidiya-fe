@@ -11,6 +11,7 @@ import {HomePageModule} from "../../../home/home.module";
 import {ListPageModule} from "../../list/list.module";
 import {AutoHyphenDirective} from "../../../core/directives/auto-hyphen.directive";
 import {WeightInputDirective} from "../../../core/directives/weight-input.directive";
+import {CashFormatDirective} from "../../../core/directives/cash-format.directive";
 
 @NgModule({
   imports: [
@@ -22,7 +23,8 @@ import {WeightInputDirective} from "../../../core/directives/weight-input.direct
     ListPageModule,
     ReactiveFormsModule,
     AutoHyphenDirective,
-    WeightInputDirective
+    WeightInputDirective,
+    CashFormatDirective
   ],
   declarations: [StepOneOperationPage]
 })

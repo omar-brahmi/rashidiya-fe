@@ -6,15 +6,14 @@ import {Directive, ElementRef, HostListener} from '@angular/core';
 })
 export class WeightInputDirective {
 
-  private regex: RegExp = new RegExp(/^\d*\.?\d{0,2}$/g);  // Regular expression for 2 decimals
-  private specialKeys: Array<string> = ['Backspace', 'Tab', 'End', 'Home', 'ArrowLeft', 'ArrowRight'];  // Allow special keys
+  private regex: RegExp = new RegExp(/^\d*\.?\d{0,2}$/);
+  private specialKeys: Array<string> = ['Backspace', 'Tab', 'End', 'Home', 'ArrowLeft', 'ArrowRight'];
 
   constructor(private el: ElementRef) {
   }
 
   @HostListener('keydown', ['$event']) onKeyDown(event: KeyboardEvent) {
-    // Allow special keys
-    if (this.specialKeys.indexOf(event.key) !== -1) {
+    if (this.specialKeys.includes(event.key)) {
       return;
     }
 
@@ -22,19 +21,27 @@ export class WeightInputDirective {
     const current: string = inputValue ? inputValue : '';
     const next: string = current.concat(event.key);
 
-    // If the value does not match the regular expression, prevent default
     if (next && !String(next).match(this.regex)) {
       event.preventDefault();
     }
   }
 
-  @HostListener('blur', ['$event']) onBlur() {
-    // If the input is left with invalid data, format it properly
+  @HostListener('blur') onBlur() {
     const value = this.el.nativeElement.value;
-    if (value && !isNaN(value)) {
-      // Ensure value is formatted with two decimals
-      this.el.nativeElement.value = parseFloat(value).toFixed(2);
+    if (value && !isNaN(parseFloat(value))) {
+      this.el.nativeElement.value = formatWeight(value);
     }
   }
 
+}
+
+export function formatWeight(value: string | number): string {
+  const numValue = parseFloat(value.toString());
+  return !isNaN(numValue) ? numValue.toFixed(2) : '0.00';
+}
+
+export function unformatWeight(value: string | number | undefined): number {
+  if (value === undefined || value === null) return 0;
+  const numericValue = value.toString().replace(/[^\d.-]/g, '');
+  return parseFloat(numericValue) || 0;
 }

@@ -6,7 +6,7 @@
 
     <app-upload-card-id (cardScanned)="handleCardScanned($event)"/>
 
-    <app-upload-contract/>
+    <app-upload-contract (contractScanned)="handleContractScanned($event)"/>
 
     <div class="input-group">
       <label class="input-group__label" for="myInput">Card ID:</label>
@@ -30,7 +30,7 @@
 
     <div class="input-group">
       <label class="input-group__label" for="lastName">Accounts</label>
-      <select id="defaultSelect" class="form-select">
+      <select id="defaultSelect" formControlName="karat" class="form-select">
         <option [value]="null">Select Accounts</option>
         <option value="18K">18K</option>
         <option value="21K">21K</option>
@@ -41,20 +41,22 @@
 
     <div class="input-group">
       <label class="input-group__label" for="Weight">Weight</label>
-      <input appWeightInput type="text" id="Weight" class="input-group__input" placeholder="00.00"/>
+      <input appWeightInput type="text" formControlName="weight" id="Weight" class="input-group__input"
+             placeholder="00.00"/>
     </div>
 
     <div class="input-group">
       <label class="input-group__label" for="Weight">Cash</label>
-      <input type="text" id="Cash" class="input-group__input" placeholder="00.00"/>
+      <input appCashFormat type="text" formControlName="cash" id="Cash" class="input-group__input" placeholder="00.00"/>
     </div>
 
     <div class="input-group">
       <label class="input-group__label" for="Description">Description</label>
-      <textarea rows="6" id="Description" class="input-group__input__textarea" placeholder="Description"></textarea>
+      <textarea rows="6" id="Description" formControlName="description" class="input-group__input__textarea"
+                placeholder="Description"></textarea>
     </div>
 
-    <button routerLink="/operations" style="margin-bottom: 200px" class="btn-stepper">Save</button>
+    <button (click)="save()" style="margin-bottom: 200px" class="btn-stepper">Save</button>
 
   </form>
 

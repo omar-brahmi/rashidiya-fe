@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
 import {getPhoto, ProcessImageState} from 'src/app/shared/utils/getPhoto';
 
 @Component({
@@ -7,6 +7,8 @@ import {getPhoto, ProcessImageState} from 'src/app/shared/utils/getPhoto';
   styleUrls: ['./upload-contract.component.scss'],
 })
 export class UploadContractComponent {
+
+  @Output() contractScanned = new EventEmitter<{ contract: string }>();
 
   protected readonly ProcessImageState = ProcessImageState;
   processImage: ProcessImageState = ProcessImageState.UPLOAD_IMAGE;
@@ -19,6 +21,7 @@ export class UploadContractComponent {
       if (image) {
         this.imageUrl = image;
         this.processImage = ProcessImageState.HAS_FINISHED;
+        this.contractScanned.emit({contract: image});
       } else {
         this.processImage = ProcessImageState.UPLOAD_IMAGE;
       }

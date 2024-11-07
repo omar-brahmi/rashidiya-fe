@@ -2,7 +2,7 @@
   <h4 style="margin-bottom: 25px;">Phone Numbers:</h4>
   <!-- Loop to display each phone field -->
   <div class="phone-field-container" *ngFor="let phone of phoneNumbers; let i = index">
-    <ion-input type="tel" placeholder="Phone Number {{ i + 1 }}" [(ngModel)]="phone.value"></ion-input>
+    <ion-input type="tel" placeholder="Phone Number {{ i + 1 }}" [(ngModel)]="phone.number"></ion-input>
     <button class="remove-btn" (click)="removePhone(i)">
       <ion-icon name="close-circle"></ion-icon>
     </button>
