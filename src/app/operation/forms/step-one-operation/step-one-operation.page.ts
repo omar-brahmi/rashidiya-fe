@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, inject, OnInit, ViewChild} from '@angular/core';
 import {OperationService} from "../../../services/operation.service";
 import {OperationClass} from "../../../core/models/operation.model";
 import {BasicComponent} from "../../../shared/forms/generics/forms/basic.component";
@@ -6,6 +6,8 @@ import {FormField} from "../../../shared/models/form-field.model";
 import {unformatCash} from "../../../core/directives/cash-format.directive";
 import {unformatWeight} from "../../../core/directives/weight-input.directive";
 import {PhoneNumbersComponent} from "./components/phone-numbers/phone-numbers.component";
+import {ClientService} from "../../../services/client.service";
+import {ToastService} from "../../../shared/services/toast.service";
 
 @Component({
   selector: 'app-step-one-operation',
@@ -16,6 +18,8 @@ export class StepOneOperationPage extends BasicComponent<OperationClass, Operati
 
   @ViewChild(PhoneNumbersComponent) phoneNumbersComponent!: PhoneNumbersComponent;
 
+  #clientService: ClientService = inject(ClientService);
+  #toastService: ToastService = inject(ToastService);
 
   protected formFields: FormField[] = [
     {
@@ -73,15 +77,24 @@ export class StepOneOperationPage extends BasicComponent<OperationClass, Operati
   }
 
   save() {
-    this.populatedObject();
-    console.log(this.entity);
+    this.populatedObject().then(entity => {
+      this.entity = entity;
+      console.log(this.entity);
+    });
   }
 
-  populatedObject() {
-    this.entity = this.createObject();
-    this.entity.weight = unformatWeight(this.entity.weight);
-    this.entity.cash = unformatCash(this.entity.cash);
-    this.entity.phoneNumbers = this.getPhoneNumbers();
+  populatedObject(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      try {
+        const entity: OperationClass = this.createObject();
+        entity.weight = unformatWeight(entity.weight);
+        entity.cash = unformatCash(entity.cash);
+        entity.phoneNumbers = this.getPhoneNumbers();
+        resolve(entity);
+      } catch (error) {
+        reject(error);
+      }
+    });
   }
 
   handleCardScanned(event: {
@@ -94,6 +107,9 @@ export class StepOneOperationPage extends BasicComponent<OperationClass, Operati
     this.form.get('idCard')?.setValue(event.cardNumber);
     this.form.get('operationFirstName')?.setValue(event.firstName);
     this.form.get('operationLastName')?.setValue(event.lastName);
+    if (event.cardNumber) {
+      this.checkIfNewCustomer(event.cardNumber);
+    }
   }
 
   handleContractScanned($event: { contract: string }) {
@@ -103,4 +119,17 @@ export class StepOneOperationPage extends BasicComponent<OperationClass, Operati
   getPhoneNumbers() {
     return this.phoneNumbersComponent.phoneNumbers;
   }
+
+  checkIfNewCustomer(cardNumber: string) {
+    this.#clientService.getClientByIdCardAndPhoneNumbers(cardNumber, []).subscribe({
+      next: data => {
+        if (data) {
+          this.form.get('operationFirstName')?.setValue(data.firstname);
+          this.form.get('operationLastName')?.setValue(data.lastname);
+          this.form.get('flag')?.setValue(data.newClient);
+        }
+      }
+    });
+  }
+
 }

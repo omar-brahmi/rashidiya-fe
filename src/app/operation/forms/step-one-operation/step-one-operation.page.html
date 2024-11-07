@@ -56,6 +56,13 @@
                 placeholder="Description"></textarea>
     </div>
 
+    <div class="flag">
+      <ion-toggle justify="space-between" aria-label="Success toggle" color="success"
+                  [checked]="form.get('flag')?.value" mode="ios">
+        New Customer
+      </ion-toggle>
+    </div>
+
     <button (click)="save()" style="margin-bottom: 200px" class="btn-stepper">Save</button>
 
   </form>

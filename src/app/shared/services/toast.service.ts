@@ -15,7 +15,12 @@ export class ToastService {
       duration: 3000,
       color: 'success',
       cssClass: 'custom-toast',
-      position: 'top'
+      position: 'top',
+      positionAnchor: 'header',
+      animated: true,
+      mode: 'ios',
+      layout: 'baseline',
+      translucent: true
     });
     await toast.present();
   }
@@ -25,7 +30,13 @@ export class ToastService {
       message: message,
       duration: 3000,
       color: 'danger',
-      position: 'top'
+      cssClass: 'custom-toast',
+      position: 'top',
+      positionAnchor: 'header',
+      animated: true,
+      mode: 'ios',
+      layout: 'baseline',
+      translucent: true
     });
     await toast.present();
   }
