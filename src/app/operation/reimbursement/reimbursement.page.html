@@ -1,0 +1,46 @@
+<app-header backUrl="operations" title="Reimbursement"/>
+
+<ion-content class="ion-padding">
+
+  <ion-list-header>Information operation</ion-list-header>
+  <ion-list style="margin: 0">
+    <ion-item>
+      <ion-label>Operation Number</ion-label>
+      <ion-text slot="end" color="dark">12345678</ion-text>
+    </ion-item>
+    <ion-item>
+      <ion-label>Card Number</ion-label>
+      <ion-text slot="end" color="dark">123-1234-1234567-1</ion-text>
+    </ion-item>
+    <ion-item>
+      <ion-label>Karat</ion-label>
+      <ion-text slot="end" color="dark">18k</ion-text>
+    </ion-item>
+    <ion-item>
+      <ion-label>Weight</ion-label>
+      <ion-text slot="end" color="dark">97.36</ion-text>
+    </ion-item>
+    <ion-item>
+      <ion-label>Cash</ion-label>
+      <ion-text slot="end" color="dark">3.258.000</ion-text>
+    </ion-item>
+    <ion-item style="--border-color: transparent;">
+      <ion-label>Operation Date</ion-label>
+      <ion-text slot="end" color="dark">15-10-2024</ion-text>
+    </ion-item>
+  </ion-list>
+
+
+  <ion-list-header>Phone Numbers</ion-list-header>
+  <swiper-container [slidesPerView]="2" [loop]="true" class="phone-swiper">
+    <swiper-slide *ngFor="let phone of phoneNumbers" class="phone-slide">
+      <div class="phone-item">{{ phone }}</div>
+    </swiper-slide>
+  </swiper-container>
+
+
+<app-list-reimbursement/>
+
+</ion-content>
+
+<app-footer/>

@@ -1,0 +1,39 @@
+ion-list {
+  border-radius: 20px;
+  background: linear-gradient(135deg, #1b2b44, #2a3f57);
+}
+
+ion-item {
+  --background: linear-gradient(135deg, #1b2b44, #2a3f57);
+  --border-color: #fff;
+}
+
+ion-list-header {
+  margin-top: 30px;
+  font-size: 20px;
+  font-weight: bolder;
+  padding: 0;
+}
+
+
+.phone-swiper {
+  width: 100%;
+}
+
+.phone-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #3a1c71, #d76d77, #ffaf7b);
+  border-radius: 10px;
+  margin: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  color: #ffffff;
+  padding: 16px;
+}
+
+.phone-item {
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+}

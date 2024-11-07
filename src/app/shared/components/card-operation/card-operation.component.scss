@@ -1,0 +1,89 @@
+ion-card {
+  background: linear-gradient(135deg, #2a3a5b, #4a5570);
+}
+
+.card-text {
+  display: flex;
+  justify-content: space-between;
+}
+
+.three-d-card {
+  position: relative;
+}
+
+.header-card {
+  position: absolute;
+  top: 20px;
+  right: 16px;
+  font-size: 17px;
+  text-align: right;
+}
+
+
+.unread-indicator {
+  background: var(--ion-color-primary);
+
+  width: 10px;
+  height: 10px;
+
+  border-radius: 100%;
+
+  position: absolute;
+
+  inset-inline-start: 12px;
+  top: 12px;
+}
+
+.flipped .hydrated {
+  height: 85%;
+}
+
+.hydrated {
+  margin: 0;
+}
+
+/* Container styling for the 3D card */
+.three-d-card {
+  perspective: 1000px;
+  width: 100%;
+  height: 150px;
+}
+
+.card-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+.card-wrapper.flipped {
+  transform: rotateY(180deg);
+}
+
+.card-face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
+
+.front {
+  z-index: 2;
+}
+
+.back {
+  transform: rotateY(180deg);
+  z-index: 1;
+}
+
+button {
+  background: #fff;
+  color: #000;
+  border-radius: 10px;
+  padding: 10px;
+  width: 100%;
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+}

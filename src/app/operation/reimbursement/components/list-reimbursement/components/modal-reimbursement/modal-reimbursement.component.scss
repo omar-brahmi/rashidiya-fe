@@ -1,0 +1,54 @@
+ion-modal#example-modal {
+  --width: 90%;
+  --min-width: 90%;
+  --background: linear-gradient(135deg, #1b2b44, #2a3f57);
+  --height: fit-content;
+  --border-radius: 30px;
+  --box-shadow: 0 28px 48px rgba(0, 0, 0, 0.4);
+}
+
+ion-modal#example-modal ion-icon {
+  margin-right: 6px;
+
+  width: 48px;
+  height: 48px;
+
+  padding: 4px 0;
+
+  color: #aaaaaa;
+}
+
+ion-modal#example-modal .wrapper {
+  margin-bottom: 10px;
+  padding: 20px;
+}
+
+.modal-actions {
+  display: flex;
+}
+
+.input-group {
+  margin-top: 17px;
+}
+
+ion-modal#example-modal h2 {
+  margin: 0;
+  padding-bottom: 17px;
+  border-bottom: 2px solid #fff;
+}
+
+ion-button {
+  margin: 15px 0 0;
+  height: fit-content;
+}
+.btn-modal {
+  --padding-top: 15px;
+  --padding-bottom: 15px;
+  height: auto;
+}
+
+/* Modal Background */
+ion-modal::part(backdrop) {
+  background-color: rgba(0, 0, 0, 140);
+  backdrop-filter: blur(10px);
+}

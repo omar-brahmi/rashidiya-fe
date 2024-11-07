@@ -1,0 +1,158 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "@ionic/angular/css/normalize.css";
+@import "@ionic/angular/css/structure.css";
+@import "@ionic/angular/css/typography.css";
+@import "@ionic/angular/css/display.css";
+
+/* Optional CSS utils that can be commented out */
+@import "@ionic/angular/css/padding.css";
+@import "@ionic/angular/css/float-elements.css";
+@import "@ionic/angular/css/text-alignment.css";
+@import "@ionic/angular/css/text-transformation.css";
+@import "@ionic/angular/css/flex-utils.css";
+
+/**
+ * Ionic Dark Mode
+ * -----------------------------------------------------
+ * For more info, please see:
+ * https://ionicframework.com/docs/theming/dark-mode
+ */
+
+/* @import "@ionic/angular/css/palettes/dark.always.css"; */
+@import "@ionic/angular/css/palettes/dark.class.css";
+//@import "@ionic/angular/css/palettes/dark.system.css";
+
+ion-item {
+  --transition: none;
+}
+
+ion-tables {
+  --min-height: 70px !important;
+}
+
+ion-card {
+  --background: linear-gradient(135deg, #2a3a5b, #4a5570);
+  --color: #f4f5f8;
+  border-radius: 20px;
+  padding: 5px;
+  margin: 5px 0;
+}
+
+ion-card-title {
+  --color: #f4f5f8;
+  font-weight: bolder;
+}
+
+ion-card-subtitle {
+  --color: #f4f5f8;
+}
+
+.btn-stepper {
+  margin-top: 50px;
+  width: 100%;
+  padding: 17px;
+  color: #000;
+  font-weight: 600;
+  font-size: 17px;
+  border-radius: 30px;
+  border: 0;
+  font-family: inherit;
+  font-style: inherit;
+  font-variant: inherit;
+  line-height: 1;
+  text-transform: none;
+  cursor: pointer;
+  background-color: #fff;
+}
+
+.input-group {
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  z-index: 2;
+  margin-top: 40px;
+}
+
+@supports (mix-blend-mode: darken) {
+  .input-group {
+    position: relative;
+    mix-blend-mode: lighten;
+  }
+  .input-group__label {
+    background: transparent;
+  }
+}
+
+.input-group__label {
+  padding: 0 0.5em;
+  margin-bottom: 0.5em;
+  text-transform: uppercase;
+  font-size: 0.875em;
+  letter-spacing: 0.1em;
+  color: #fff;
+  cursor: pointer;
+}
+
+.input-group__input {
+  color: #fff;
+  font-size: 1.25rem;
+  line-height: 1;
+  outline: none;
+  height: calc(1em + 1.6em + 0.5em);
+  width: 100%;
+  padding: 0.8em 1em;
+  background: transparent;
+  border: 0.20em solid #fff;
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  border-radius: 1.8em;
+  background-size: 200% 100%;
+  transition: background-position 0.8s ease-out;
+}
+
+.input-group__input:hover {
+  background-position: 100% 0;
+}
+
+input::placeholder {
+  color: #888888;
+  opacity: 1;
+}
+
+.form-select {
+  padding: 0.8em 1em;
+  background: transparent;
+  border: 5px solid #fff;
+  border-radius: 1.8em;
+}
+
+.input-group__input__textarea {
+  color: #fff;
+  font-size: 1.25rem;
+  line-height: 1;
+  outline: none;
+  width: 100%;
+  padding: 0.8em 1em;
+  background: transparent;
+  border: 0.2em solid #fff;
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  border-radius: 1.8em;
+  background-size: 200% 100%;
+  transition: background-position 0.8s ease-out;
+}

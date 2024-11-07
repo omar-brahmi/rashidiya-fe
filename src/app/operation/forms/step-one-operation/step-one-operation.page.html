@@ -1,0 +1,56 @@
+<app-header title="Add New Operation" backUrl="/operations"/>
+
+<ion-content class="ion-padding">
+
+  <app-upload-card-id/>
+
+  <app-upload-contract/>
+
+  <div class="input-group">
+    <label class="input-group__label" for="myInput">Card ID:</label>
+    <input type="text" id="myInput" class="input-group__input" placeholder="000-0000000-0000-0"/>
+  </div>
+
+  <app-phone-numbers/>
+
+  <div class="input-group">
+    <label class="input-group__label" for="firstName">First name</label>
+    <input type="text" id="firstName" class="input-group__input" placeholder="First name"/>
+  </div>
+
+  <div class="input-group">
+    <label class="input-group__label" for="lastName">Last name</label>
+    <input type="text" id="lastName" class="input-group__input" placeholder="Last name"/>
+  </div>
+
+  <div class="input-group">
+    <label class="input-group__label" for="lastName">Accounts</label>
+    <select id="defaultSelect" class="form-select">
+      <option [value]="null">Select Accounts</option>
+      <option value="18K">18K</option>
+      <option value="21K">21K</option>
+      <option value="22K">22K</option>
+      <option value="Others">Others</option>
+    </select>
+  </div>
+
+  <div class="input-group">
+    <label class="input-group__label" for="Weight">Weight</label>
+    <input type="text" id="Weight" class="input-group__input" placeholder="00.00"/>
+  </div>
+
+  <div class="input-group">
+    <label class="input-group__label" for="Weight">Cash</label>
+    <input type="text" id="Cash" class="input-group__input" placeholder="00.00"/>
+  </div>
+
+  <div class="input-group">
+    <label class="input-group__label" for="Description">Description</label>
+    <textarea rows="6" id="Description" class="input-group__input__textarea" placeholder="Description"></textarea>
+  </div>
+
+  <button routerLink="/operations" style="margin-bottom: 200px" class="btn-stepper">Save</button>
+
+</ion-content>
+
+<app-footer/>

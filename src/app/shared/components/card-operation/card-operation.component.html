@@ -1,0 +1,40 @@
+<div class="three-d-card">
+  <div class="card-wrapper" [class.flipped]="isFlipped">
+    <!-- Front Face -->
+    <div class="card-face front">
+      <ion-card>
+        <ion-card-header style="padding-bottom: 0;">
+          <ion-card-title>Omar Brahmi</ion-card-title>
+          <ion-card-subtitle class="header-card">15/10/2024</ion-card-subtitle>
+          <div class="unread-indicator-wrapper" slot="start">
+            <div class="unread-indicator"></div>
+          </div>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-text class="card-text">
+            <span>Phone number</span>
+            <span>12345678</span>
+          </ion-text>
+          <ion-text class="card-text">
+            <span>Card ID</span>
+            <span>123-1234567-6</span>
+          </ion-text>
+          <ion-text class="card-text">
+            <span>Cash</span>
+            <span>120000</span>
+          </ion-text>
+        </ion-card-content>
+      </ion-card>
+    </div>
+
+    <!-- Back Face -->
+    <div class="card-face back">
+      <ion-card>
+        <ion-card-content>
+          <button routerLink="/operations/view">More details</button>
+          <button routerLink="/operations/reimbursement" style="margin-top: 15px">Reimbursement</button>
+        </ion-card-content>
+      </ion-card>
+    </div>
+  </div>
+</div>

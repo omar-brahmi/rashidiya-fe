@@ -1,0 +1,188 @@
+.reimbursements-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.reimbursement-card {
+  background: linear-gradient(135deg, #2b1055, #7597de); /* Rich gradient */
+  color: #ffffff;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.reimbursement-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 12px 18px rgba(0, 0, 0, 0.4);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  font-size: 18px;
+  font-weight: bold;
+  position: relative;
+}
+
+.header-icon {
+  font-size: 22px;
+  color: #ffcc00;
+}
+
+.card-body {
+  display: flex;
+  gap: 15px;
+  justify-content: space-between;
+}
+
+.capital-section, .interest-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  backdrop-filter: blur(4px);
+  transition: background 0.3s;
+}
+
+.capital-section:hover, .interest-section:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.section-icon {
+  font-size: 24px;
+  color: #ffcc00;
+}
+
+.section-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.section-label {
+  font-size: 14px;
+  color: #d4d4d8;
+}
+
+.section-value {
+  font-size: 18px;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+ion-modal {
+  --height: 50%;
+  padding: 0 10px;
+  --border-radius: 16px;
+  --box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+.modal-content {
+  padding: 16px;
+}
+
+ion-toolbar {
+  --background: linear-gradient(135deg, #1b2b44, #2a3f57);
+  --color: #ffffff;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+}
+
+ion-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.btn-add-reimbursement {
+  --background: linear-gradient(45deg, #ffcc00, #ffaa00);
+  color: white;
+  margin-top: 0;
+}
+
+ion-list-header {
+  margin-top: 30px;
+  font-size: 20px;
+  font-weight: bolder;
+  padding: 0;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 16px;
+  margin-top: 20px;
+  justify-content: center;
+}
+
+.btn-add {
+  --background: linear-gradient(45deg, #ffcc00, #ffaa00);
+  color: white;
+  font-weight: bold;
+}
+
+/* Modal Background */
+ion-modal::part(backdrop) {
+  --background: rgba(0, 0, 0, 0.6);
+}
+
+ion-content {
+  --background: linear-gradient(135deg, #1b2b44, #2a3f57);
+  padding: 20px;
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+}
+
+/* Input Group Styling */
+.input-group {
+  margin-bottom: 20px;
+}
+
+.input-group__label {
+  color: #d4d4d8;
+  font-size: 14px;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.input-group__input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ffffff33;
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  font-size: 16px;
+}
+
+.input-group__input::placeholder {
+  color: #ffffff99;
+}
+
+/* Button Styling */
+.modal-actions {
+  display: flex;
+  gap: 10px;
+}
+
+/* Add Button Styling */
+.btn-add {
+  --background: linear-gradient(45deg, #fbc02d, #ffa000); /* Bright yellow gradient */
+  color: #ffffff;
+  font-weight: bold;
+  border-radius: 8px;
+}
+
+/* Cancel Button Styling */
+ion-button[color="light"] {
+  --background: rgba(255, 255, 255, 0.2); /* Light transparent background for cancel button */
+  color: #ffffff;
+  font-weight: bold;
+  border-radius: 8px;
+}

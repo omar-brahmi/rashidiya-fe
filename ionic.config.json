@@ -1,0 +1,7 @@
+{
+  "name": "rashidiya-fe",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

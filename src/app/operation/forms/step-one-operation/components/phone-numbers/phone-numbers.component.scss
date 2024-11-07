@@ -1,0 +1,63 @@
+.phone-number-section {
+  background: linear-gradient(135deg, #2e003e, #58004f);
+  padding: 16px 16px 30px;
+  border-radius: 10px;
+  margin: 50px 0;
+}
+
+.phone-field-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+  background: linear-gradient(135deg, #1a1a40, #2a003e);
+  padding: 10px 16px 10px 10px;
+  border-radius: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+
+  ion-input {
+    flex: 1;
+    --padding-start: 10px;
+    color: #ffffff;
+    background: transparent;
+    font-size: 0.9rem;
+    --placeholder-color: #a0a0a0;
+    border: none;
+  }
+
+  .remove-btn {
+    background: transparent;
+    margin-left: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    ion-icon {
+      font-size: 2rem;
+    }
+  }
+}
+
+// Add phone button
+.add-phone-btn {
+  width: 100%;
+  background: linear-gradient(135deg, #ff6f61, #de6f92);
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 1rem;
+  padding: 12px;
+  border-radius: 8px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
+
+  ion-icon {
+    margin-right: 8px;
+    font-size: 1.2rem;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+  }
+}

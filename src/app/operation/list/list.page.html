@@ -1,0 +1,21 @@
+<app-header title="Operations"/>
+
+<ion-content class="ion-padding">
+
+  <ion-button
+    routerLink="/form/step-one-operation">
+    Add New Operation
+  </ion-button>
+
+  <div *ngFor="let card of cards; let i = index">
+    <app-card-operation
+      [index]="i"
+      [isFlipped]="flippedCardIndex === i"
+      (click)="toggleCard(i)">
+    </app-card-operation>
+  </div>
+
+
+</ion-content>
+
+<app-footer/>

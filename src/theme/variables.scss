@@ -1,0 +1,58 @@
+/* Ionic Variables and Theming
+ * ---------------------------------------------------------------
+ * Any overrides to theme variables should be placed in this file.
+ * For more information, please see:
+ * http://ionicframework.com/docs/theming/
+ */
+
+/* This sets a different item border color for the default theme on ios and md */
+:root {
+  --ion-item-border-color: var(--ion-background-color-step-200);
+  --ion-background-color: linear-gradient(135deg, #1a1a40, #2a003e) !important;
+  --ion-item-background: #000 !important;
+  /* Set the font family of the entire app */
+  --ion-font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Roboto', sans-serif !important;
+}
+
+ion-toolbar {
+  --background: #1a1a4000;
+}
+
+ion-tab-bar {
+  --background: #2a003e00;
+  --color: white;
+  border-top: 2px solid #fff;
+}
+
+/* This sets a different background and item background for the default theme on ios */
+:root.ios {
+  --ion-background-color: var(--ion-background-color-step-50, #f2f2f6);
+  --ion-toolbar-background: var(--ion-background-color);
+  --ion-item-background: #1c1c1d;
+}
+
+/* This sets a different background and item background for the default theme on md */
+:root.md {
+  --ion-background-color: var(--ion-background-color-step-50, #f2f2f6);
+  --ion-toolbar-background: var(--ion-background-color);
+  --ion-item-background: #1c1c1d;
+}
+
+/* This sets a different item background when dark mode is enabled on ios and md */
+.ion-palette-dark.ios,
+.ion-palette-dark.md {
+  --ion-item-background: #000;
+}
+
+ion-button {
+  --background: linear-gradient(135deg, #ff6f00, #ffab00);
+  --background-hover: linear-gradient(135deg, #ff6f00, #ffab00);
+  --color: #fff;
+  --border-radius: 20px;
+  --padding-top: 20px;
+  --padding-bottom: 20px;
+  width: 100%;
+  margin: 30px 0;
+  font-size: 16px;
+  font-weight: 700;
+}
