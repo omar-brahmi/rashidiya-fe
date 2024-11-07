@@ -1,6 +1,15 @@
 <ion-title style="margin: 20px 0 0 0;padding: 0">Contract:</ion-title>
-<ion-card >
-  <ion-card-header style="height: 200px;display: flex; align-items: center; place-content: center;">
+<ion-card *ngIf="processImage === ProcessImageState.UPLOAD_IMAGE">
+  <ion-card-header style="height: 200px;display: flex; align-items: center; place-content: center;"
+                   (click)="openCamera()">
     <ion-icon color="dark" class="icon-cardID" name="camera-outline" size="large"></ion-icon>
   </ion-card-header>
 </ion-card>
+
+<ion-img-viewer *ngIf="processImage === ProcessImageState.HAS_FINISHED"
+                title="Card ID"
+                scheme="dark"
+                [src]="imageUrl ? imageUrl : undefined"
+                class="image-upload-viewer"
+>
+</ion-img-viewer>

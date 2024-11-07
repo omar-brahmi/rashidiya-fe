@@ -18,6 +18,7 @@ import {ListReimbursementComponent} from "../reimbursement/components/list-reimb
 import {
   ModalReimbursementComponent
 } from "../reimbursement/components/list-reimbursement/components/modal-reimbursement/modal-reimbursement.component";
+import {NgxIonicImageViewerModule} from "@herdwatch-apps/ngx-ionic-image-viewer";
 
 @NgModule({
   imports: [
@@ -25,7 +26,8 @@ import {
     FormsModule,
     IonicModule,
     ListPageRoutingModule,
-    HomePageModule
+    HomePageModule,
+    NgxIonicImageViewerModule
   ],
     exports: [
         HeaderComponent,

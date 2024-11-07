@@ -1,6 +1,23 @@
 <ion-title style="margin: 20px 0 0 0; padding: 0">Card ID:</ion-title>
-<ion-card>
-  <ion-card-header style="height: 200px;display: flex; align-items: center; place-content: center;">
+<ion-card *ngIf="processImage === ProcessImageState.UPLOAD_IMAGE || processImage === ProcessImageState.IN_PROCESS" style="height: 200px;align-content: center;">
+  <ion-card-header *ngIf="processImage === ProcessImageState.UPLOAD_IMAGE" (click)="openCamera()"
+                   style="display: flex; align-items: center; place-content: center;">
     <ion-icon color="dark" class="icon-cardID" name="camera-outline" size="large"></ion-icon>
   </ion-card-header>
+  <ion-card-header *ngIf="processImage === ProcessImageState.IN_PROCESS"
+                   style="display: flex; align-items: center; justify-content: center;">
+    <!-- Spinner Wrapper with Gradient -->
+    <div class="gradient-spinner">
+      <div class="dynamic-spinner"></div>
+    </div>
+    <ion-label class="animate-character" style="margin-top: 15px">processing image...</ion-label>
+  </ion-card-header>
 </ion-card>
+
+<ion-img-viewer *ngIf="processImage === ProcessImageState.HAS_FINISHED"
+                title="Card ID"
+                scheme="dark"
+                [src]="imageUrl ? imageUrl : undefined"
+                class="image-upload-viewer"
+>
+</ion-img-viewer>
