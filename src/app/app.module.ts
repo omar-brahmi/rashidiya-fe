@@ -7,6 +7,7 @@ import {AnimationController, IonicModule, IonicRouteStrategy} from '@ionic/angul
 import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
 import {FadeAnimation} from "./animations/fadeAnimation";
+import {provideHttpClient, withInterceptorsFromDi} from "@angular/common/http";
 
 @NgModule({
   declarations: [AppComponent],
@@ -16,7 +17,7 @@ import {FadeAnimation} from "./animations/fadeAnimation";
       return fadeAnimationService.createAnimation(baseEl, opts);
     }
   }), AppRoutingModule],
-  providers: [{provide: RouteReuseStrategy, useClass: IonicRouteStrategy}, FadeAnimation],
+  providers: [{provide: RouteReuseStrategy, useClass: IonicRouteStrategy}, FadeAnimation, provideHttpClient(withInterceptorsFromDi())],
   bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
@@ -9,6 +9,7 @@ import { StepOneOperationPageRoutingModule } from './step-one-operation-routing.
 import { StepOneOperationPage } from './step-one-operation.page';
 import {HomePageModule} from "../../../home/home.module";
 import {ListPageModule} from "../../list/list.module";
+import {AutoHyphenDirective} from "../../../core/directives/auto-hyphen.directive";
 
 @NgModule({
   imports: [
@@ -17,7 +18,9 @@ import {ListPageModule} from "../../list/list.module";
     IonicModule,
     StepOneOperationPageRoutingModule,
     HomePageModule,
-    ListPageModule
+    ListPageModule,
+    ReactiveFormsModule,
+    AutoHyphenDirective
   ],
   declarations: [StepOneOperationPage]
 })
