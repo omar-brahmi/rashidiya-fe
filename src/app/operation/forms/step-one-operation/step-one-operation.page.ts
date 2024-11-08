@@ -8,6 +8,7 @@ import {unformatWeight} from "../../../core/directives/weight-input.directive";
 import {PhoneNumbersComponent} from "./components/phone-numbers/phone-numbers.component";
 import {ClientService} from "../../../services/client.service";
 import {ToastService} from "../../../shared/services/toast.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-step-one-operation',
@@ -20,6 +21,7 @@ export class StepOneOperationPage extends BasicComponent<OperationClass, Operati
 
   #clientService: ClientService = inject(ClientService);
   #toastService: ToastService = inject(ToastService);
+  #router: Router = inject(Router);
 
   protected formFields: FormField[] = [
     {
@@ -79,7 +81,12 @@ export class StepOneOperationPage extends BasicComponent<OperationClass, Operati
   save() {
     this.populatedObject().then(entity => {
       this.entity = entity;
-      console.log(this.entity);
+      this.create().then(value => {
+        this.#toastService.success("Operation saved successfully.");
+        this.#router.navigate(['/operations']);
+      }).catch(error => {
+        this.#toastService.error("Error saving operation !!!");
+      });
     });
   }
 
