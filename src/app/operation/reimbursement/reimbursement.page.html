@@ -32,7 +32,11 @@
 
 
   <ion-list-header>Phone Numbers</ion-list-header>
-  <swiper-container [slidesPerView]="2" [loop]="true" class="phone-swiper">
+  <swiper-container [slidesPerView]="2" [loop]="true" [options]="{
+  autoplay: {
+   delay: 500,
+ }
+  }" class="phone-swiper">
     <swiper-slide *ngFor="let phone of operation?.phoneNumbers" class="phone-slide">
       <div class="phone-item"><a href="tel:{{ phone.number }}">{{ phone.number }}</a></div>
     </swiper-slide>

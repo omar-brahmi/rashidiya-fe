@@ -3,5 +3,8 @@
   "integrations": {
     "capacitor": {}
   },
+  "server": {
+    "ssl": false
+  },
   "type": "angular"
 }
