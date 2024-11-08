@@ -1,9 +1,8 @@
-import {Component, HostListener, inject, OnInit, ViewChild} from '@angular/core';
+import {Component, HostListener, inject, OnInit} from '@angular/core';
 import {OperationService} from "../../services/operation.service";
 import {Operation} from "../../core/models/operation.model";
 import {GetAllPage} from "../../shared/models/getAllPage.model";
 import {Pageable} from "../../shared/models/pageable.model";
-import {IonInfiniteScroll} from "@ionic/angular";
 
 @Component({
   selector: 'app-list',
@@ -12,13 +11,12 @@ import {IonInfiniteScroll} from "@ionic/angular";
 })
 export class ListPage implements OnInit {
 
-  @ViewChild(IonInfiniteScroll) infiniteScroll!: IonInfiniteScroll;
-
   #operationService: OperationService = inject(OperationService);
 
   operationsPage!: GetAllPage<Operation>;
   operations: Operation[] = [];
 
+  disableScroll: boolean = false;
   flippedCardIndex: number | null = null;
 
   constructor() {
@@ -29,17 +27,15 @@ export class ListPage implements OnInit {
   }
 
   loadAllOperationsByFilter(pageable: Pageable = new Pageable()) {
+    if (pageable.page === 0) {
+      this.disableScroll = false;
+      this.operations = [];
+    }
     this.#operationService.getAllByFilter(pageable, "", "", "", "").subscribe({
       next: data => {
-        if (data.pageable.pageNumber === 0) {
-          this.operations = data.content;
-        } else {
-          this.operations = [...this.operations, ...data.content];
-        }
+        this.operations = data.pageable.pageNumber === 0 ? data.content : [...this.operations, ...data.content];
         this.operationsPage = data;
-        if (this.infiniteScroll) {
-          this.infiniteScroll.disabled = this.operationsPage.last;
-        }
+        this.disableScroll = this.operationsPage.last;
       }
     })
   }
