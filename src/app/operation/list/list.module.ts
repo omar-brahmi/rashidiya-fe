@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
@@ -19,6 +19,7 @@ import {
   ModalReimbursementComponent
 } from "../reimbursement/components/list-reimbursement/components/modal-reimbursement/modal-reimbursement.component";
 import {NgxIonicImageViewerModule} from "@herdwatch-apps/ngx-ionic-image-viewer";
+import {CashFormatDirective} from "../../core/directives/cash-format.directive";
 
 @NgModule({
   imports: [
@@ -27,7 +28,9 @@ import {NgxIonicImageViewerModule} from "@herdwatch-apps/ngx-ionic-image-viewer"
     IonicModule,
     ListPageRoutingModule,
     HomePageModule,
-    NgxIonicImageViewerModule
+    NgxIonicImageViewerModule,
+    ReactiveFormsModule,
+    CashFormatDirective
   ],
     exports: [
         HeaderComponent,

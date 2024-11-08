@@ -30,7 +30,8 @@ export class ReimbursementPage implements OnInit {
       const operationID = this.#activatedRoute.snapshot.paramMap.get("operationID");
       this.#operationService.getOneObservable(operationID).subscribe(operation => {
         this.operation = operation;
-      })
+        this.#operationService.updateOperationSubject(operation);
+      });
     }
   }
 

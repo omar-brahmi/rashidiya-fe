@@ -1,19 +1,24 @@
 <ion-modal id="example-modal" #modal trigger="open-modal">
   <ng-template>
-    <div class="wrapper">
-      <h2>New Reimbursement</h2>
-      <div class="input-group">
-        <label class="input-group__label" for="Capital">Capital</label>
-        <input type="text" id="Capital" class="input-group__input" placeholder="00.00"/>
+    <form [formGroup]="form">
+      <div class="wrapper">
+        <h2>New Reimbursement</h2>
+        <div class="input-group">
+          <label class="input-group__label" for="Capital">Capital</label>
+          <input appCashFormat type="text" formControlName="capital" id="Capital" class="input-group__input"
+                 placeholder="00.00"/>
+        </div>
+        <div class="input-group">
+          <label class="input-group__label" for="Interest">Interest</label>
+          <input appCashFormat type="text" formControlName="interest" id="Interest" class="input-group__input"
+                 placeholder="00.00"/>
+        </div>
+        <div class="modal-actions">
+          <ion-button class="btn-modal" size="small" color="dark" fill="outline" (click)="cancel(modal)">Cancel
+          </ion-button>
+          <ion-button color="dark" size="small" class="btn-modal" (click)="save(modal)">Add</ion-button>
+        </div>
       </div>
-      <div class="input-group">
-        <label class="input-group__label" for="Interest">Interest</label>
-        <input type="text" id="Interest" class="input-group__input" placeholder="00.00"/>
-      </div>
-      <div class="modal-actions">
-        <ion-button class="btn-modal" size="small" color="dark" fill="outline"  (click)="modal.dismiss()" >Cancel</ion-button>
-        <ion-button color="dark"  size="small" class="btn-modal" (click)="modal.dismiss()">Add</ion-button>
-      </div>
-    </div>
+    </form>
   </ng-template>
 </ion-modal>
