@@ -7,14 +7,21 @@
     Add New Operation
   </ion-button>
 
-  <div *ngFor="let card of cards; let i = index">
+  @for (operation of operations; track operation; let i = $index) {
     <app-card-operation
+      [operation]="operation"
       [index]="i"
       [isFlipped]="flippedCardIndex === i"
-      (click)="toggleCard(i)">
-    </app-card-operation>
-  </div>
+      (click)="toggleCard(i)"
+    />
+  }
 
+  <ion-infinite-scroll (ionInfinite)="loadMore($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="Loading more operations...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 
 </ion-content>
 

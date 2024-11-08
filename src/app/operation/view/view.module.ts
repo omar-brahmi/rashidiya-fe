@@ -9,6 +9,7 @@ import { ViewPageRoutingModule } from './view-routing.module';
 import { ViewPage } from './view.page';
 import {HomePageModule} from "../../home/home.module";
 import {ListPageModule} from "../list/list.module";
+import {NgxIonicImageViewerModule} from "@herdwatch-apps/ngx-ionic-image-viewer";
 
 @NgModule({
     imports: [
@@ -17,7 +18,8 @@ import {ListPageModule} from "../list/list.module";
         IonicModule,
         ViewPageRoutingModule,
         HomePageModule,
-        ListPageModule
+        ListPageModule,
+        NgxIonicImageViewerModule
     ],
   declarations: [ViewPage]
 })

@@ -15,7 +15,7 @@ const routes: Routes = [
     loadChildren: () => import('./operation/list/list.module').then(m => m.ListPageModule)
   },
   {
-    path: 'operations/view',
+    path: 'operations/view/:operationID',
     loadChildren: () => import('./operation/view/view.module').then(m => m.ViewPageModule)
   },
   {
@@ -23,17 +23,13 @@ const routes: Routes = [
     loadChildren: () => import('./operation/forms/step-one-operation/step-one-operation.module').then(m => m.StepOneOperationPageModule)
   },
   {
-    path: 'form/step-two-operation',
-    loadChildren: () => import('./operation/forms/step-two-operation/step-two-operation.module').then(m => m.StepTwoOperationPageModule)
+    path: 'operations/reimbursement/:operationID',
+    loadChildren: () => import('./operation/reimbursement/reimbursement.module').then(m => m.ReimbursementPageModule)
   },
   {
     path: '',
     redirectTo: 'home',
     pathMatch: 'full'
-  },
-  {
-    path: 'operations/reimbursement',
-    loadChildren: () => import('./operation/reimbursement/reimbursement.module').then( m => m.ReimbursementPageModule)
   }
 ];
 

@@ -6,50 +6,66 @@
   <ion-list style="margin: 0">
     <ion-item>
       <ion-label>Operation Number</ion-label>
-      <ion-text slot="end" color="dark">12345678</ion-text>
+      <ion-text slot="end" color="dark">{{ operation?.operationNumber }}</ion-text>
     </ion-item>
     <ion-item>
       <ion-label>Card Number</ion-label>
-      <ion-text slot="end" color="dark">123-1234-1234567-1</ion-text>
+      <ion-text slot="end" color="dark">{{ operation?.idCard }}</ion-text>
     </ion-item>
     <ion-item>
       <ion-label>Karat</ion-label>
-      <ion-text slot="end" color="dark">18k</ion-text>
+      <ion-text slot="end" color="dark">{{ operation?.karat }}</ion-text>
     </ion-item>
     <ion-item>
       <ion-label>Weight</ion-label>
-      <ion-text slot="end" color="dark">97.36</ion-text>
+      <ion-text slot="end" color="dark">{{ operation?.weight }}</ion-text>
     </ion-item>
     <ion-item>
       <ion-label>Cash</ion-label>
-      <ion-text slot="end" color="dark">3.258.000</ion-text>
+      <ion-text slot="end" color="dark">{{ formatNumberToCash(operation?.cash) }}</ion-text>
     </ion-item>
     <ion-item style="--border-color: transparent;">
       <ion-label>Operation Date</ion-label>
-      <ion-text slot="end" color="dark">15-10-2024</ion-text>
+      <ion-text slot="end" color="dark">{{ operation?.createdAt | date: 'dd-MM-yyyy' }}</ion-text>
     </ion-item>
   </ion-list>
 
   <ion-list-header>Phone numbers</ion-list-header>
   <div class="phone-numbers-section">
     <div class="phone-numbers-grid">
-      <div class="phone-number-card">+21612345678</div>
-      <div class="phone-number-card">+21612345678</div>
-      <div class="phone-number-card">+21612345678</div>
-      <div class="phone-number-card">+21612345678</div>
-      <div class="phone-number-card">+21612345678</div>
+      @for (phoneNumber of operation?.phoneNumbers; track phoneNumber) {
+        <div class="phone-number-card"><a href="tel:{{ phoneNumber.number }}">{{ phoneNumber.number }}</a></div>
+      }
     </div>
   </div>
 
 
   <ion-list-header>Description</ion-list-header>
-  <ion-text>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-    industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it
-    to make a type specimen book. It has survived not only five centuries, but also the leap into electronic
-    typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets
-    containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including
-    versions of Lorem Ipsum.
-  </ion-text>
+  <ion-text>{{ operation?.description }}</ion-text>
+
+  <div style="margin-top: 50px">
+    <ion-list-header>Card ID</ion-list-header>
+    <ion-img-viewer *ngIf="operation?.card"
+                    title="Card ID"
+                    scheme="dark"
+                    [src]="operation?.card"
+                    class="image-upload-viewer"
+    >
+    </ion-img-viewer>
+  </div>
+
+  <div style="margin-top: 50px">
+    <ion-list-header>Contract</ion-list-header>
+    <ion-img-viewer *ngIf="operation?.contract"
+                    title="Contract"
+                    scheme="dark"
+                    [src]="operation?.contract"
+                    class="image-upload-viewer"
+    >
+    </ion-img-viewer>
+  </div>
+
+  <div style="margin-top: 100px"></div>
 
 </ion-content>
 

@@ -62,7 +62,7 @@ export class StepOneOperationPage extends BasicComponent<OperationClass, Operati
     },
     {
       fieldName: 'flag',
-      value: false,
+      value: true,
     },
     {
       fieldName: 'description',
