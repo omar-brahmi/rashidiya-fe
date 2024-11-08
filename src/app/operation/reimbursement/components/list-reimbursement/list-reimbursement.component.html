@@ -1,161 +1,41 @@
 <ion-list-header>Reimbursements</ion-list-header>
+
 <ion-button id="open-modal" class="btn-add-reimbursement" expand="block">Add Reimbursement</ion-button>
+
 <div class="reimbursements-container">
-  <div class="reimbursement-card">
-    <div class="card-header">
-      <span class="reimbursement-date">15-10-2024</span>
-      <ion-icon name="calendar-outline" class="header-icon"></ion-icon>
-    </div>
-    <div class="card-body">
-      <div class="capital-section">
-        <ion-icon name="cash-outline" class="section-icon"></ion-icon>
-        <div class="section-details">
-          <span class="section-label">Capital</span>
-          <span class="section-value">875.2131</span>
-        </div>
+
+  @for (reimbursement of reimbursements; track reimbursement) {
+    <div class="reimbursement-card">
+      <div class="card-header">
+        <span class="reimbursement-date">{{ reimbursement.createdAt | date: 'dd-MM-yyyy' }}</span>
+        <ion-icon name="calendar-outline" class="header-icon"></ion-icon>
       </div>
-      <div class="interest-section">
-        <ion-icon name="trending-up-outline" class="section-icon"></ion-icon>
-        <div class="section-details">
-          <span class="section-label">Interest</span>
-          <span class="section-value">985116.515</span>
+      <div class="card-body">
+        <div class="capital-section">
+          <ion-icon name="cash-outline" class="section-icon"></ion-icon>
+          <div class="section-details">
+            <span class="section-label">Capital</span>
+            <span class="section-value">{{ formatNumberToCash(reimbursement.capital) }}</span>
+          </div>
         </div>
-      </div>
-    </div>
-  </div>
-  <div class="reimbursement-card">
-    <div class="card-header">
-      <span class="reimbursement-date">15-10-2024</span>
-      <ion-icon name="calendar-outline" class="header-icon"></ion-icon>
-    </div>
-    <div class="card-body">
-      <div class="capital-section">
-        <ion-icon name="cash-outline" class="section-icon"></ion-icon>
-        <div class="section-details">
-          <span class="section-label">Capital</span>
-          <span class="section-value">875.2131</span>
-        </div>
-      </div>
-      <div class="interest-section">
-        <ion-icon name="trending-up-outline" class="section-icon"></ion-icon>
-        <div class="section-details">
-          <span class="section-label">Interest</span>
-          <span class="section-value">985116.515</span>
+        <div class="interest-section">
+          <ion-icon name="trending-up-outline" class="section-icon"></ion-icon>
+          <div class="section-details">
+            <span class="section-label">Interest</span>
+            <span class="section-value">{{ formatNumberToCash(reimbursement.interest) }}</span>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="reimbursement-card">
-    <div class="card-header">
-      <span class="reimbursement-date">15-10-2024</span>
-      <ion-icon name="calendar-outline" class="header-icon"></ion-icon>
-    </div>
-    <div class="card-body">
-      <div class="capital-section">
-        <ion-icon name="cash-outline" class="section-icon"></ion-icon>
-        <div class="section-details">
-          <span class="section-label">Capital</span>
-          <span class="section-value">875.2131</span>
-        </div>
-      </div>
-      <div class="interest-section">
-        <ion-icon name="trending-up-outline" class="section-icon"></ion-icon>
-        <div class="section-details">
-          <span class="section-label">Interest</span>
-          <span class="section-value">985116.515</span>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="reimbursement-card">
-    <div class="card-header">
-      <span class="reimbursement-date">15-10-2024</span>
-      <ion-icon name="calendar-outline" class="header-icon"></ion-icon>
-    </div>
-    <div class="card-body">
-      <div class="capital-section">
-        <ion-icon name="cash-outline" class="section-icon"></ion-icon>
-        <div class="section-details">
-          <span class="section-label">Capital</span>
-          <span class="section-value">875.2131</span>
-        </div>
-      </div>
-      <div class="interest-section">
-        <ion-icon name="trending-up-outline" class="section-icon"></ion-icon>
-        <div class="section-details">
-          <span class="section-label">Interest</span>
-          <span class="section-value">985116.515</span>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="reimbursement-card">
-    <div class="card-header">
-      <span class="reimbursement-date">15-10-2024</span>
-      <ion-icon name="calendar-outline" class="header-icon"></ion-icon>
-    </div>
-    <div class="card-body">
-      <div class="capital-section">
-        <ion-icon name="cash-outline" class="section-icon"></ion-icon>
-        <div class="section-details">
-          <span class="section-label">Capital</span>
-          <span class="section-value">875.2131</span>
-        </div>
-      </div>
-      <div class="interest-section">
-        <ion-icon name="trending-up-outline" class="section-icon"></ion-icon>
-        <div class="section-details">
-          <span class="section-label">Interest</span>
-          <span class="section-value">985116.515</span>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="reimbursement-card">
-    <div class="card-header">
-      <span class="reimbursement-date">15-10-2024</span>
-      <ion-icon name="calendar-outline" class="header-icon"></ion-icon>
-    </div>
-    <div class="card-body">
-      <div class="capital-section">
-        <ion-icon name="cash-outline" class="section-icon"></ion-icon>
-        <div class="section-details">
-          <span class="section-label">Capital</span>
-          <span class="section-value">875.2131</span>
-        </div>
-      </div>
-      <div class="interest-section">
-        <ion-icon name="trending-up-outline" class="section-icon"></ion-icon>
-        <div class="section-details">
-          <span class="section-label">Interest</span>
-          <span class="section-value">985116.515</span>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="reimbursement-card">
-    <div class="card-header">
-      <span class="reimbursement-date">15-10-2024</span>
-      <ion-icon name="calendar-outline" class="header-icon"></ion-icon>
-    </div>
-    <div class="card-body">
-      <div class="capital-section">
-        <ion-icon name="cash-outline" class="section-icon"></ion-icon>
-        <div class="section-details">
-          <span class="section-label">Capital</span>
-          <span class="section-value">875.2131</span>
-        </div>
-      </div>
-      <div class="interest-section">
-        <ion-icon name="trending-up-outline" class="section-icon"></ion-icon>
-        <div class="section-details">
-          <span class="section-label">Interest</span>
-          <span class="section-value">985116.515</span>
-        </div>
-      </div>
-    </div>
-  </div>
+  }
+
 </div>
 
+<ion-infinite-scroll [style.display]="disableScroll ? 'none' : 'block'" (ionInfinite)="loadMore($event)">
+  <ion-infinite-scroll-content
+    loadingSpinner="bubbles"
+    loadingText="Loading more operations...">
+  </ion-infinite-scroll-content>
+</ion-infinite-scroll>
 
-<app-modal-reimbursement/>
+<app-modal-reimbursement (reimbursementSaved)="savedReimbursement($event)"/>

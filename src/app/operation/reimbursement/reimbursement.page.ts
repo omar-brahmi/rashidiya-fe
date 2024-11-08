@@ -18,6 +18,8 @@ export class ReimbursementPage implements OnInit {
 
   operation: Operation | null = this.#operationService.getOperationSubjectValue();
 
+  remaining: number = 0;
+
   constructor() {
   }
 
@@ -30,9 +32,15 @@ export class ReimbursementPage implements OnInit {
       const operationID = this.#activatedRoute.snapshot.paramMap.get("operationID");
       this.#operationService.getOneObservable(operationID).subscribe(operation => {
         this.operation = operation;
+        this.remaining = this.operation.remainingToReimburse ?? 0;
         this.#operationService.updateOperationSubject(operation);
       });
+    } else {
+      this.remaining = this.operation.remainingToReimburse ?? 0;
     }
   }
 
+  reimbursementSaved($event: number) {
+    this.remaining = this.remaining - $event;
+  }
 }

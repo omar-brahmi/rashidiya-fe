@@ -1,4 +1,4 @@
-import {Component, inject, OnInit} from '@angular/core';
+import {Component, EventEmitter, inject, OnInit, Output} from '@angular/core';
 import {BasicComponent} from "../../../../../../shared/forms/generics/forms/basic.component";
 import {Reimbursement} from "../../../../../../core/models/Reimbursement.model";
 import {ReimbursementService} from "../../../../../../services/reimbursement.service";
@@ -14,6 +14,8 @@ import {ActivatedRoute} from "@angular/router";
   styleUrls: ['./modal-reimbursement.component.scss'],
 })
 export class ModalReimbursementComponent extends BasicComponent<Reimbursement, ReimbursementService> implements OnInit {
+
+  @Output() reimbursementSaved: EventEmitter<number> = new EventEmitter<number>();
 
   #toastService: ToastService = inject(ToastService);
   #activatedRoute: ActivatedRoute = inject(ActivatedRoute);
@@ -48,11 +50,12 @@ export class ModalReimbursementComponent extends BasicComponent<Reimbursement, R
     this.reimbursementService.save(this.entity, this.operationID).subscribe({
       next: data => {
         this.#toastService.success("Reimbursement saved successfully.");
+        this.reimbursementSaved.emit(this.entity.capital);
         modal.dismiss().then(() => {
           this.form.reset();
         });
       }, error: error => {
-        this.#toastService.error("Error saving reimbursement.");
+        this.#toastService.error(error.status === 409 ? "There was an issue saving the reimbursement. Please try again." : "Error saving reimbursement.");
       }
     });
   }
