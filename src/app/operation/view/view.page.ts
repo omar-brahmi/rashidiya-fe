@@ -3,7 +3,6 @@ import {OperationService} from "../../services/operation.service";
 import {ActivatedRoute} from "@angular/router";
 import {Operation} from "../../core/models/operation.model";
 import {formatNumberToCash} from "../../core/directives/cash-format.directive";
-import {ProcessImageState} from "../../shared/utils/getPhoto";
 
 @Component({
   selector: 'app-view',
@@ -35,5 +34,4 @@ export class ViewPage implements OnInit {
     }
   }
 
-  protected readonly ProcessImageState = ProcessImageState;
 }
