@@ -2,6 +2,15 @@
 
 <ion-content class="ion-padding">
 
+  <ion-segment value="all" mode="ios" color="primary" (ionChange)="onSegmentChange($event)">
+    <ion-segment-button value="all">
+      <ion-label>All</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="day">
+      <ion-label>Day</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
   <ion-button
     routerLink="/form/step-one-operation">
     Add New Operation
@@ -18,12 +27,28 @@
     />
   }
 
-  <ion-infinite-scroll (ionInfinite)="loadMore($event)">
-    <ion-infinite-scroll-content
-      loadingSpinner="bubbles"
-      loadingText="Loading more operations...">
-    </ion-infinite-scroll-content>
-  </ion-infinite-scroll>
+  @if (showSpinner) {
+    <div class="spinner-container">
+      <div class="spinner"></div>
+    </div>
+  }
+
+  @if (!showSpinner && operations.length === 0) {
+    <div class="no-items-container">
+      <p class="no-items-message">No items found!</p>
+    </div>
+
+
+  }
+
+  @if (!showSpinner && !operationsPage.last){
+    <ion-infinite-scroll (ionInfinite)="loadMore($event)">
+      <ion-infinite-scroll-content
+        loadingSpinner="bubbles"
+        loadingText="Loading more operations...">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  }
 
 </ion-content>
 

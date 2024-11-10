@@ -3,6 +3,7 @@ import {OperationService} from "../../services/operation.service";
 import {Operation} from "../../core/models/operation.model";
 import {GetAllPage} from "../../shared/models/getAllPage.model";
 import {Pageable} from "../../shared/models/pageable.model";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-list',
@@ -12,9 +13,12 @@ import {Pageable} from "../../shared/models/pageable.model";
 export class ListPage implements OnInit {
 
   #operationService: OperationService = inject(OperationService);
+  #router: Router = inject(Router);
 
   operationsPage!: GetAllPage<Operation>;
   operations: Operation[] = [];
+
+  selectedSegment: string = 'all';
 
   disableScroll: boolean = false;
   flippedCardIndex: number | null = null;
@@ -23,6 +27,8 @@ export class ListPage implements OnInit {
     cardID: "",
     phoneNumbers: ""
   };
+
+  showSpinner: boolean = true;
 
   constructor() {
   }
@@ -35,14 +41,27 @@ export class ListPage implements OnInit {
     if (pageable.page === 0) {
       this.disableScroll = false;
       this.operations = [];
+      this.showSpinner = true;
     }
-    this.#operationService.getAllByFilter(this.filter, pageable).subscribe({
-      next: data => {
-        this.operations = data.pageable.pageNumber === 0 ? data.content : [...this.operations, ...data.content];
-        this.operationsPage = data;
-        this.disableScroll = this.operationsPage.last;
-      }
-    })
+    if (this.selectedSegment === 'all') {
+      this.#operationService.getAllByFilter(this.filter, pageable).subscribe({
+        next: data => {
+          this.operations = data.pageable.pageNumber === 0 ? data.content : [...this.operations, ...data.content];
+          this.operationsPage = data;
+          this.disableScroll = this.operationsPage.last;
+          this.showSpinner = false;
+        }
+      });
+    } else {
+      this.#operationService.getAllDraftByFilter(this.filter, pageable).subscribe({
+        next: data => {
+          this.operations = data.pageable.pageNumber === 0 ? data.content : [...this.operations, ...data.content];
+          this.operationsPage = data;
+          this.disableScroll = this.operationsPage.last;
+          this.showSpinner = false;
+        }
+      });
+    }
   }
 
   loadMore($event: any) {
@@ -55,8 +74,13 @@ export class ListPage implements OnInit {
   }
 
   toggleCard(index: number) {
-    if (this.flippedCardIndex != index) {
-      this.flippedCardIndex = this.flippedCardIndex === index ? null : index;
+    if (this.selectedSegment === "all") {
+      if (this.flippedCardIndex != index) {
+        this.flippedCardIndex = this.flippedCardIndex === index ? null : index;
+      }
+    } else {
+      this.#operationService.updateOperationSubject(this.operations[index]);
+      this.#router.navigate(['/operations/view/' + this.operations[index].operationID]);
     }
   }
 
@@ -70,6 +94,11 @@ export class ListPage implements OnInit {
 
   onFilterApplied($event: { cardID: string; phoneNumbers: string }) {
     this.filter = $event;
+    this.loadAllOperationsByFilter();
+  }
+
+  onSegmentChange($event: any) {
+    this.selectedSegment = $event.detail.value;
     this.loadAllOperationsByFilter();
   }
 

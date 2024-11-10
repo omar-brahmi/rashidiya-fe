@@ -28,6 +28,13 @@ export class OperationService extends BaseService<Operation> {
     return this.#httpService.get(this.entityName + '/search' + pageable.toQueryString() + `&cardNumber=${filter.cardID}&phoneNumber=${filter.phoneNumbers}`);
   }
 
+  getAllDraftByFilter(filter: {
+    cardID: string;
+    phoneNumbers: string
+  }, pageable: Pageable = new Pageable()): Observable<any> {
+    return this.#httpService.get(this.entityName + '/search/daily' + pageable.toQueryString() + `&cardNumber=${filter.cardID}&phoneNumber=${filter.phoneNumbers}`);
+  }
+
   updateOperationSubject(operation: OperationClass): void {
     this.operationSubject.next(operation);
   }

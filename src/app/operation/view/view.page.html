@@ -1,4 +1,5 @@
-<app-header backUrl="/operations" title="Operation"/>
+<app-header backUrl="/operations" [operation]="operation"
+            [title]="operation?.status===Status.DRAFT?'Valid Operation':'Operation'"/>
 
 <ion-content class="ion-padding">
 

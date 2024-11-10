@@ -3,6 +3,7 @@ import {OperationService} from "../../services/operation.service";
 import {ActivatedRoute} from "@angular/router";
 import {Operation} from "../../core/models/operation.model";
 import {formatNumberToCash} from "../../core/directives/cash-format.directive";
+import {Status} from "../../core/models/enumerations/status.enum";
 
 @Component({
   selector: 'app-view',
@@ -34,4 +35,5 @@ export class ViewPage implements OnInit {
     }
   }
 
+  protected readonly Status = Status;
 }
