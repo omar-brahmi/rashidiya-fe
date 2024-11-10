@@ -19,6 +19,11 @@ export class ListPage implements OnInit {
   disableScroll: boolean = false;
   flippedCardIndex: number | null = null;
 
+  filter: { cardID: string; phoneNumbers: string } = {
+    cardID: "",
+    phoneNumbers: ""
+  };
+
   constructor() {
   }
 
@@ -31,7 +36,7 @@ export class ListPage implements OnInit {
       this.disableScroll = false;
       this.operations = [];
     }
-    this.#operationService.getAllByFilter(pageable, "", "", "", "").subscribe({
+    this.#operationService.getAllByFilter(this.filter, pageable).subscribe({
       next: data => {
         this.operations = data.pageable.pageNumber === 0 ? data.content : [...this.operations, ...data.content];
         this.operationsPage = data;
@@ -61,6 +66,11 @@ export class ListPage implements OnInit {
     if (!target.closest('.three-d-card')) {
       this.flippedCardIndex = null;
     }
+  }
+
+  onFilterApplied($event: { cardID: string; phoneNumbers: string }) {
+    this.filter = $event;
+    this.loadAllOperationsByFilter();
   }
 
 }

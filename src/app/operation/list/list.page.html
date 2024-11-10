@@ -7,6 +7,8 @@
     Add New Operation
   </ion-button>
 
+  <app-filter-operations (filterApplied)="onFilterApplied($event)"/>
+
   @for (operation of operations; track operation; let i = $index) {
     <app-card-operation
       [operation]="operation"

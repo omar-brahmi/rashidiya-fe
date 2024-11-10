@@ -1,0 +1,49 @@
+<!-- Filter Button to toggle filter section -->
+<ion-button expand="block" id="open-modal-filter">Filter Operations</ion-button>
+
+<div class="ion-chips">
+  @if (filterChips.cardID) {
+    <ion-chip mode="ios" (click)="clearFilterChip('cardID')">{{ filterChips.cardID }}
+      <ion-icon color="light" name="close-circle"></ion-icon>
+    </ion-chip>
+  }
+  @if (filterChips.phoneNumbers) {
+    <ion-chip mode="ios" (click)="clearFilterChip('phoneNumbers')">{{ filterChips.phoneNumbers }}
+      <ion-icon color="light" name="close-circle"></ion-icon>
+    </ion-chip>
+  }
+</div>
+
+<ion-modal #modal trigger="open-modal-filter"
+           [initialBreakpoint]="0.50"
+           [breakpoints]="[0, 0.25, 0.5, 0.75, 0.90]"
+           handleBehavior="cycle"
+>
+  <ng-template>
+    <ion-header>
+      <ion-toolbar class="text-center">
+        <ion-title>
+          Filter Operations
+        </ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="modal.dismiss()"><span class="text-white">Close</span></ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">
+      <div class="input-group">
+        <label class="input-group__label" for="myInput">Card ID:</label>
+        <input type="text" id="myInput" class="input-group__input" [(ngModel)]="filter.cardID"
+               appAutoHyphen placeholder="000-0000-0000000-0"/>
+      </div>
+      <div class="input-group">
+        <label class="input-group__label" for="phoneNumber">Phone Number:</label>
+        <input type="number" id="phoneNumber" class="input-group__input" [(ngModel)]="filter.phoneNumbers"
+               placeholder="+00 000 000"/>
+      </div>
+
+      <ion-button (click)="applyFilters(modal)" style="margin-bottom: 10px">Apply</ion-button>
+      <ion-button (click)="resetFilters(modal)" color="dark" style="margin-top: 0">Rest</ion-button>
+    </ion-content>
+  </ng-template>
+</ion-modal>

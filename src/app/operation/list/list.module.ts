@@ -20,18 +20,21 @@ import {
 } from "../reimbursement/components/list-reimbursement/components/modal-reimbursement/modal-reimbursement.component";
 import {NgxIonicImageViewerModule} from "@herdwatch-apps/ngx-ionic-image-viewer";
 import {CashFormatDirective} from "../../core/directives/cash-format.directive";
+import {FilterOperationsComponent} from "./components/filter-operations/filter-operations.component";
+import {AutoHyphenDirective} from "../../core/directives/auto-hyphen.directive";
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    ListPageRoutingModule,
-    HomePageModule,
-    NgxIonicImageViewerModule,
-    ReactiveFormsModule,
-    CashFormatDirective
-  ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        IonicModule,
+        ListPageRoutingModule,
+        HomePageModule,
+        NgxIonicImageViewerModule,
+        ReactiveFormsModule,
+        CashFormatDirective,
+        AutoHyphenDirective
+    ],
     exports: [
         HeaderComponent,
         UploadCardIdComponent,
@@ -39,6 +42,6 @@ import {CashFormatDirective} from "../../core/directives/cash-format.directive";
         PhoneNumbersComponent,
         ListReimbursementComponent
     ],
-  declarations: [ListPage, HeaderComponent, UploadCardIdComponent, UploadContractComponent, PhoneNumbersComponent, ListReimbursementComponent, ModalReimbursementComponent]
+    declarations: [ListPage, HeaderComponent, UploadCardIdComponent, UploadContractComponent, PhoneNumbersComponent, ListReimbursementComponent, ModalReimbursementComponent, FilterOperationsComponent]
 })
 export class ListPageModule {}

@@ -21,12 +21,11 @@ export class OperationService extends BaseService<Operation> {
     super();
   }
 
-  getAllByFilter(pageable: Pageable = new Pageable(), cardNumber: string = "", phoneNumber: string = "",
-                 startDate: string | null, endDate: string | null): Observable<GetAllPage<Operation>> {
-    if (!startDate) {
-      startDate = '';
-    }
-    return this.#httpService.get(this.entityName + '/search' + pageable.toQueryString() + `&cardNumber=${cardNumber}&phoneNumber=${phoneNumber}&startDate=${startDate}&endDate=${endDate}`);
+  getAllByFilter(filter: {
+    cardID: string;
+    phoneNumbers: string
+  }, pageable: Pageable = new Pageable()): Observable<GetAllPage<Operation>> {
+    return this.#httpService.get(this.entityName + '/search' + pageable.toQueryString() + `&cardNumber=${filter.cardID}&phoneNumber=${filter.phoneNumbers}`);
   }
 
   updateOperationSubject(operation: OperationClass): void {
