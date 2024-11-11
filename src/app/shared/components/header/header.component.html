@@ -1,5 +1,5 @@
 <ion-header id="header" class="ion-no-border">
-  @if (operation === null) {
+  @if (operation === null || operation.status === Status.VALIDATED) {
     <ion-toolbar>
       <ion-buttons slot="start" (click)="backButton()"
                    style="color: var(--ion-color-primary, #0054e9); font-size: larger;">
@@ -15,17 +15,21 @@
     </ion-toolbar>
   } @else {
     <ion-toolbar>
-      <ion-buttons slot="start" (click)="backButton()"
-                   style="color: var(--ion-color-primary, #0054e9); font-size: larger;">
-        <ion-icon name="chevron-back-outline"></ion-icon>
-        Back
+      <ion-buttons slot="start" (click)="backButton()" style="color: #fff; font-size: xx-large;margin-left: 10px;">
+        <ion-icon name="close-outline"></ion-icon>
       </ion-buttons>
       <ion-title size="large">{{ title }}</ion-title>
-      <ion-buttons slot="end">
-        <ion-button color="dark">
-          <ion-icon slot="icon-only" ios="person-circle-outline" md="person-circle"></ion-icon>
-        </ion-button>
+      <ion-buttons id="open-action-sheet" slot="end" style="color: #fff; font-size: xx-large;margin-right: 10px;">
+        <ion-icon name="checkmark-outline"></ion-icon>
       </ion-buttons>
     </ion-toolbar>
+
+    <ion-action-sheet
+      mode="ios"
+      trigger="open-action-sheet"
+      header="Confirm Operation"
+      [buttons]="actionSheetButtons"
+      (didDismiss)="logResult($event)"
+    ></ion-action-sheet>
   }
 </ion-header>

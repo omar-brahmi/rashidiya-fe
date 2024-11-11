@@ -3,3 +3,18 @@ ion-title {
   --color: #f4f5f8;
   font-weight: bolder;
 }
+
+ion-action-sheet {
+  --background: #1a1a40; /* Matches the theme */
+  --color: #fff; /* White text color */
+  text-align-last: center;
+}
+
+ion-action-sheet .action-sheet-group .action-sheet-button {
+  padding: 12px; /* Increase button padding */
+}
+
+ion-action-sheet .action-sheet-button-icon {
+  margin-right: 8px;
+  font-size: 1.4em;
+}

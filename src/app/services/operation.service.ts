@@ -25,7 +25,7 @@ export class OperationService extends BaseService<Operation> {
     cardID: string;
     phoneNumbers: string
   }, pageable: Pageable = new Pageable()): Observable<GetAllPage<Operation>> {
-    return this.#httpService.get(this.entityName + '/search' + pageable.toQueryString() + `&cardNumber=${filter.cardID}&phoneNumber=${filter.phoneNumbers}`);
+    return this.#httpService.get(this.entityName + '/search/validated' + pageable.toQueryString() + `&cardNumber=${filter.cardID}&phoneNumber=${filter.phoneNumbers}`);
   }
 
   getAllDraftByFilter(filter: {
@@ -33,6 +33,10 @@ export class OperationService extends BaseService<Operation> {
     phoneNumbers: string
   }, pageable: Pageable = new Pageable()): Observable<any> {
     return this.#httpService.get(this.entityName + '/search/daily' + pageable.toQueryString() + `&cardNumber=${filter.cardID}&phoneNumber=${filter.phoneNumbers}`);
+  }
+
+  validateOperation(operationID: number = 0) {
+    return this.#httpService.patch<Operation, any>(this.entityName + `/validate/${operationID}`, {});
   }
 
   updateOperationSubject(operation: OperationClass): void {
