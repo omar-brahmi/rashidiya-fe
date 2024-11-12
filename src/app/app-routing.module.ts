@@ -35,6 +35,10 @@ const routes: Routes = [
     loadChildren: () => import('./operation/cancel/cancel.module').then(m => m.CancelPageModule)
   },
   {
+    path: 'reminder',
+    loadChildren: () => import('./reminder/reminder.module').then(m => m.ReminderPageModule)
+  },
+  {
     path: '',
     redirectTo: 'login',
     pathMatch: 'full'

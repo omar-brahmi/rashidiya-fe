@@ -1,0 +1,71 @@
+.reminder-card {
+  background: linear-gradient(135deg, #8b5cf6, #6366f1);
+  border-radius: 20px;
+  padding: 25px;
+  color: white;
+  box-shadow: 0 15px 20px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+  margin: 20px 0;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.reminder-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 25px 30px rgba(0, 0, 0, 0.15);
+}
+
+.reminder-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.reminder-icon {
+  font-size: 1.8rem;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 12px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.reminder-content {
+  padding: 10px 0 0 10px;
+  position: relative;
+}
+
+.reminder-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+.reminder-details {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.reminder-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.reminder-item ion-icon {
+  font-size: 1.2rem;
+}
+
+.gradient-overlay {
+  position: absolute;
+  width: 120%;
+  height: 100%;
+  top: 0;
+  left: -20%;
+  transform: rotate(-15deg);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+  pointer-events: none;
+}

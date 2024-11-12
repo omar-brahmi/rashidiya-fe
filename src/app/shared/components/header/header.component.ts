@@ -19,7 +19,7 @@ export class HeaderComponent {
   protected readonly Status = Status;
 
   @Input() title: string = "";
-  @Input() backUrl: string = "";
+  @Input() backUrl: string = "/home";
   @Input() operation: Operation | null = null;
 
   public actionSheetButtons = [

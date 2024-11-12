@@ -1,0 +1,49 @@
+<app-header title="Reminder"/>
+
+<ion-content class="ion-padding">
+  <div class="reminder-container">
+    <h2 class="reminder-title">Reminder</h2>
+
+    <!-- List Section -->
+    <div class="reminder-list">
+
+      @for (reminder of operations; track reminder) {
+        <app-card-reminder/>
+      }
+
+      <app-card-reminder [index]="0"/>
+      <app-card-reminder [index]="1"/>
+      <app-card-reminder [index]="2"/>
+      <app-card-reminder [index]="3"/>
+      <app-card-reminder [index]="4"/>
+      <app-card-reminder [index]="5"/>
+      <app-card-reminder [index]="6"/>
+      <app-card-reminder [index]="7"/>
+
+      @if (showSpinner) {
+        <div class="spinner-container">
+          <div class="spinner"></div>
+        </div>
+      }
+
+      @if (!showSpinner && operations.length === 0) {
+        <div class="not-found-container">
+          <ion-icon name="search-outline" class="not-found-icon"></ion-icon>
+          <h2 class="not-found-title">No Reminder Found!</h2>
+        </div>
+      }
+
+    </div>
+  </div>
+
+  @if (!showSpinner && !operationsPage.last) {
+    <ion-infinite-scroll (ionInfinite)="loadMore($event)">
+      <ion-infinite-scroll-content
+        loadingSpinner="bubbles"
+        loadingText="Loading more operations...">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  }
+</ion-content>
+
+<app-footer/>

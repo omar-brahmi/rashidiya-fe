@@ -35,6 +35,10 @@ export class OperationService extends BaseService<Operation> {
     return this.#httpService.get(this.entityName + '/search/daily' + pageable.toQueryString() + `&cardNumber=${filter.cardID}&phoneNumber=${filter.phoneNumbers}`);
   }
 
+  searchReminderOperations(pageable: Pageable = new Pageable()): Observable<any> {
+    return this.#httpService.get(this.entityName + '/reminder' + pageable.toQueryString());
+  }
+
   validateOperation(operationID: number = 0) {
     return this.#httpService.patch<Operation, any>(this.entityName + `/validate/${operationID}`, {});
   }
