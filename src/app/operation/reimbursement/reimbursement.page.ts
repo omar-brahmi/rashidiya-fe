@@ -1,4 +1,4 @@
-import {Component, inject, OnInit} from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {formatNumberToCash} from "../../core/directives/cash-format.directive";
 import {OperationService} from "../../services/operation.service";
 import {ActivatedRoute} from "@angular/router";
@@ -9,7 +9,7 @@ import {Operation} from "../../core/models/operation.model";
   templateUrl: './reimbursement.page.html',
   styleUrls: ['./reimbursement.page.scss'],
 })
-export class ReimbursementPage implements OnInit {
+export class ReimbursementPage {
 
   protected readonly formatNumberToCash = formatNumberToCash;
 
@@ -23,7 +23,7 @@ export class ReimbursementPage implements OnInit {
   constructor() {
   }
 
-  ngOnInit() {
+  ionViewWillEnter() {
     this.getOperation();
   }
 
@@ -43,4 +43,5 @@ export class ReimbursementPage implements OnInit {
   reimbursementSaved($event: number) {
     this.remaining = this.remaining - $event;
   }
+
 }

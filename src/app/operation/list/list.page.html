@@ -11,8 +11,7 @@
     </ion-segment-button>
   </ion-segment>
 
-  <ion-button
-    routerLink="/form/step-one-operation">
+  <ion-button (click)="redirectToNewOperation()">
     Add New Operation
   </ion-button>
 
@@ -41,7 +40,7 @@
 
   }
 
-  @if (!showSpinner && !operationsPage.last){
+  @if (!showSpinner && !operationsPage.last) {
     <ion-infinite-scroll (ionInfinite)="loadMore($event)">
       <ion-infinite-scroll-content
         loadingSpinner="bubbles"

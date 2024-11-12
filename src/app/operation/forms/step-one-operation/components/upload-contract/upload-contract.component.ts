@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Output} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {getPhoto, ProcessImageState} from 'src/app/shared/utils/getPhoto';
 
 @Component({
@@ -11,9 +11,9 @@ export class UploadContractComponent {
   @Output() contractScanned = new EventEmitter<{ contract: string }>();
 
   protected readonly ProcessImageState = ProcessImageState;
-  processImage: ProcessImageState = ProcessImageState.UPLOAD_IMAGE;
 
-  imageUrl: string | undefined = undefined;
+  @Input() processImage: ProcessImageState = ProcessImageState.UPLOAD_IMAGE;
+  @Input() imageUrl: string | undefined = undefined;
 
   openCamera() {
     this.processImage = ProcessImageState.IN_PROCESS;

@@ -34,4 +34,11 @@ export class CardOperationComponent {
     }
   }
 
+  redirectToCancel() {
+    if (this.operation) {
+      this.#operationService.updateOperationSubject(this.operation);
+      this.#router.navigate(['/operations/cancel/' + this.operation.operationID]);
+    }
+  }
+
 }

@@ -1,5 +1,6 @@
 import {Component, inject} from '@angular/core';
-import {Router} from "@angular/router";
+import {NavController} from "@ionic/angular";
+import {OperationService} from "../../../services/operation.service";
 
 @Component({
   selector: 'app-footer',
@@ -8,10 +9,14 @@ import {Router} from "@angular/router";
 })
 export class FooterComponent {
 
-  #router: Router = inject(Router);
+  #operationService: OperationService = inject(OperationService);
+  #router: NavController = inject(NavController);
 
   redirectTo(url: string) {
-    this.#router.navigate([url]);
+    if (url === '/form/step-one-operation') {
+      this.#operationService.destroyOperationSubject();
+    }
+    this.#router.navigateRoot([url]);
   }
 
 }

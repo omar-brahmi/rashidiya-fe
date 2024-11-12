@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Output} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {detectTextFromImage, terminateWorker} from './utils/detectTextFromImage';
 import {getPhoto, ProcessImageState} from "../../../../../shared/utils/getPhoto";
 
@@ -17,9 +17,10 @@ export class UploadCardIdComponent {
   }>();
 
   protected readonly ProcessImageState = ProcessImageState;
-  processImage: ProcessImageState = ProcessImageState.UPLOAD_IMAGE;
 
-  imageUrl: string | undefined = undefined;
+  @Input() processImage: ProcessImageState = ProcessImageState.UPLOAD_IMAGE;
+
+  @Input() imageUrl: string | undefined = undefined;
 
   showError: boolean = false;
 

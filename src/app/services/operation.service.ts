@@ -39,6 +39,10 @@ export class OperationService extends BaseService<Operation> {
     return this.#httpService.patch<Operation, any>(this.entityName + `/validate/${operationID}`, {});
   }
 
+  cancelOperation(operation: OperationClass) {
+    return this.#httpService.patch<Operation, any>(this.entityName + `/cancel`, operation);
+  }
+
   updateOperationSubject(operation: OperationClass): void {
     this.operationSubject.next(operation);
   }

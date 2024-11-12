@@ -85,7 +85,7 @@ ion-card-subtitle {
   display: flex;
   flex-direction: column;
   z-index: 2;
-  margin-top: 40px;
+  margin-top: 25px;
 }
 
 @supports (mix-blend-mode: darken) {
@@ -113,16 +113,19 @@ ion-card-subtitle {
   font-size: 1.25rem;
   line-height: 1;
   outline: none;
-  height: calc(1em + 1.6em + 0.5em);
+  height: 3.1em;
   width: 100%;
   padding: 0.8em 1em;
-  background: transparent;
-  border: 0.20em solid #fff;
+  background: rgba(49, 46, 129, 0.5);
+  border: 0;
   background-origin: border-box;
   background-clip: padding-box, border-box;
-  border-radius: 1.8em;
   background-size: 200% 100%;
   transition: background-position 0.8s ease-out;
+  border-radius: 0.5rem;
+}
+.input-group__input:focus-visible {
+  border: 3px solid white;
 }
 
 .input-group__input:hover {
@@ -135,26 +138,17 @@ input::placeholder {
 }
 
 .form-select {
-  padding: 0.8em 1em;
-  background: transparent;
-  border: 5px solid #fff;
-  border-radius: 1.8em;
+  padding: 1.2rem;
+  background: rgba(49, 46, 129, 0.5);
+  border: 0;
+  border-radius: 0.5rem;
 }
 
 .input-group__input__textarea {
-  color: #fff;
-  font-size: 1.25rem;
-  line-height: 1;
-  outline: none;
-  width: 100%;
-  padding: 0.8em 1em;
-  background: transparent;
-  border: 0.2em solid #fff;
-  background-origin: border-box;
-  background-clip: padding-box, border-box;
-  border-radius: 1.8em;
-  background-size: 200% 100%;
-  transition: background-position 0.8s ease-out;
+  padding: 1.2rem;
+  background: rgba(49, 46, 129, 0.5);
+  border: 0;
+  border-radius: 0.5rem;
 }
 
 .image-upload-viewer {

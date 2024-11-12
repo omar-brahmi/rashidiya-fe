@@ -23,8 +23,16 @@ const routes: Routes = [
     loadChildren: () => import('./operation/forms/step-one-operation/step-one-operation.module').then(m => m.StepOneOperationPageModule)
   },
   {
+    path: 'form/step-one-operation/:operationID',
+    loadChildren: () => import('./operation/forms/step-one-operation/step-one-operation.module').then(m => m.StepOneOperationPageModule)
+  },
+  {
     path: 'operations/reimbursement/:operationID',
     loadChildren: () => import('./operation/reimbursement/reimbursement.module').then(m => m.ReimbursementPageModule)
+  },
+  {
+    path: 'operations/cancel/:operationID',
+    loadChildren: () => import('./operation/cancel/cancel.module').then(m => m.CancelPageModule)
   },
   {
     path: '',

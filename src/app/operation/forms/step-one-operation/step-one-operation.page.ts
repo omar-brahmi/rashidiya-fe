@@ -1,6 +1,6 @@
 import {Component, inject, OnInit, ViewChild} from '@angular/core';
 import {OperationService} from "../../../services/operation.service";
-import {OperationClass} from "../../../core/models/operation.model";
+import {Operation, OperationClass} from "../../../core/models/operation.model";
 import {BasicComponent} from "../../../shared/forms/generics/forms/basic.component";
 import {FormField} from "../../../shared/models/form-field.model";
 import {unformatCash} from "../../../core/directives/cash-format.directive";
@@ -8,7 +8,9 @@ import {unformatWeight} from "../../../core/directives/weight-input.directive";
 import {PhoneNumbersComponent} from "./components/phone-numbers/phone-numbers.component";
 import {ClientService} from "../../../services/client.service";
 import {ToastService} from "../../../shared/services/toast.service";
-import {Router} from "@angular/router";
+import {ActivatedRoute} from "@angular/router";
+import {ProcessImageState} from "../../../shared/utils/getPhoto";
+import {NavController} from "@ionic/angular";
 
 @Component({
   selector: 'app-step-one-operation',
@@ -18,12 +20,21 @@ import {Router} from "@angular/router";
 export class StepOneOperationPage extends BasicComponent<OperationClass, OperationService> implements OnInit {
 
   @ViewChild(PhoneNumbersComponent) phoneNumbersComponent!: PhoneNumbersComponent;
+  protected readonly ProcessImageState = ProcessImageState;
 
   #clientService: ClientService = inject(ClientService);
   #toastService: ToastService = inject(ToastService);
-  #router: Router = inject(Router);
+  #activatedRoute: ActivatedRoute = inject(ActivatedRoute);
 
   protected formFields: FormField[] = [
+    {
+      fieldName: 'operationID',
+      value: null,
+    },
+    {
+      fieldName: 'operationNumber',
+      value: null,
+    },
     {
       fieldName: 'operationFirstName',
       value: null,
@@ -70,7 +81,11 @@ export class StepOneOperationPage extends BasicComponent<OperationClass, Operati
     }
   ];
 
-  constructor(private operationService: OperationService) {
+  operation: Operation | null = this.operationService.getOperationSubjectValue();
+
+  isUpdate: boolean = false;
+
+  constructor(private operationService: OperationService, private navController: NavController) {
     super(operationService);
   }
 
@@ -78,14 +93,49 @@ export class StepOneOperationPage extends BasicComponent<OperationClass, Operati
     this.buildForm();
   }
 
+  ionViewWillEnter() {
+    this.getOperation();
+  }
+
+  getOperation() {
+    const operationID = this.#activatedRoute.snapshot.paramMap.get("operationID");
+    if (operationID !== null) {
+      if (!this.operation) {
+        this.operationService.getOneObservable(operationID).subscribe(operation => {
+          this.operation = operation;
+          this.patchValuesForm();
+        })
+      } else {
+        this.patchValuesForm();
+      }
+    }
+  }
+
+  patchValuesForm() {
+    if (this.operation) {
+      this.isUpdate = true;
+      this.form.patchValue(this.operation);
+    }
+  }
+
   save() {
     this.populatedObject().then(entity => {
       this.entity = entity;
       this.create().then(value => {
-        this.#toastService.success("Operation saved successfully.");
-        this.#router.navigate(['/operations']);
+        if (this.isUpdate) {
+          this.#toastService.success("Operation updated successfully.");
+          this.operationService.updateOperationSubject(value);
+          this.navController.navigateRoot("/operations/view/" + value.operationID);
+        } else {
+          this.#toastService.success("Operation saved successfully.");
+          this.navController.navigateRoot("/operations");
+        }
       }).catch(error => {
-        this.#toastService.error("Error saving operation !!!");
+        if (this.isUpdate) {
+          this.#toastService.error("Error updating operation");
+        } else {
+          this.#toastService.error("Error saving operation");
+        }
       });
     });
   }

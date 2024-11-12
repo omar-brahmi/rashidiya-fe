@@ -1,0 +1,53 @@
+ion-list {
+  border-radius: 20px;
+  background: linear-gradient(135deg, #1b2b44, #2a3f57);
+}
+
+ion-item {
+  --background: linear-gradient(135deg, #1b2b44, #2a3f57);
+  --border-color: #fff;
+}
+
+ion-list-header {
+  margin-top: 30px;
+  font-size: 20px;
+  font-weight: bolder;
+  padding: 0;
+}
+
+.text-phone {
+  width: 100%;
+  text-align: center;
+  font-size: 17px;
+}
+
+.text-phone a {
+  color: #fff;
+}
+
+.phone-numbers-section {
+  text-align: left;
+  padding: 0;
+  color: #ffffff;
+}
+
+.phone-numbers-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Two columns for a balanced layout */
+  gap: 15px; /* Space between items */
+}
+
+.phone-number-card {
+  background: linear-gradient(135deg, #2d4d8a, #2a6f68); /* Soft purple gradient */
+  padding: 10px 15px;
+  border-radius: 10px;
+  color: #ffffff;
+  font-size: 16px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.phone-number-card a {
+  color: #ffffff;
+  text-decoration: none;
+}

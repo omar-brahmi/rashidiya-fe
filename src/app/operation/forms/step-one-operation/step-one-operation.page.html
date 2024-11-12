@@ -1,20 +1,25 @@
-<app-header title="Add New Operation" backUrl="/operations"/>
+<app-header [title]="isUpdate ? 'Update Operation': 'Add New Operation'"
+            [backUrl]="isUpdate?'/operations/view/'+operation?.operationID:'/operations'"/>
 
 <ion-content class="ion-padding">
 
   <form [formGroup]="form">
 
-    <app-upload-card-id (cardScanned)="handleCardScanned($event)"/>
+    <app-upload-card-id [imageUrl]="operation?.card"
+                        [processImage]="operation?.card ? ProcessImageState.HAS_FINISHED : ProcessImageState.UPLOAD_IMAGE"
+                        (cardScanned)="handleCardScanned($event)"/>
 
-    <app-upload-contract (contractScanned)="handleContractScanned($event)"/>
+    <app-upload-contract [imageUrl]="operation?.contract"
+                         [processImage]="operation?.contract ? ProcessImageState.HAS_FINISHED : ProcessImageState.UPLOAD_IMAGE"
+                         (contractScanned)="handleContractScanned($event)"/>
+
+    <app-phone-numbers [phoneNumbers]="operation?.phoneNumbers"/>
 
     <div class="input-group">
       <label class="input-group__label" for="myInput">Card ID:</label>
       <input type="text" id="myInput" formControlName="idCard" class="input-group__input"
              appAutoHyphen placeholder="000-0000-0000000-0"/>
     </div>
-
-    <app-phone-numbers/>
 
     <div class="input-group">
       <label class="input-group__label" for="firstName">First name</label>
@@ -63,7 +68,13 @@
       </ion-toggle>
     </div>
 
-    <button (click)="save()" style="margin-bottom: 200px" class="btn-stepper">Save</button>
+    <button (click)="save()" style="margin-bottom: 200px" class="btn-stepper">
+      @if (isUpdate) {
+        Update
+      } @else {
+        Save
+      }
+    </button>
 
   </form>
 

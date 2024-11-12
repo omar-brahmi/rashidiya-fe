@@ -1,16 +1,17 @@
-import {Component, HostListener, inject, OnInit} from '@angular/core';
+import {Component, HostListener, inject} from '@angular/core';
 import {OperationService} from "../../services/operation.service";
 import {Operation} from "../../core/models/operation.model";
 import {GetAllPage} from "../../shared/models/getAllPage.model";
 import {Pageable} from "../../shared/models/pageable.model";
 import {Router} from "@angular/router";
+import {NavController} from "@ionic/angular";
 
 @Component({
   selector: 'app-list',
   templateUrl: './list.page.html',
   styleUrls: ['./list.page.scss'],
 })
-export class ListPage implements OnInit {
+export class ListPage {
 
   #operationService: OperationService = inject(OperationService);
   #router: Router = inject(Router);
@@ -30,10 +31,10 @@ export class ListPage implements OnInit {
 
   showSpinner: boolean = true;
 
-  constructor() {
+  constructor(private nav: NavController) {
   }
 
-  ngOnInit(): void {
+  ionViewWillEnter() {
     this.loadAllOperationsByFilter();
   }
 
@@ -100,6 +101,11 @@ export class ListPage implements OnInit {
   onSegmentChange($event: any) {
     this.selectedSegment = $event.detail.value;
     this.loadAllOperationsByFilter();
+  }
+
+  redirectToNewOperation() {
+    this.#operationService.destroyOperationSubject();
+    this.nav.navigateRoot("/form/step-one-operation");
   }
 
 }

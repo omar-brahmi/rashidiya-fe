@@ -31,7 +31,10 @@
     <div class="card-face back">
       <ion-card>
         <ion-card-content>
-          <button (click)="redirectToView()">More details</button>
+          <div style="display: flex">
+            <button (click)="redirectToView()" style="margin-right: 15px">More details</button>
+            <button (click)="redirectToCancel()">Cancel</button>
+          </div>
           <button (click)="redirectToReimbursement()" style="margin-top: 15px">Reimbursement</button>
         </ion-card-content>
       </ion-card>

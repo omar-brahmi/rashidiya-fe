@@ -1,0 +1,78 @@
+<app-header backUrl="/operations" title="Cancel Operation"/>
+
+<ion-content class="ion-padding">
+
+  <ion-list-header>Operation: {{ operation?.operationFirstName + ' ' + operation?.operationLastName }}</ion-list-header>
+  <ion-list style="margin: 0">
+    <ion-item>
+      <ion-label>Operation Number</ion-label>
+      <ion-text slot="end" color="dark">{{ operation?.operationNumber }}</ion-text>
+    </ion-item>
+    <ion-item>
+      <ion-label>Card Number</ion-label>
+      <ion-text slot="end" color="dark">{{ operation?.idCard }}</ion-text>
+    </ion-item>
+    <ion-item>
+      <ion-label>Karat</ion-label>
+      <ion-text slot="end" color="dark">{{ operation?.karat }}</ion-text>
+    </ion-item>
+    <ion-item>
+      <ion-label>Weight</ion-label>
+      <ion-text slot="end" color="dark">{{ operation?.weight }}</ion-text>
+    </ion-item>
+    <ion-item>
+      <ion-label>Operation Date</ion-label>
+      <ion-text slot="end" color="dark">{{ operation?.createdAt | date: 'dd-MM-yyyy' }}</ion-text>
+    </ion-item>
+    <ion-item style="--border-color: transparent;">
+      <ion-label>Cash</ion-label>
+      <ion-text slot="end" color="dark">{{ formatNumberToCash(operation?.cash) }}</ion-text>
+    </ion-item>
+  </ion-list>
+
+  <form [formGroup]="form">
+    <app-phone-numbers [phoneNumbers]="operation?.phoneNumbers"/>
+
+    <div class="input-group">
+      <label class="input-group__label" for="firstName">First name</label>
+      <input type="text" id="firstName" formControlName="operationFirstName" class="input-group__input"
+             placeholder="First name"/>
+    </div>
+
+    <div class="input-group">
+      <label class="input-group__label" for="lastName">Last name</label>
+      <input type="text" id="lastName" formControlName="operationLastName" class="input-group__input"
+             placeholder="Last name"/>
+    </div>
+
+    <div class="input-group">
+      <label class="input-group__label" for="myInput">Card ID:</label>
+      <input type="text" id="myInput" formControlName="idCard" class="input-group__input"
+             appAutoHyphen placeholder="000-0000-0000000-0"/>
+    </div>
+
+    <div class="input-group">
+      <label class="input-group__label" for="lastName">Accounts</label>
+      <select id="defaultSelect" formControlName="karat" class="form-select">
+        <option [value]="null">Select Accounts</option>
+        <option value="18K">18K</option>
+        <option value="21K">21K</option>
+        <option value="22K">22K</option>
+        <option value="Others">Others</option>
+      </select>
+    </div>
+
+    <div class="input-group">
+      <label class="input-group__label" for="Weight">Weight</label>
+      <input appWeightInput type="text" formControlName="weight" id="Weight" class="input-group__input"
+             placeholder="00.00"/>
+    </div>
+
+    <button (click)="cancelOperation()" style="margin-bottom: 200px" class="btn-stepper">Cancel Operation</button>
+  </form>
+
+  <div style="margin-top: 100px"></div>
+
+</ion-content>
+
+<app-footer/>
