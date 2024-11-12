@@ -1,26 +1,25 @@
 <ion-content>
 
+<div class="login-layout">
   <div class="login-container">
-    <ion-list-header><h1 style="width: 100%; text-align: center; font-size: 40px">Rashidiya</h1></ion-list-header>
-    <h4 style="width: 100%; text-align: center;padding-bottom: 20px; margin: 0;">Login to your account</h4>
-    <ion-list [inset]="true">
-      <ion-item>
-        <ion-input labelPlacement="floating">
-          <div slot="label">Username</div>
-        </ion-input>
-      </ion-item>
-    </ion-list>
+    <h1>Welcome Back</h1>
+    <p>Please login to continue</p>
 
-    <ion-list [inset]="true">
-      <ion-item>
-        <ion-input labelPlacement="floating" type="password">
-          <div slot="label">Password</div>
-        </ion-input>
-      </ion-item>
-    </ion-list>
+    <form id="loginForm" class="login-form">
+      <div class="form-group">
+        <label for="email">EMAIL:</label>
+        <input type="email" id="email" required placeholder="Enter your email">
+      </div>
 
-    <ion-button style="padding: 15px 15px;font-size: 20px; font-weight: bolder;" expand="full" shape="round" color="dark">Sign in</ion-button>
+      <div class="form-group">
+        <label for="password">PASSWORD:</label>
+        <input type="password" id="password" required placeholder="Enter your password">
+      </div>
 
+      <button (click)="signIn()" type="submit">LOGIN</button>
+    </form>
   </div>
+</div>
+
 
 </ion-content>

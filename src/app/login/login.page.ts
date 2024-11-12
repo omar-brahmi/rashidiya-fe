@@ -19,6 +19,6 @@ export class LoginPage {
     console.log('Email:', this.email);
     console.log('Password:', this.password);
     // Navigate to another page if needed
-    // this.navCtrl.navigateForward('/home');
+    this.navCtrl.navigateForward('/home');
   }
 }
