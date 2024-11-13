@@ -14,13 +14,15 @@
     </ion-segment-button>
   </ion-segment>
 
-  @if (segment === "consultation") {
-    <app-consultation/>
-  } @else if (segment === "balancePerDay") {
-    <app-balance-per-day/>
-  } @else {
-    <app-reminder/>
-  }
+  <div *ngIf="segment === 'consultation'" @creativeSegmentAnimation>
+    <app-consultation></app-consultation>
+  </div>
+  <div *ngIf="segment === 'balancePerDay'" @creativeSegmentAnimation>
+    <app-balance-per-day></app-balance-per-day>
+  </div>
+  <div *ngIf="segment === 'reminder'" @creativeSegmentAnimation>
+    <app-reminder></app-reminder>
+  </div>
 
 </ion-content>
 
