@@ -2,7 +2,7 @@
 
 <ion-content class="ion-padding">
 
-  <ion-segment [(ngModel)]="segment" mode="ios" color="primary" (ionChange)="segmentChange($event)">
+  <ion-segment [(ngModel)]="segment" mode="ios">
     <ion-segment-button value="consultation">
       <ion-label>Consultation</ion-label>
     </ion-segment-button>
@@ -14,7 +14,11 @@
     </ion-segment-button>
   </ion-segment>
 
-  @if (segment === "reminder"){
+  @if (segment === "consultation") {
+    <app-consultation/>
+  } @else if (segment === "balancePerDay") {
+    <app-balance-per-day/>
+  } @else {
     <app-reminder/>
   }
 

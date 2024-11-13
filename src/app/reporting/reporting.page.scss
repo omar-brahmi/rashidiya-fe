@@ -1,0 +1,20 @@
+ion-segment {
+  display: flex;
+  justify-content: space-around;
+  background: linear-gradient(135deg, #ff6f00, #ffab00);
+  border-radius: 15px;
+  padding: 13px 0;
+}
+
+ion-segment-button {
+  background: transparent;
+  padding: 5px 0;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.segment-button-checked {
+  --indicator-color: #fff;
+  color: #ff6f00;
+  transition: background 0.3s ease;
+}

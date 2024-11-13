@@ -11,6 +11,8 @@ import {HomePageModule} from "../home/home.module";
 import {ListPageModule} from "../operation/list/list.module";
 import {ReminderComponent} from "./components/reminder/reminder.component";
 import {CardReminderComponent} from "./components/reminder/components/card-reminder/card-reminder.component";
+import {ConsultationComponent} from "./components/consultation/consultation.component";
+import {BalancePerDayComponent} from "./components/balance-per-day/balance-per-day.component";
 
 @NgModule({
   imports: [
@@ -21,7 +23,7 @@ import {CardReminderComponent} from "./components/reminder/components/card-remin
     HomePageModule,
     ListPageModule
   ],
-  declarations: [ReportingPage, ReminderComponent, CardReminderComponent]
+  declarations: [ReportingPage, ReminderComponent, CardReminderComponent, ConsultationComponent, BalancePerDayComponent]
 })
 export class ReportingPageModule {
 }

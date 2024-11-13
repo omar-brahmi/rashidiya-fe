@@ -12,8 +12,4 @@ export class ReportingPage {
   constructor() {
   }
 
-  segmentChange($event: any) {
-
-  }
-
 }
