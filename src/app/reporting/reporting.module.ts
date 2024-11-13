@@ -13,16 +13,18 @@ import {ReminderComponent} from "./components/reminder/reminder.component";
 import {CardReminderComponent} from "./components/reminder/components/card-reminder/card-reminder.component";
 import {ConsultationComponent} from "./components/consultation/consultation.component";
 import {BalancePerDayComponent} from "./components/balance-per-day/balance-per-day.component";
+import {SharedModule} from "../shared/shared.module";
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    ReportingPageRoutingModule,
-    HomePageModule,
-    ListPageModule
-  ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        IonicModule,
+        ReportingPageRoutingModule,
+        HomePageModule,
+        ListPageModule,
+        SharedModule
+    ],
   declarations: [ReportingPage, ReminderComponent, CardReminderComponent, ConsultationComponent, BalancePerDayComponent]
 })
 export class ReportingPageModule {

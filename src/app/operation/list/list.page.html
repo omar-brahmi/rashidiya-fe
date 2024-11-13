@@ -27,9 +27,7 @@
   }
 
   @if (showSpinner) {
-    <div class="spinner-container">
-      <div class="spinner"></div>
-    </div>
+    <app-spinner/>
   }
 
   @if (!showSpinner && operations.length === 0) {

@@ -10,19 +10,16 @@
       <app-card-reminder/>
     }
 
-    <app-card-reminder [index]="0"/>
-    <app-card-reminder [index]="1"/>
-    <app-card-reminder [index]="2"/>
-    <app-card-reminder [index]="3"/>
-    <app-card-reminder [index]="4"/>
-    <app-card-reminder [index]="5"/>
-    <app-card-reminder [index]="6"/>
-    <app-card-reminder [index]="7"/>
+    <app-card-reminder/>
+    <app-card-reminder/>
+    <app-card-reminder/>
+    <app-card-reminder/>
+    <app-card-reminder/>
+    <app-card-reminder/>
+    <app-card-reminder/>
 
     @if (showSpinner) {
-      <div class="spinner-container">
-        <div class="spinner"></div>
-      </div>
+      <app-spinner/>
     }
 
     @if (!showSpinner && operations.length === 0) {
