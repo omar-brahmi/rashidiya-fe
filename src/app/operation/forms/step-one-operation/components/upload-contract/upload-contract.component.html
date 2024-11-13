@@ -1,9 +1,10 @@
 <ion-title style="margin: 20px 0 0 0;padding: 0">Contract:</ion-title>
-<ion-card *ngIf="processImage === ProcessImageState.UPLOAD_IMAGE">
-  <ion-card-header style="height: 200px;display: flex; align-items: center; place-content: center;"
-                   (click)="openCamera()">
-    <ion-icon color="dark" class="icon-cardID" name="camera-outline" size="large"></ion-icon>
-  </ion-card-header>
+<ion-card *ngIf="processImage === ProcessImageState.UPLOAD_IMAGE" style="height: 200px;align-content: center;">
+
+  <div class="lottie-container" (click)="openCamera()">
+    <app-lottie-animation [options]="{path: '/assets/lottiefiles/scanContract.json',loop: true,autoplay: true}"/>
+  </div>
+
 </ion-card>
 
 <ion-img-viewer *ngIf="processImage === ProcessImageState.HAS_FINISHED"

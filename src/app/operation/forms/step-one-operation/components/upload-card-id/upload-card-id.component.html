@@ -1,10 +1,12 @@
 <ion-title style="margin: 20px 0 0 0; padding: 0">Card ID:</ion-title>
 <ion-card *ngIf="processImage === ProcessImageState.UPLOAD_IMAGE || processImage === ProcessImageState.IN_PROCESS"
           style="height: 200px;align-content: center;">
-  <ion-card-header *ngIf="processImage === ProcessImageState.UPLOAD_IMAGE" (click)="openCamera()"
-                   style="display: flex; align-items: center; place-content: center;">
-    <ion-icon color="dark" class="icon-cardID" name="camera-outline" size="large"></ion-icon>
-  </ion-card-header>
+
+
+  <div class="lottie-container" *ngIf="processImage === ProcessImageState.UPLOAD_IMAGE" (click)="openCamera()">
+    <app-lottie-animation [options]="{path: '/assets/lottiefiles/takePhoto.json',loop: true,autoplay: true}"/>
+  </div>
+
   <ion-card-header *ngIf="processImage === ProcessImageState.IN_PROCESS"
                    style="display: flex; align-items: center; justify-content: center;">
     <!-- Spinner Wrapper with Gradient -->
