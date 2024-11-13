@@ -1,15 +1,15 @@
-import {Component, inject} from '@angular/core';
-import {OperationService} from "../services/operation.service";
-import {Pageable} from "../shared/models/pageable.model";
-import {GetAllPage} from "../shared/models/getAllPage.model";
-import {Operation} from "../core/models/operation.model";
+import {Component, inject, OnInit} from '@angular/core';
+import {OperationService} from "../../../services/operation.service";
+import {GetAllPage} from "../../../shared/models/getAllPage.model";
+import {Operation} from "../../../core/models/operation.model";
+import {Pageable} from "../../../shared/models/pageable.model";
 
 @Component({
   selector: 'app-reminder',
-  templateUrl: './reminder.page.html',
-  styleUrls: ['./reminder.page.scss'],
+  templateUrl: './reminder.component.html',
+  styleUrls: ['./reminder.component.scss'],
 })
-export class ReminderPage {
+export class ReminderComponent implements OnInit {
 
   #operationService: OperationService = inject(OperationService);
 
@@ -22,7 +22,7 @@ export class ReminderPage {
   constructor() {
   }
 
-  ionViewWillEnter() {
+  ngOnInit(): void {
     this.searchReminderOperations();
   }
 

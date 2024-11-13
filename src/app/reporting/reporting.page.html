@@ -1,0 +1,23 @@
+<app-header title="Reporting"/>
+
+<ion-content class="ion-padding">
+
+  <ion-segment [(ngModel)]="segment" mode="ios" color="primary" (ionChange)="segmentChange($event)">
+    <ion-segment-button value="consultation">
+      <ion-label>Consultation</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="balancePerDay">
+      <ion-label>Balance Per Day</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="reminder">
+      <ion-label>Reminder</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  @if (segment === "reminder"){
+    <app-reminder/>
+  }
+
+</ion-content>
+
+<app-footer/>

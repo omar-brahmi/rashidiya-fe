@@ -35,8 +35,8 @@ const routes: Routes = [
     loadChildren: () => import('./operation/cancel/cancel.module').then(m => m.CancelPageModule)
   },
   {
-    path: 'reminder',
-    loadChildren: () => import('./reminder/reminder.module').then(m => m.ReminderPageModule)
+    path: 'reporting',
+    loadChildren: () => import('./reporting/reporting.module').then(m => m.ReportingPageModule)
   },
   {
     path: '',
