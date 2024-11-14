@@ -39,6 +39,10 @@ export class OperationService extends BaseService<Operation> {
     return this.#httpService.get(this.entityName + '/reminder' + pageable.toQueryString());
   }
 
+  findBalancePerDayOperations(operationDate: string = "", cardID: string = "", phoneNumber: string = ""): Observable<any> {
+    return this.#httpService.get(this.entityName + `/balance/daily?operationDate=${operationDate}&idCard=${cardID}&phoneNumber=${phoneNumber}`);
+  }
+
   validateOperation(operationID: number = 0) {
     return this.#httpService.patch<Operation, any>(this.entityName + `/validate/${operationID}`, {});
   }

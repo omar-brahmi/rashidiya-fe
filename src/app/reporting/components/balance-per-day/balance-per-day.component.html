@@ -1,1 +1,22 @@
-<app-filter-balance-per-day/>
+<app-filter-balance-per-day (handleBalancePerDay)="handleBalancePerDay($event)"/>
+
+
+<main class="overview">
+  <div class="cash-cards">
+    <div class="cash-card total-cash">
+      <div class="card-header">
+        <span class="card-icon">💰</span>
+        <span class="card-amount">{{ formatNumberToCash(total.totalCash) }}</span>
+      </div>
+      <h3 class="card-title">Total Cash</h3>
+    </div>
+    <div class="cash-card circulation-cash">
+      <div class="card-header">
+        <span class="card-icon">🔄</span>
+        <span class="card-amount">{{ formatNumberToCash(total.circulationCash) }}</span>
+      </div>
+      <h3 class="card-title">Circulation Cash</h3>
+    </div>
+  </div>
+</main>
+

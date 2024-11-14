@@ -1,0 +1,75 @@
+.overview {
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 24px;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.cash-cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+.cash-card {
+  border-radius: 16px;
+  padding: 10px;
+  transition: transform 0.3s ease;
+}
+
+.cash-card:hover {
+  transform: scale(1.05);
+}
+
+.total-cash {
+  background: linear-gradient(to bottom right, #4caf50, #2e7d32);
+}
+
+.circulation-cash {
+  background: linear-gradient(to bottom right, #2196f3, #1565c0);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.card-icon {
+  font-size: 40px;
+}
+
+.card-amount {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.card-title {
+  font-size: 18px;
+  margin-top: 16px;
+}
+
+.details {
+  margin-top: 24px;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  max-height: 0;
+}
+
+.details.expanded {
+  max-height: 500px;
+}
+
+.detail-card {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.detail-title {
+  font-weight: bold;
+  margin-bottom: 8px;
+}
