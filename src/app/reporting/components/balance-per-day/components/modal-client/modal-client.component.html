@@ -1,0 +1,26 @@
+<ion-modal #modal trigger="open-modal" mode="ios" [presentingElement]="presentingElement">
+  <ng-template>
+    <ion-content>
+
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Choose Client</ion-title>
+          <ion-buttons slot="end" style="margin-right: 8px">
+            <ion-icon (click)="modal.dismiss()" style="font-size: 1.7rem;" name="close-outline"></ion-icon>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+
+      <ion-searchbar appAutoHyphen placeholder="Card ID"></ion-searchbar>
+      <ion-searchbar type="number" placeholder="Phone number"></ion-searchbar>
+
+      <div class="client-card-container">
+        @for (client of clients; track client) {
+          <app-card-client [client]="client"/>
+        }
+      </div>
+
+
+    </ion-content>
+  </ng-template>
+</ion-modal>

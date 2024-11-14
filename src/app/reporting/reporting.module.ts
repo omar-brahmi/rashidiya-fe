@@ -14,18 +14,24 @@ import {CardReminderComponent} from "./components/reminder/components/card-remin
 import {ConsultationComponent} from "./components/consultation/consultation.component";
 import {BalancePerDayComponent} from "./components/balance-per-day/balance-per-day.component";
 import {SharedModule} from "../shared/shared.module";
+import {AutoHyphenDirective} from "../core/directives/auto-hyphen.directive";
+import {ModalClientComponent} from "./components/balance-per-day/components/modal-client/modal-client.component";
+import {
+  CardClientComponent
+} from "./components/balance-per-day/components/modal-client/components/card-client/card-client.component";
 
 @NgModule({
-    imports: [
-        CommonModule,
-        FormsModule,
-        IonicModule,
-        ReportingPageRoutingModule,
-        HomePageModule,
-        ListPageModule,
-        SharedModule
-    ],
-  declarations: [ReportingPage, ReminderComponent, CardReminderComponent, ConsultationComponent, BalancePerDayComponent]
+  imports: [
+    CommonModule,
+    FormsModule,
+    IonicModule,
+    ReportingPageRoutingModule,
+    HomePageModule,
+    ListPageModule,
+    SharedModule,
+    AutoHyphenDirective
+  ],
+  declarations: [ReportingPage, ReminderComponent, CardReminderComponent, ConsultationComponent, BalancePerDayComponent, ModalClientComponent, CardClientComponent]
 })
 export class ReportingPageModule {
 }
