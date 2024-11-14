@@ -1,0 +1,72 @@
+.filter-section {
+  background-color: rgb(107 33 168 / 1);
+  border-radius: 10px;
+  padding: 20px;
+  margin-top: 50px;
+}
+
+.btn-select-client {
+  --background: linear-gradient(to right, #14b8a6, #2dd4bf);
+}
+
+h2 {
+  color: white;
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  color: white;
+  margin-bottom: 5px;
+}
+
+button, input {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  margin-bottom: 15px;
+}
+
+input {
+  background-color: rgb(126 34 206 / 1);
+  color: white;
+}
+
+input::placeholder {
+  color: #fff;
+}
+
+.choose-client {
+  --background: rgb(126 34 206 / 1);
+  --border-radius: 6px;
+  --padding-top: 12px;
+  --padding-bottom: 12px;
+  --box-shadow: none;
+  font-size: 16px;
+  color: white;
+  cursor: pointer;
+  margin: 0 0 10px 0;
+}
+
+.apply-filter {
+  background: linear-gradient(to right, #14b8a6, #2dd4bf);
+  color: white;
+  cursor: pointer;
+}
+
+.reset {
+  background-color: #ff5757;
+  color: white;
+  cursor: pointer;
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
+}
+
+.button-group button {
+  flex: 1;
+}

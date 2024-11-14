@@ -10,7 +10,7 @@ import {creativeSegmentAnimation} from "../animations/fadeInOutAnimation";
 })
 export class ReportingPage {
 
-  segment: string = "consultation";
+  segment: string = "balancePerDay";
 
   constructor() {
   }

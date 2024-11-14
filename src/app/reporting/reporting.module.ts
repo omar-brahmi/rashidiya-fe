@@ -19,6 +19,9 @@ import {ModalClientComponent} from "./components/balance-per-day/components/moda
 import {
   CardClientComponent
 } from "./components/balance-per-day/components/modal-client/components/card-client/card-client.component";
+import {
+  FilterBalancePerDayComponent
+} from "./components/balance-per-day/components/filter-balance-per-day/filter-balance-per-day.component";
 
 @NgModule({
   imports: [
@@ -31,7 +34,7 @@ import {
     SharedModule,
     AutoHyphenDirective
   ],
-  declarations: [ReportingPage, ReminderComponent, CardReminderComponent, ConsultationComponent, BalancePerDayComponent, ModalClientComponent, CardClientComponent]
+  declarations: [ReportingPage, ReminderComponent, CardReminderComponent, ConsultationComponent, BalancePerDayComponent, ModalClientComponent, CardClientComponent, FilterBalancePerDayComponent]
 })
 export class ReportingPageModule {
 }
