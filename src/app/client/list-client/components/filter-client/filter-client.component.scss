@@ -1,0 +1,30 @@
+#open-modal-filter {
+  --background: #5A67D8;
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+ion-modal ion-toolbar {
+  --background: #1a1a40;
+  --color: white;
+}
+
+ion-modal ion-content {
+  --background: linear-gradient(135deg, #1a1a40, #2a003e);
+}
+
+.input-group {
+  margin-top: 15px;
+}
+
+ion-chip {
+  --background: #fff;
+  --color: #000;
+  font-size: medium;
+  font-weight: 700;
+}
+.ion-chips {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+

@@ -5,37 +5,13 @@
 
   <form [formGroup]="form">
 
-    <app-upload-card-id [imageUrl]="operation?.card"
-                        [processImage]="operation?.card ? ProcessImageState.HAS_FINISHED : ProcessImageState.UPLOAD_IMAGE"
-                        (cardScanned)="handleCardScanned($event)"/>
-
     <app-upload-contract [imageUrl]="operation?.contract"
                          [processImage]="operation?.contract ? ProcessImageState.HAS_FINISHED : ProcessImageState.UPLOAD_IMAGE"
                          (contractScanned)="handleContractScanned($event)"/>
 
-    <app-phone-numbers [phoneNumbers]="operation?.phoneNumbers"/>
-
     <div class="input-group">
-      <label class="input-group__label" for="myInput">Card ID:</label>
-      <input type="text" id="myInput" formControlName="idCard" class="input-group__input"
-             appAutoHyphen placeholder="000-0000-0000000-0"/>
-    </div>
-
-    <div class="input-group">
-      <label class="input-group__label" for="firstName">First name</label>
-      <input type="text" id="firstName" formControlName="operationFirstName" class="input-group__input"
-             placeholder="First name"/>
-    </div>
-
-    <div class="input-group">
-      <label class="input-group__label" for="lastName">Last name</label>
-      <input type="text" id="lastName" formControlName="operationLastName" class="input-group__input"
-             placeholder="Last name"/>
-    </div>
-
-    <div class="input-group">
-      <label class="input-group__label" for="lastName">Accounts</label>
-      <select id="defaultSelect" formControlName="karat" class="form-select">
+      <label class="input-group__label" for="karat">Accounts</label>
+      <select id="karat" formControlName="karat" class="form-select">
         <option [value]="null">Select Accounts</option>
         <option value="18K">18K</option>
         <option value="21K">21K</option>
@@ -62,8 +38,7 @@
     </div>
 
     <div class="flag">
-      <ion-toggle justify="space-between" aria-label="Success toggle" color="success"
-                  [checked]="form.get('flag')?.value" mode="ios">
+      <ion-toggle justify="space-between" aria-label="Success toggle" color="success" formControlName="flag" mode="ios">
         New Customer
       </ion-toggle>
     </div>

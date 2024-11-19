@@ -1,0 +1,38 @@
+<app-header backUrl="list-client" title="Add New Client"/>
+
+<ion-content class="ion-padding">
+
+  <form [formGroup]="form">
+    <app-upload-card-id [imageUrl]="client?.card"
+                        [processImage]="client?.card ? ProcessImageState.HAS_FINISHED : ProcessImageState.UPLOAD_IMAGE"
+                        (cardScanned)="handleCardScanned($event)"/>
+
+    <div class="input-group">
+      <label class="input-group__label" for="myInput">Card ID:</label>
+      <input type="text" id="myInput" formControlName="idCard" class="input-group__input"
+             appAutoHyphen placeholder="000-0000-0000000-0"/>
+    </div>
+
+    <div class="input-group">
+      <label class="input-group__label" for="firstName">First name</label>
+      <input type="text" id="firstName" formControlName="firstname" class="input-group__input"
+             placeholder="First name"/>
+    </div>
+
+    <div class="input-group">
+      <label class="input-group__label" for="lastName">Last name</label>
+      <input type="text" id="lastName" formControlName="lastname" class="input-group__input"
+             placeholder="Last name"/>
+    </div>
+
+    <app-phone-numbers [phoneNumbers]="client?.phoneNumberDTOs"/>
+
+    <button (click)="save()" style="margin-bottom: 200px" class="btn-stepper">
+      Save
+    </button>
+
+  </form>
+
+</ion-content>
+
+<app-footer/>

@@ -42,6 +42,14 @@ const routes: Routes = [
     path: '',
     redirectTo: 'login',
     pathMatch: 'full'
+  },
+  {
+    path: 'list-client',
+    loadChildren: () => import('./client/list-client/list-client.module').then( m => m.ListClientPageModule)
+  },
+  {
+    path: 'form-client',
+    loadChildren: () => import('./client/form-client/form-client.module').then( m => m.FormClientPageModule)
   }
 ];
 

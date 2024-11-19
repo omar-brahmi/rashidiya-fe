@@ -2,7 +2,7 @@ import {Component, Input} from '@angular/core';
 import {Client} from "../../../../../../../core/models/client.model";
 
 @Component({
-  selector: 'app-card-client',
+  selector: 'app-card-clients',
   templateUrl: './card-client.component.html',
   styleUrls: ['./card-client.component.scss'],
 })

@@ -16,7 +16,7 @@
 
       <div class="client-card-container">
         @for (client of clients; track client) {
-          <app-card-client (click)="selectedClient(client, modal)" [client]="client"/>
+          <app-card-clients (click)="selectedClient(client, modal)" [client]="client"/>
         }
       </div>
 
