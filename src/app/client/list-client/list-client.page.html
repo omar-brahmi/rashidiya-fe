@@ -8,9 +8,30 @@
 
   <app-filter-client/>
 
-  <app-card-client/>
-  <app-card-client/>
-  <app-card-client/>
+  @for (client of clients; track client; ) {
+    <app-card-client/>
+  }
+
+  @if (showSpinner) {
+    <app-spinner/>
+  }
+
+  @if (!showSpinner && clients.length === 0) {
+    <div class="not-found-container">
+      <ion-icon name="search-outline" class="not-found-icon"></ion-icon>
+      <h2 class="not-found-title">No Clients Found!</h2>
+    </div>
+  }
+
+  @if (!showSpinner && !clientPage.last) {
+    <ion-infinite-scroll (ionInfinite)="loadMore($event)">
+      <ion-infinite-scroll-content
+        loadingSpinner="bubbles"
+        loadingText="Loading more operations...">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  }
+
 
 </ion-content>
 

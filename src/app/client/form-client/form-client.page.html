@@ -36,3 +36,10 @@
 </ion-content>
 
 <app-footer/>
+<ion-alert mode="ios"
+           [isOpen]="isAlertOpen"
+           [header]="errorMessage.title"
+           [message]="errorMessage.description"
+           [buttons]="alertButtons"
+           (didDismiss)="setOpen(false)"
+></ion-alert>

@@ -45,7 +45,15 @@ export class FormClientPage extends BasicComponent<Client, ClientService> implem
     }
   ];
 
+  isAlertOpen = false;
+  alertButtons = ['Close'];
+
   client: Client | null = null;
+
+  errorMessage = {
+    title: '',
+    description: ''
+  }
 
   constructor(private clientService: ClientService, private navController: NavController) {
     super(clientService);
@@ -62,7 +70,13 @@ export class FormClientPage extends BasicComponent<Client, ClientService> implem
         this.#toastService.success("Client saved successfully.");
         this.navController.navigateRoot("/list-client");
       }).catch(error => {
-        this.#toastService.error("Error saving client");
+        if (error.status === 409) {
+          this.errorMessage.title = error.error.error;
+          this.errorMessage.description = error.error.details;
+          this.setOpen(true);
+        } else {
+          this.#toastService.error("Error saving Client.");
+        }
       });
     })
   }
@@ -93,6 +107,10 @@ export class FormClientPage extends BasicComponent<Client, ClientService> implem
 
   getPhoneNumbers() {
     return this.phoneNumbersComponent.phoneNumbers;
+  }
+
+  setOpen(isOpen: boolean) {
+    this.isAlertOpen = isOpen;
   }
 
 }

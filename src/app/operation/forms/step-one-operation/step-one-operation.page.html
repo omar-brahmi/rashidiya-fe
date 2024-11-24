@@ -5,6 +5,8 @@
 
   <form [formGroup]="form">
 
+    <app-select-client/>
+
     <app-upload-contract [imageUrl]="operation?.contract"
                          [processImage]="operation?.contract ? ProcessImageState.HAS_FINISHED : ProcessImageState.UPLOAD_IMAGE"
                          (contractScanned)="handleContractScanned($event)"/>

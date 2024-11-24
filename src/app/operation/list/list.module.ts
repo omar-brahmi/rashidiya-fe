@@ -23,6 +23,7 @@ import {CashFormatDirective} from "../../core/directives/cash-format.directive";
 import {FilterOperationsComponent} from "./components/filter-operations/filter-operations.component";
 import {AutoHyphenDirective} from "../../core/directives/auto-hyphen.directive";
 import {SharedModule} from "../../shared/shared.module";
+import {SelectClientComponent} from "../forms/step-one-operation/components/select-client/select-client.component";
 
 @NgModule({
   imports: [
@@ -37,14 +38,15 @@ import {SharedModule} from "../../shared/shared.module";
     AutoHyphenDirective,
     SharedModule
   ],
-  exports: [
-    HeaderComponent,
-    UploadCardIdComponent,
-    UploadContractComponent,
-    PhoneNumbersComponent,
-    ListReimbursementComponent
-  ],
-  declarations: [ListPage, HeaderComponent, UploadCardIdComponent, UploadContractComponent, PhoneNumbersComponent, ListReimbursementComponent, ModalReimbursementComponent, FilterOperationsComponent]
+    exports: [
+        HeaderComponent,
+        UploadCardIdComponent,
+        UploadContractComponent,
+        PhoneNumbersComponent,
+        ListReimbursementComponent,
+        SelectClientComponent
+    ],
+    declarations: [ListPage, HeaderComponent, UploadCardIdComponent, UploadContractComponent, PhoneNumbersComponent, ListReimbursementComponent, ModalReimbursementComponent, FilterOperationsComponent, SelectClientComponent]
 })
 export class ListPageModule {
 }

@@ -12,17 +12,19 @@ import {HomePageModule} from "../../home/home.module";
 import {FilterClientComponent} from "./components/filter-client/filter-client.component";
 import {AutoHyphenDirective} from "../../core/directives/auto-hyphen.directive";
 import {CardClientComponent} from "./components/card-client/card-client.component";
+import {SharedModule} from "../../shared/shared.module";
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    ListClientPageRoutingModule,
-    ListPageModule,
-    HomePageModule,
-    AutoHyphenDirective
-  ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        IonicModule,
+        ListClientPageRoutingModule,
+        ListPageModule,
+        HomePageModule,
+        AutoHyphenDirective,
+        SharedModule
+    ],
   declarations: [ListClientPage, FilterClientComponent, CardClientComponent]
 })
 export class ListClientPageModule {}
