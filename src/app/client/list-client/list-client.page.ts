@@ -19,9 +19,9 @@ export class ListClientPage {
 
   disableScroll: boolean = false;
 
-  filter: { idCard: string; phoneNumber: string; firstName: string; lastName: string; } = {
-    idCard: "",
-    phoneNumber: "",
+  filter: { cardID: string; phoneNumbers: string; firstName: string; lastName: string; } = {
+    cardID: "",
+    phoneNumbers: "",
     firstName: "",
     lastName: ""
   };
@@ -64,4 +64,8 @@ export class ListClientPage {
     this.nav.navigateRoot("/form-client");
   }
 
+  handleFilterApplied($event: { cardID: string; phoneNumbers: string; firstName: string; lastName: string }) {
+    this.filter = $event;
+    this.loadAllClientByFilter();
+  }
 }

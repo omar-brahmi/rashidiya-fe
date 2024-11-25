@@ -2,11 +2,11 @@
 
 <ion-content class="ion-padding">
 
-  <ion-button (click)="redirectToNewClient()">
+  <ion-button style="margin-bottom: 0" (click)="redirectToNewClient()">
     Add New Client
   </ion-button>
 
-  <app-filter-client/>
+  <app-filter-client (filterApplied)="handleFilterApplied($event)"/>
 
   @for (client of clients; track client; ) {
     <app-card-client [client]="client"/>

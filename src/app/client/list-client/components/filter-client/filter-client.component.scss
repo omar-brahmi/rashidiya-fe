@@ -5,10 +5,10 @@
 /* Filter Trigger Button */
 .filter-trigger {
   width: 100%;
-  background: linear-gradient(135deg, #4f46e5, #7c3aed);
+  --background: linear-gradient(135deg, #4f46e5, #7c3aed);
   border: none;
-  padding: 16px;
   border-radius: 16px;
+  margin: 0;
   cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 

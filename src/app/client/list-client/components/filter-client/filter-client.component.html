@@ -1,12 +1,11 @@
-<content><div class="filter-container">
+<div class="filter-container">
   <!-- Filter Button -->
-  <button class="filter-trigger" id="open-modal-filter">
-    <div class="button-content">
-      <ion-icon name="funnel-outline"></ion-icon>
-      <span>Filter Clients</span>
-      <div class="active-filters" *ngIf="hasActiveFilters()">{{ getActiveFiltersCount() }}</div>
-    </div>
-  </button>
+
+  <ion-button class="filter-trigger" expand="block" id="open-modal">
+    <ion-icon style="margin-right: 10px" name="funnel-outline"></ion-icon>
+    Filter Clients
+    <div style="margin-left: 10px" class="active-filters" *ngIf="hasActiveFilters()">{{ getActiveFiltersCount() }}</div>
+  </ion-button>
 
   <!-- Active Filter Chips -->
   <div class="active-filters-container" *ngIf="hasActiveFilters()">
@@ -38,7 +37,7 @@
   </div>
 
   <!-- Filter Modal -->
-  <ion-modal #modal trigger="open-modal-filter" [breakpoints]="[0, 0.25, 0.5, 0.75]" [initialBreakpoint]="0.75">
+  <ion-modal #modal trigger="open-modal" [breakpoints]="[0, 0.25, 0.5, 0.75]" [initialBreakpoint]="0.75">
     <ng-template>
       <div class="modal-content">
         <!-- Modal Header -->
@@ -98,4 +97,4 @@
       </div>
     </ng-template>
   </ion-modal>
-</div></content>
+</div>

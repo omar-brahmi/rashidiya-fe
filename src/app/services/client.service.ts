@@ -21,12 +21,12 @@ export class ClientService extends BaseService<Client> {
   }
 
   getAllByFilter(filter: {
-    idCard: string;
-    phoneNumber: string,
+    cardID: string;
+    phoneNumbers: string,
     firstName: string,
     lastName: string
   }, pageable: Pageable = new Pageable()): Observable<GetAllPage<Client>> {
-    return this.#httpService.get(this.entityName + '/searchAllByCriteria' + pageable.toQueryString() + `&idCard=${filter.idCard}&phoneNumber=${filter.phoneNumber}&firstName=${filter.firstName}&lastName=${filter.lastName}`);
+    return this.#httpService.get(this.entityName + '/searchAllByCriteria' + pageable.toQueryString() + `&idCard=${filter.cardID}&phoneNumber=${filter.phoneNumbers}&firstName=${filter.firstName}&lastName=${filter.lastName}`);
   }
 
   getClientByIdCardAndPhoneNumbers(idCard: string, phoneNumbers: PhoneNumber[]): Observable<Client> {
