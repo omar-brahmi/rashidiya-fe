@@ -1,0 +1,60 @@
+<ion-button style="margin-bottom: 0" expand="block" id="open-modal-form-client">
+  Add New Client
+</ion-button>
+
+
+<ion-modal #modal trigger="open-modal-form-client">
+  <ng-template>
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Modal</ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="modal.dismiss()">Close</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">
+      <form [formGroup]="form">
+        <app-upload-card-id [imageUrl]="client?.card"
+                            [processImage]="client?.card ? ProcessImageState.HAS_FINISHED : ProcessImageState.UPLOAD_IMAGE"
+                            (cardScanned)="handleCardScanned($event)"/>
+
+        <div class="input-group">
+          <label class="input-group__label" for="myInput">Card ID:</label>
+          <input type="text" id="myInput" formControlName="idCard" class="input-group__input"
+                 appAutoHyphen placeholder="000-0000-0000000-0"/>
+        </div>
+
+        <div class="input-group">
+          <label class="input-group__label" for="firstName">First name</label>
+          <input type="text" id="firstName" formControlName="firstname" class="input-group__input"
+                 placeholder="First name"/>
+        </div>
+
+        <div class="input-group">
+          <label class="input-group__label" for="lastName">Last name</label>
+          <input type="text" id="lastName" formControlName="lastname" class="input-group__input"
+                 placeholder="Last name"/>
+        </div>
+
+        <app-phone-numbers [phoneNumbers]="client?.phoneNumberDTOs"/>
+
+        <button (click)="save(modal)" style="margin-bottom: 200px" class="btn-stepper">
+          @if (isUpdate) {
+            Update
+          } @else {
+            Save
+          }
+        </button>
+
+      </form>
+    </ion-content>
+  </ng-template>
+</ion-modal>
+<ion-alert mode="ios"
+           [isOpen]="isAlertOpen"
+           [header]="errorMessage.title"
+           [message]="errorMessage.description"
+           [buttons]="alertButtons"
+           (didDismiss)="setOpen(false)"
+></ion-alert>

@@ -62,10 +62,6 @@ export class ListSelectClientComponent implements OnInit {
     }, 1000);
   }
 
-  redirectToNewClient() {
-    this.nav.navigateRoot("/form-client");
-  }
-
   handleFilterApplied($event: { cardID: string; phoneNumbers: string; firstName: string; lastName: string }) {
     this.filter = $event;
     this.loadAllClientByFilter();

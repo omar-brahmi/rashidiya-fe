@@ -1,7 +1,4 @@
-<ion-button style="margin-bottom: 0" (click)="redirectToNewClient()">
-  Add New Client
-</ion-button>
-
+<app-form-select-client (handleSelectedClient)="selectedClient($event)"/>
 <app-filter-select-client (filterApplied)="handleFilterApplied($event)"/>
 
 @for (client of clients; track client; ) {

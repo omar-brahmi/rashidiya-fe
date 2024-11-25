@@ -33,6 +33,9 @@ import {
 import {
   CardSelectClientComponent
 } from "../forms/step-one-operation/components/select-client/components/list-select-client/components/card-select-client/card-select-client.component";
+import {
+  FormSelectClientComponent
+} from "../forms/step-one-operation/components/select-client/components/list-select-client/components/form-select-client/form-select-client.component";
 
 @NgModule({
   imports: [
@@ -56,7 +59,7 @@ import {
     SelectClientComponent,
     CardSelectClientComponent
   ],
-  declarations: [ListPage, HeaderComponent, UploadCardIdComponent, UploadContractComponent, PhoneNumbersComponent, ListReimbursementComponent, ModalReimbursementComponent, FilterOperationsComponent, SelectClientComponent, ListSelectClientComponent, FilterSelectClientComponent, CardSelectClientComponent]
+  declarations: [ListPage, HeaderComponent, UploadCardIdComponent, UploadContractComponent, PhoneNumbersComponent, ListReimbursementComponent, ModalReimbursementComponent, FilterOperationsComponent, SelectClientComponent, ListSelectClientComponent, FilterSelectClientComponent, CardSelectClientComponent, FormSelectClientComponent]
 })
 export class ListPageModule {
 }
