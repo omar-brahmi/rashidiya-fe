@@ -34,7 +34,7 @@ export class FilterClientComponent {
 
   applyFilters(modal: IonModal) {
     this.filterApplied.emit(this.filter);
-    this.filterChips = this.filter;
+    this.filterChips = {...this.filter};
     modal.dismiss();
   }
 
@@ -46,7 +46,7 @@ export class FilterClientComponent {
       lastName: ""
     };
     this.filterApplied.emit(this.filter);
-    this.filterChips = this.filter;
+    this.filterChips = {...this.filter};
     modal.dismiss();
   }
 
@@ -54,7 +54,13 @@ export class FilterClientComponent {
     this.filter[chipKey] = "";
     this.filterChips[chipKey] = "";
     this.filterApplied.emit(this.filter);
-    this.filterChips = this.filter;
   }
 
+  hasActiveFilters(): boolean {
+    return Object.values(this.filterChips).some(value => value !== "");
+  }
+
+  getActiveFiltersCount(): number {
+    return Object.values(this.filterChips).filter(value => value !== "").length;
+  }
 }

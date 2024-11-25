@@ -1,49 +1,116 @@
-<!-- Filter Button to toggle filter section -->
-<ion-button expand="block" id="open-modal-filter">Filter Operations</ion-button>
+<div class="filter-container">
+  <!-- Animated Filter Button -->
+  <button class="filter-trigger" id="open-modal-filter">
+    <div class="button-content">
+      <div class="icon-wrapper">
+        <ion-icon name="funnel-outline" class="primary-icon"></ion-icon>
+        <ion-icon name="options-outline" class="secondary-icon"></ion-icon>
+      </div>
+      <span>Filter Operations</span>
+      <div class="active-filters" *ngIf="hasActiveFilters()">
+        <span class="count">{{ getActiveFiltersCount() }}</span>
+        <span class="pulse"></span>
+      </div>
+    </div>
+    <div class="button-background"></div>
+  </button>
 
-<div class="ion-chips">
-  @if (filterChips.cardID) {
-    <ion-chip mode="ios" (click)="clearFilterChip('cardID')">{{ filterChips.cardID }}
-      <ion-icon color="light" name="close-circle"></ion-icon>
-    </ion-chip>
-  }
-  @if (filterChips.phoneNumbers) {
-    <ion-chip mode="ios" (click)="clearFilterChip('phoneNumbers')">{{ filterChips.phoneNumbers }}
-      <ion-icon color="light" name="close-circle"></ion-icon>
-    </ion-chip>
-  }
+  <!-- Active Filters Display -->
+  <div class="active-filters-container" *ngIf="hasActiveFilters()">
+    <div class="filters-header">
+      <ion-icon name="bookmark-outline"></ion-icon>
+      <span>Active Filters</span>
+    </div>
+
+    <div class="filter-chips">
+      <div class="chip" *ngIf="filterChips.cardID" (click)="clearFilterChip('cardID')">
+        <div class="chip-content">
+          <ion-icon name="card-outline"></ion-icon>
+          <span>{{ filterChips.cardID }}</span>
+        </div>
+        <div class="remove-icon">
+          <ion-icon name="close-circle"></ion-icon>
+          <div class="hover-effect"></div>
+        </div>
+      </div>
+
+      <div class="chip" *ngIf="filterChips.phoneNumbers" (click)="clearFilterChip('phoneNumbers')">
+        <div class="chip-content">
+          <ion-icon name="call-outline"></ion-icon>
+          <span>{{ filterChips.phoneNumbers }}</span>
+        </div>
+        <div class="remove-icon">
+          <ion-icon name="close-circle"></ion-icon>
+          <div class="hover-effect"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Filter Modal -->
+  <ion-modal #modal trigger="open-modal-filter" [breakpoints]="[0, 0.25, 0.5, 0.75]" [initialBreakpoint]="0.5">
+    <ng-template>
+      <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <div class="header-content">
+            <ion-icon name="options-outline"></ion-icon>
+            <h2>Filter Operations</h2>
+          </div>
+          <button class="close-button" (click)="modal.dismiss()">
+            <ion-icon name="close-outline"></ion-icon>
+            <div class="button-background"></div>
+          </button>
+        </div>
+
+        <!-- Filter Form -->
+        <div class="filter-form">
+          <div class="form-group">
+            <div class="input-label">
+              <ion-icon name="card-outline"></ion-icon>
+              <span>Card ID</span>
+            </div>
+            <div class="input-container">
+              <input
+                type="text"
+                [(ngModel)]="filter.cardID"
+                appAutoHyphen
+                placeholder="000-0000-0000000-0"
+              >
+              <div class="focus-indicator"></div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="input-label">
+              <ion-icon name="call-outline"></ion-icon>
+              <span>Phone Number</span>
+            </div>
+            <div class="input-container">
+              <input
+                type="tel"
+                [(ngModel)]="filter.phoneNumbers"
+                placeholder="+00 000 000"
+              >
+              <div class="focus-indicator"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="modal-actions">
+          <button class="action-button reset" (click)="resetFilters(modal)">
+            <ion-icon name="refresh-outline"></ion-icon>
+            <span>Reset</span>
+            <div class="button-background"></div>
+          </button>
+
+          <button class="action-button apply" (click)="applyFilters(modal)">
+            <span>Apply</span>
+            <div class="button-background"></div>
+          </button>
+        </div>
+      </div>
+    </ng-template>
+  </ion-modal>
 </div>
-
-<ion-modal #modal trigger="open-modal-filter"
-           [initialBreakpoint]="0.50"
-           [breakpoints]="[0, 0.25, 0.5, 0.75, 0.90]"
-           handleBehavior="cycle"
->
-  <ng-template>
-    <ion-header>
-      <ion-toolbar class="text-center">
-        <ion-title>
-          Filter Operations
-        </ion-title>
-        <ion-buttons slot="end">
-          <ion-button (click)="modal.dismiss()"><span class="text-white">Close</span></ion-button>
-        </ion-buttons>
-      </ion-toolbar>
-    </ion-header>
-    <ion-content class="ion-padding">
-      <div class="input-group">
-        <label class="input-group__label" for="myInput">Card ID:</label>
-        <input type="text" id="myInput" class="input-group__input" [(ngModel)]="filter.cardID"
-               appAutoHyphen placeholder="000-0000-0000000-0"/>
-      </div>
-      <div class="input-group">
-        <label class="input-group__label" for="phoneNumber">Phone Number:</label>
-        <input type="number" id="phoneNumber" class="input-group__input" [(ngModel)]="filter.phoneNumbers"
-               placeholder="+00 000 000"/>
-      </div>
-
-      <ion-button (click)="applyFilters(modal)" style="margin-bottom: 10px">Apply</ion-button>
-      <ion-button (click)="resetFilters(modal)" color="dark" style="margin-top: 0">Rest</ion-button>
-    </ion-content>
-  </ng-template>
-</ion-modal>

@@ -25,7 +25,7 @@ export class FilterOperationsComponent {
 
   applyFilters(modal: IonModal) {
     this.filterApplied.emit(this.filter);
-    this.filterChips = this.filter;
+    this.filterChips = {...this.filter};
     modal.dismiss();
   }
 
@@ -35,7 +35,7 @@ export class FilterOperationsComponent {
       phoneNumbers: ""
     };
     this.filterApplied.emit(this.filter);
-    this.filterChips = this.filter;
+    this.filterChips = {...this.filter};
     modal.dismiss();
   }
 
@@ -43,7 +43,13 @@ export class FilterOperationsComponent {
     this.filter[chipKey] = "";
     this.filterChips[chipKey] = "";
     this.filterApplied.emit(this.filter);
-    this.filterChips = this.filter;
   }
 
+  hasActiveFilters(): boolean {
+    return Object.values(this.filterChips).some(value => value !== "");
+  }
+
+  getActiveFiltersCount(): number {
+    return Object.values(this.filterChips).filter(value => value !== "").length;
+  }
 }

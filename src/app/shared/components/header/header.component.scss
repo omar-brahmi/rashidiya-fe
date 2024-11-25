@@ -1,20 +1,95 @@
-ion-title {
+.modern-header {
+  ion-toolbar {
+    --background: #1a1a40;
+    --border-color: rgba(255, 255, 255, 0.1);
+    --padding-top: 8px;
+    --padding-bottom: 8px;
+  }
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 12px;
+}
+
+.action-button {
+  background: none;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: all 0.3s ease;
+
+  ion-icon {
+    font-size: 24px;
+    color: #fff;
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+
+  &.profile {
+    .status-dot {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #10b981;
+      border: 2px solid #1a1a40;
+    }
+  }
+
+  &.close {
+    background: rgba(239, 68, 68, 0.15);
+    &:hover { background: rgba(239, 68, 68, 0.25); }
+  }
+
+  &.confirm {
+    background: rgba(16, 185, 129, 0.15);
+    &:hover { background: rgba(16, 185, 129, 0.25); }
+  }
+}
+
+.title-container {
   text-align: center;
-  --color: #f4f5f8;
-  font-weight: bolder;
+  position: relative;
+  padding: 0 20px;
+
+  h1 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: 0.5px;
+  }
+
+  .underline {
+    position: absolute;
+    bottom: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 24px;
+    height: 2px;
+    background: #ff6b6b;
+    border-radius: 2px;
+  }
 }
 
-ion-action-sheet {
-  --background: #1a1a40; /* Matches the theme */
-  --color: #fff; /* White text color */
-  text-align-last: center;
-}
-
-ion-action-sheet .action-sheet-group .action-sheet-button {
-  padding: 12px; /* Increase button padding */
-}
-
-ion-action-sheet .action-sheet-button-icon {
-  margin-right: 8px;
-  font-size: 1.4em;
+.validation-mode {
+  h1 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 600;
+    color: #fff;
+    text-align: center;
+  }
 }

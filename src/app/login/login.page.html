@@ -1,25 +1,71 @@
 <ion-content>
-
-<div class="login-layout">
   <div class="login-container">
-    <h1>Welcome Back</h1>
-    <p>Please login to continue</p>
+    <!-- Animated Background Elements -->
+    <div class="animated-background">
+      <div class="circle circle-1"></div>
+      <div class="circle circle-2"></div>
+      <div class="circle circle-3"></div>
+      <div class="lines">
+        <div class="line line-1"></div>
+        <div class="line line-2"></div>
+        <div class="line line-3"></div>
+      </div>
+    </div>
 
-    <form id="loginForm" class="login-form">
-      <div class="form-group">
-        <label for="email">EMAIL:</label>
-        <input type="email" id="email" required placeholder="Enter your email">
+    <!-- Login Box -->
+    <div class="login-box">
+      <!-- Welcome Text -->
+      <div class="welcome-text">
+        <h2>Rashidiya</h2>
+        <p>Enter your credentials to continue</p>
       </div>
 
-      <div class="form-group">
-        <label for="password">PASSWORD:</label>
-        <input type="password" id="password" required placeholder="Enter your password">
-      </div>
+      <!-- Login Form -->
+      <form (ngSubmit)="signIn()" class="login-form">
+        <div class="form-field">
+          <div class="input-container">
+            <ion-icon name="mail-outline"></ion-icon>
+            <input
+              type="email"
+              [(ngModel)]="email"
+              name="email"
+              required
+              placeholder="Email address"
+            >
+            <div class="field-focus-indicator"></div>
+          </div>
+        </div>
 
-      <button (click)="signIn()" type="submit">LOGIN</button>
-    </form>
+        <div class="form-field">
+          <div class="input-container">
+            <ion-icon name="lock-closed-outline"></ion-icon>
+            <input
+              type="password"
+              [(ngModel)]="password"
+              name="password"
+              required
+              placeholder="Password"
+            >
+            <div class="field-focus-indicator"></div>
+          </div>
+        </div>
+
+        <button type="submit" class="submit-button">
+          <span class="button-content">
+            <span>Sign In</span>
+            <ion-icon name="arrow-forward-outline"></ion-icon>
+          </span>
+          <div class="button-glow"></div>
+        </button>
+      </form>
+
+      <!-- Footer -->
+      <div class="login-footer">
+        <div class="divider">
+          <span>Rashidiya Platform</span>
+        </div>
+        <p>© 2024 All rights reserved</p>
+      </div>
+    </div>
   </div>
-</div>
-
-
 </ion-content>
