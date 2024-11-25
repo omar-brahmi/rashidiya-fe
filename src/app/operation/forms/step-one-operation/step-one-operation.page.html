@@ -5,7 +5,11 @@
 
   <form [formGroup]="form">
 
-    <app-select-client/>
+    <app-select-client (handleSelectedClient)="selectedClient($event)"/>
+
+    @if (form.get('client')?.value) {
+      <app-card-select-client [client]="form.get('client')?.value"/>
+    }
 
     <app-upload-contract [imageUrl]="operation?.contract"
                          [processImage]="operation?.contract ? ProcessImageState.HAS_FINISHED : ProcessImageState.UPLOAD_IMAGE"

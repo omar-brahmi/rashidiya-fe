@@ -9,6 +9,7 @@ import {ToastService} from "../../../shared/services/toast.service";
 import {ActivatedRoute} from "@angular/router";
 import {ProcessImageState} from "../../../shared/utils/getPhoto";
 import {NavController} from "@ionic/angular";
+import {Client} from "../../../core/models/client.model";
 
 @Component({
   selector: 'app-step-one-operation',
@@ -53,6 +54,10 @@ export class StepOneOperationPage extends BasicComponent<OperationClass, Operati
     },
     {
       fieldName: 'description',
+      value: null,
+    },
+    {
+      fieldName: 'client',
       value: null,
     }
   ];
@@ -132,6 +137,10 @@ export class StepOneOperationPage extends BasicComponent<OperationClass, Operati
 
   handleContractScanned($event: { contract: string }) {
     this.form.get('contract')?.setValue($event.contract);
+  }
+
+  selectedClient($event: Client) {
+    this.form.get('client')?.setValue($event);
   }
 
 }

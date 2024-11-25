@@ -15,16 +15,19 @@ import {CardClientComponent} from "./components/card-client/card-client.componen
 import {SharedModule} from "../../shared/shared.module";
 
 @NgModule({
-    imports: [
-        CommonModule,
-        FormsModule,
-        IonicModule,
-        ListClientPageRoutingModule,
-        ListPageModule,
-        HomePageModule,
-        AutoHyphenDirective,
-        SharedModule
-    ],
+  imports: [
+    CommonModule,
+    FormsModule,
+    IonicModule,
+    ListClientPageRoutingModule,
+    ListPageModule,
+    HomePageModule,
+    AutoHyphenDirective,
+    SharedModule
+  ],
+  exports: [
+    FilterClientComponent
+  ],
   declarations: [ListClientPage, FilterClientComponent, CardClientComponent]
 })
 export class ListClientPageModule {}

@@ -24,6 +24,15 @@ import {FilterOperationsComponent} from "./components/filter-operations/filter-o
 import {AutoHyphenDirective} from "../../core/directives/auto-hyphen.directive";
 import {SharedModule} from "../../shared/shared.module";
 import {SelectClientComponent} from "../forms/step-one-operation/components/select-client/select-client.component";
+import {
+  ListSelectClientComponent
+} from "../forms/step-one-operation/components/select-client/components/list-select-client/list-select-client.component";
+import {
+  FilterSelectClientComponent
+} from "../forms/step-one-operation/components/select-client/components/list-select-client/components/filter-select-client/filter-select-client.component";
+import {
+  CardSelectClientComponent
+} from "../forms/step-one-operation/components/select-client/components/list-select-client/components/card-select-client/card-select-client.component";
 
 @NgModule({
   imports: [
@@ -38,15 +47,16 @@ import {SelectClientComponent} from "../forms/step-one-operation/components/sele
     AutoHyphenDirective,
     SharedModule
   ],
-    exports: [
-        HeaderComponent,
-        UploadCardIdComponent,
-        UploadContractComponent,
-        PhoneNumbersComponent,
-        ListReimbursementComponent,
-        SelectClientComponent
-    ],
-    declarations: [ListPage, HeaderComponent, UploadCardIdComponent, UploadContractComponent, PhoneNumbersComponent, ListReimbursementComponent, ModalReimbursementComponent, FilterOperationsComponent, SelectClientComponent]
+  exports: [
+    HeaderComponent,
+    UploadCardIdComponent,
+    UploadContractComponent,
+    PhoneNumbersComponent,
+    ListReimbursementComponent,
+    SelectClientComponent,
+    CardSelectClientComponent
+  ],
+  declarations: [ListPage, HeaderComponent, UploadCardIdComponent, UploadContractComponent, PhoneNumbersComponent, ListReimbursementComponent, ModalReimbursementComponent, FilterOperationsComponent, SelectClientComponent, ListSelectClientComponent, FilterSelectClientComponent, CardSelectClientComponent]
 })
 export class ListPageModule {
 }
