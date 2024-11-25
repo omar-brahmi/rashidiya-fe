@@ -1,20 +1,21 @@
-<div class="selected-user-client">
-  <div class="card-client">
-    <div class="card-header">
-      <img
-        src="https://via.placeholder.com/50"
-        alt="Client Avatar"
-        class="client-avatar"
-      />
-      <div class="client-info">
-        <h3 class="client-name">John Doe</h3>
-        <p class="client-id">ID: 12345678</p>
+<div class="card">
+  <div class="card__content">
+    <div class="card__header">
+      <div class="card__initials">
+        {{ client?.firstname?.charAt(0) }}{{client?.lastname?.charAt(0)}}
+      </div>
+      <div class="card__title">
+        <h3>{{ client?.firstname }} {{ client?.lastname }}</h3>
+        <span class="card__id">{{ client?.idCard }}</span>
       </div>
     </div>
-    <div class="card-body">
-      <p><strong>Card:</strong> 5678-XXXX-XXXX-1234</p>
-      <p><strong>Phone:</strong> +1 234 567 890</p>
+    <div class="card__phones">
+      <div class="phone-list">
+        @for (phone of client?.phoneNumberDTOs; track phone) {
+          <div class="phone-tag">{{ phone.number }}</div>
+        }
+      </div>
     </div>
   </div>
+  <div class="card__shine"></div>
 </div>
-

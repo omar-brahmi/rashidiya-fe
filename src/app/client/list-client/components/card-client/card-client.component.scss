@@ -1,58 +1,117 @@
-.selected-user-client {
-  margin: 20px 0;
-}
-
-.card-client {
+.card {
+  position: relative;
   background: linear-gradient(135deg, #4a1d96, #312e81);
-  border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  color: #ffffff;
-  width: 100%;
-  padding: 1rem;
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin: 1rem 0;
+  overflow: hidden;
+  isolation: isolate;
+  box-shadow:
+    0 10px 20px rgba(0, 0, 0, 0.2),
+    inset 0 0 80px rgba(255, 255, 255, 0.05);
 }
 
-.card-header {
+.card__content {
+  position: relative;
+  z-index: 1;
+}
+
+.card__header {
   display: flex;
   align-items: center;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-  padding-bottom: 0.5rem;
-  margin-bottom: 0.5rem;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
 }
 
-.client-avatar {
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  margin-right: 1rem;
-  object-fit: cover;
-}
-
-.client-info {
+.card__initials {
+  background: linear-gradient(135deg, #ff6b6b, #ffd93d);
+  color: #000;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 12px;
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  box-shadow: 0 4px 12px rgba(255, 107, 107, 0.2);
 }
 
-.client-name {
-  font-size: 1.2rem;
-  margin: 0;
-  color: #ffab00;
+.card__title {
+  flex: 1;
+
+  h3 {
+    color: #fff;
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0 0 0.25rem 0;
+    letter-spacing: 0.5px;
+  }
 }
 
-.client-id {
-  font-size: 0.9rem;
-  margin: 0;
-  color: #bdc3c7; /* Gris clair */
+.card__id {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.1);
+  color: #94a3b8;
+  font-size: 0.875rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 6px;
+  backdrop-filter: blur(8px);
 }
 
-.card-body {
-  font-size: 0.95rem;
-  line-height: 1.5;
+.card__phones {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.card-body p {
-  margin: 0.5rem 0;
+.phone-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
 }
 
-.card-body strong {
-  color: #ffab00;
+.phone-tag {
+  background: rgba(255, 255, 255, 0.08);
+  color: #e2e8f0;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  backdrop-filter: blur(8px);
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.12);
+    transform: translateY(-2px);
+  }
+}
+
+.card__shine {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  background: linear-gradient(
+      105deg,
+      transparent 20%,
+      rgba(255, 255, 255, 0.05) 40%,
+      transparent 60%
+  );
+  transform: translateX(-100%);
+  animation: shine 3s infinite;
+}
+
+@keyframes shine {
+  0% {
+    transform: translateX(-100%);
+  }
+  20%, 100% {
+    transform: translateX(100%);
+  }
+}
+
+.card .card__title h3 {
+  color: #ffc744;
 }

@@ -1,4 +1,5 @@
-import {Component} from '@angular/core';
+import {Component, Input} from '@angular/core';
+import {Client} from "../../../../core/models/client.model";
 
 @Component({
   selector: 'app-card-client',
@@ -7,7 +8,6 @@ import {Component} from '@angular/core';
 })
 export class CardClientComponent {
 
-  constructor() {
-  }
+  @Input() client: Client | null = null;
 
 }

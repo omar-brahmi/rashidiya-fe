@@ -9,7 +9,7 @@
   <app-filter-client/>
 
   @for (client of clients; track client; ) {
-    <app-card-client/>
+    <app-card-client [client]="client"/>
   }
 
   @if (showSpinner) {
