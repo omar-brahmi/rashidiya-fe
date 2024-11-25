@@ -45,11 +45,15 @@ const routes: Routes = [
   },
   {
     path: 'list-client',
-    loadChildren: () => import('./client/list-client/list-client.module').then( m => m.ListClientPageModule)
+    loadChildren: () => import('./client/list-client/list-client.module').then(m => m.ListClientPageModule)
   },
   {
     path: 'form-client',
-    loadChildren: () => import('./client/form-client/form-client.module').then( m => m.FormClientPageModule)
+    loadChildren: () => import('./client/form-client/form-client.module').then(m => m.FormClientPageModule)
+  },
+  {
+    path: 'form-client/:cardID',
+    loadChildren: () => import('./client/form-client/form-client.module').then(m => m.FormClientPageModule)
   }
 ];
 

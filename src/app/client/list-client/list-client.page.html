@@ -9,7 +9,7 @@
   <app-filter-client (filterApplied)="handleFilterApplied($event)"/>
 
   @for (client of clients; track client; ) {
-    <app-card-client [client]="client"/>
+    <app-card-client (click)="redirectToUpdateClient(client)" [client]="client"/>
   }
 
   @if (showSpinner) {

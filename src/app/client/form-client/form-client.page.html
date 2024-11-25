@@ -1,4 +1,4 @@
-<app-header backUrl="list-client" title="Add New Client"/>
+<app-header backUrl="list-client" [title]="isUpdate?'Update Client':'Add New Client'"/>
 
 <ion-content class="ion-padding">
 
@@ -28,7 +28,11 @@
     <app-phone-numbers [phoneNumbers]="client?.phoneNumberDTOs"/>
 
     <button (click)="save()" style="margin-bottom: 200px" class="btn-stepper">
-      Save
+      @if (isUpdate){
+        Update
+      } @else {
+        Save
+      }
     </button>
 
   </form>

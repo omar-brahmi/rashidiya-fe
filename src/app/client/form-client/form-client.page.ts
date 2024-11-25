@@ -9,6 +9,7 @@ import {
 } from "../../operation/forms/step-one-operation/components/phone-numbers/phone-numbers.component";
 import {ToastService} from "../../shared/services/toast.service";
 import {NavController} from "@ionic/angular";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-form-client',
@@ -20,6 +21,7 @@ export class FormClientPage extends BasicComponent<Client, ClientService> implem
   @ViewChild(PhoneNumbersComponent) phoneNumbersComponent!: PhoneNumbersComponent;
   protected readonly ProcessImageState = ProcessImageState;
 
+  #activatedRoute: ActivatedRoute = inject(ActivatedRoute);
   #toastService: ToastService = inject(ToastService);
 
   protected formFields: FormField[] = [
@@ -50,6 +52,8 @@ export class FormClientPage extends BasicComponent<Client, ClientService> implem
 
   client: Client | null = null;
 
+  isUpdate: boolean = false;
+
   errorMessage = {
     title: '',
     description: ''
@@ -63,21 +67,18 @@ export class FormClientPage extends BasicComponent<Client, ClientService> implem
     this.buildForm();
   }
 
+  ionViewWillEnter() {
+    this.getClient();
+  }
+
   save() {
     this.populatedObject().then(entity => {
       this.entity = entity;
-      this.create().then(value => {
-        this.#toastService.success("Client saved successfully.");
-        this.navController.navigateRoot("/list-client");
-      }).catch(error => {
-        if (error.status === 409) {
-          this.errorMessage.title = error.error.error;
-          this.errorMessage.description = error.error.details;
-          this.setOpen(true);
-        } else {
-          this.#toastService.error("Error saving Client.");
-        }
-      });
+      if (this.isUpdate) {
+        this.isUpdateClient();
+      } else {
+        this.isCreateClient();
+      }
     })
   }
 
@@ -111,6 +112,53 @@ export class FormClientPage extends BasicComponent<Client, ClientService> implem
 
   setOpen(isOpen: boolean) {
     this.isAlertOpen = isOpen;
+  }
+
+  getClient() {
+    const cardID = this.#activatedRoute.snapshot.paramMap.get("cardID");
+    if (cardID) {
+      this.clientService.getOneObservable(cardID).subscribe({
+        next: value => {
+          this.isUpdate = true;
+          this.client = value;
+          this.patchValueClient(value);
+        }
+      })
+    }
+  }
+
+  patchValueClient(client: Client) {
+    this.form.patchValue(client);
+  }
+
+  private isCreateClient() {
+    this.create().then(value => {
+      this.#toastService.success("Client saved successfully.");
+      this.navController.navigateRoot("/list-client");
+    }).catch(error => {
+      if (error.status === 409) {
+        this.errorMessage.title = error.error.error;
+        this.errorMessage.description = error.error.details;
+        this.setOpen(true);
+      } else {
+        this.#toastService.error("Error saving Client.");
+      }
+    });
+  }
+
+  private isUpdateClient() {
+    this.update().then(value => {
+      this.#toastService.success("Client updated successfully.");
+      this.navController.navigateRoot("/list-client");
+    }).catch(error => {
+      if (error.status === 409) {
+        this.errorMessage.title = error.error.error;
+        this.errorMessage.description = error.error.details;
+        this.setOpen(true);
+      } else {
+        this.#toastService.error("Error updating Client.");
+      }
+    });
   }
 
 }

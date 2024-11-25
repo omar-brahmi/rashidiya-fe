@@ -68,4 +68,9 @@ export class ListClientPage {
     this.filter = $event;
     this.loadAllClientByFilter();
   }
+
+  redirectToUpdateClient(client: Client) {
+    this.nav.navigateRoot("/form-client/" + client.idCard);
+  }
+
 }
