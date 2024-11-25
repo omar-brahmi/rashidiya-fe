@@ -25,14 +25,20 @@
 
 <ion-modal [isOpen]="isModalOpen" mode="ios">
   <ng-template>
-    <ion-header>
-      <ion-toolbar>
-        <ion-title>Select Client</ion-title>
-        <ion-buttons slot="end">
-          <ion-button (click)="setOpen(false)">Close</ion-button>
-        </ion-buttons>
-      </ion-toolbar>
-    </ion-header>
+    <div class="modern-header">
+      <div class="header-content">
+        <div class="left-section">
+          <button class="close-button" (click)="setOpen(false)">
+            <ion-icon name="chevron-back-outline"></ion-icon>
+          </button>
+          <h2>Select Client</h2>
+        </div>
+      </div>
+      <div class="header-decoration">
+        <div class="glow"></div>
+        <div class="line"></div>
+      </div>
+    </div>
     <ion-content class="ion-padding">
       <app-list-select-client (handleSelectedClient)="selectedClient($event)"/>
     </ion-content>

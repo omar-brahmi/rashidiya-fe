@@ -5,14 +5,20 @@
 
 <ion-modal #modal trigger="open-modal-form-client">
   <ng-template>
-    <ion-header>
-      <ion-toolbar>
-        <ion-title>Modal</ion-title>
-        <ion-buttons slot="end">
-          <ion-button (click)="modal.dismiss()">Close</ion-button>
-        </ion-buttons>
-      </ion-toolbar>
-    </ion-header>
+    <div class="modern-header">
+      <div class="header-content">
+        <div class="left-section">
+          <button class="close-button" (click)="modal.dismiss()">
+            <ion-icon name="chevron-back-outline"></ion-icon>
+          </button>
+          <h2>New Client</h2>
+        </div>
+      </div>
+      <div class="header-decoration">
+        <div class="glow"></div>
+        <div class="line"></div>
+      </div>
+    </div>
     <ion-content class="ion-padding">
       <form [formGroup]="form">
         <app-upload-card-id [imageUrl]="client?.card"
@@ -40,17 +46,14 @@
         <app-phone-numbers [phoneNumbers]="client?.phoneNumberDTOs"/>
 
         <button (click)="save(modal)" style="margin-bottom: 200px" class="btn-stepper">
-          @if (isUpdate) {
-            Update
-          } @else {
-            Save
-          }
+          {{ isUpdate ? 'Update' : 'Save' }}
         </button>
 
       </form>
     </ion-content>
   </ng-template>
 </ion-modal>
+
 <ion-alert mode="ios"
            [isOpen]="isAlertOpen"
            [header]="errorMessage.title"
