@@ -15,13 +15,10 @@ import {ConsultationComponent} from "./components/consultation/consultation.comp
 import {BalancePerDayComponent} from "./components/balance-per-day/balance-per-day.component";
 import {SharedModule} from "../shared/shared.module";
 import {AutoHyphenDirective} from "../core/directives/auto-hyphen.directive";
-import {ModalClientComponent} from "./components/balance-per-day/components/modal-client/modal-client.component";
-import {
-  CardClientComponent
-} from "./components/balance-per-day/components/modal-client/components/card-client/card-client.component";
 import {
   FilterBalancePerDayComponent
 } from "./components/balance-per-day/components/filter-balance-per-day/filter-balance-per-day.component";
+import {CardClientComponent} from "../client/list-client/components/card-client/card-client.component";
 
 @NgModule({
   imports: [
@@ -34,7 +31,7 @@ import {
     SharedModule,
     AutoHyphenDirective
   ],
-  declarations: [ReportingPage, ReminderComponent, CardReminderComponent, ConsultationComponent, BalancePerDayComponent, ModalClientComponent, CardClientComponent, FilterBalancePerDayComponent]
+  declarations: [ReportingPage, ReminderComponent, CardReminderComponent, ConsultationComponent, BalancePerDayComponent, CardClientComponent, FilterBalancePerDayComponent]
 })
 export class ReportingPageModule {
 }

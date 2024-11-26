@@ -2,10 +2,10 @@
   <h2>Filter</h2>
   <div>Client</div>
   @if (!client) {
-    <ion-button id="open-modal" class="choose-client" expand="block">Choose Client</ion-button>
+    <app-select-client (handleSelectedClient)="handleSelectedClient($event)"/>
   } @else {
     <div class="card-client-view">
-      <app-card-clients [client]="client"/>
+      <app-card-select-client [client]="client"/>
     </div>
   }
   <label for="date">Date</label>
@@ -27,6 +27,3 @@
     </button>
   </div>
 </div>
-
-
-<app-modal-client (handleSelectedClient)="handleSelectedClient($event)"/>
