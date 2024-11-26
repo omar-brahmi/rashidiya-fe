@@ -1,29 +1,52 @@
-<div class="filter-section">
-  <h2>Filter</h2>
-  <div>Client</div>
-  @if (!client) {
-    <app-select-client (handleSelectedClient)="handleSelectedClient($event)"/>
-  } @else {
-    <div class="card-client-view">
-      <app-card-select-client [client]="client"/>
+<div class="filter-panel">
+  <div class="filter-header">
+    <h2>Filters</h2>
+    <div class="header-decoration"></div>
+  </div>
+
+  <!-- Date Filter -->
+  <div class="filter-group">
+    <label class="filter-label">
+      <ion-icon name="calendar-outline"></ion-icon>
+      <span>Select Date</span>
+    </label>
+    <div class="date-input">
+      <input type="date" [(ngModel)]="dateFilter" [max]="maxDate">
+      <div class="input-decoration"></div>
     </div>
-  }
-  <label for="date">Date</label>
-  <input type="date" id="date" placeholder="mm/dd/yyyy" [(ngModel)]="dateFilter" [max]="maxDate">
-  <div class="button-group">
-    <button class="apply-filter" (click)="applyFilter()">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-           stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
-      </svg>
-      Apply Filter
+  </div>
+
+  <!-- Client Selection -->
+  <div class="filter-group">
+    <label class="filter-label">
+      <ion-icon name="person-outline"></ion-icon>
+      <span>Select Client</span>
+    </label>
+
+    @if (!client) {
+      <app-select-client (handleSelectedClient)="handleSelectedClient($event)"/>
+    } @else {
+      <div class="selected-client">
+        <app-card-select-client [client]="client"/>
+        <button class="change-client" (click)="client = null">
+          <ion-icon name="create-outline"></ion-icon>
+        </button>
+      </div>
+    }
+  </div>
+
+  <!-- Action Buttons -->
+  <div class="filter-actions">
+    <button class="action-button reset" (click)="resetFilter()">
+      <ion-icon name="refresh-outline"></ion-icon>
+      <span>Reset</span>
+      <div class="button-decoration"></div>
     </button>
-    <button class="reset" (click)="resetFilter()">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-           stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.3"></path>
-      </svg>
-      Reset
+
+    <button class="action-button apply" (click)="applyFilter()">
+      <ion-icon name="funnel-outline"></ion-icon>
+      <span>Apply</span>
+      <div class="button-decoration"></div>
     </button>
   </div>
 </div>

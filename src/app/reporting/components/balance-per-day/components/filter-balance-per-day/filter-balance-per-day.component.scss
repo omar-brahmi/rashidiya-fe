@@ -1,76 +1,186 @@
-.filter-section {
-  background-color: rgb(107 33 168 / 1);
-  border-radius: 10px;
-  padding: 20px;
-  margin-top: 50px;
+.filter-panel {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 24px;
+  padding: 24px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.btn-select-client {
-  --background: linear-gradient(to right, #14b8a6, #2dd4bf);
+.filter-header {
+  margin-bottom: 24px;
+  position: relative;
+
+  h2 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #fff;
+    margin: 0;
+    background: linear-gradient(to right, #fff, #a5a5a5);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .header-decoration {
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 40px;
+    height: 3px;
+    background: linear-gradient(to right, #ff6b6b, #ffd93d);
+    border-radius: 4px;
+  }
 }
 
-h2 {
-  color: white;
-  margin-top: 0;
-  margin-bottom: 20px;
+.filter-group {
+  margin-bottom: 24px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 }
 
-label {
-  display: block;
-  color: white;
-  margin-bottom: 5px;
-}
-
-button, input {
-  width: 100%;
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
-  margin-bottom: 15px;
-}
-
-input {
-  background-color: rgb(126 34 206 / 1);
-  color: white;
-}
-
-input::placeholder {
-  color: #fff;
-}
-
-.choose-client {
-  --background: rgb(126 34 206 / 1);
-  --border-radius: 6px;
-  --padding-top: 12px;
-  --padding-bottom: 12px;
-  --box-shadow: none;
-  font-size: 16px;
-  color: white;
-  cursor: pointer;
-  margin: 0 0 10px 0;
-}
-
-.apply-filter {
-  background: linear-gradient(to right, #14b8a6, #2dd4bf);
-  color: white;
-  cursor: pointer;
-}
-
-.reset {
-  background-color: #ff5757;
-  color: white;
-  cursor: pointer;
-}
-
-.button-group {
+.filter-label {
   display: flex;
-  gap: 10px;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 14px;
+
+  ion-icon {
+    font-size: 18px;
+    color: #ff6b6b;
+  }
 }
 
-.button-group button {
-  flex: 1;
+.date-input {
+  position: relative;
+
+  input {
+    width: 100%;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    color: #fff;
+    font-size: 14px;
+    transition: all 0.3s ease;
+
+    &:focus {
+      outline: none;
+      border-color: #ff6b6b;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    &::-webkit-calendar-picker-indicator {
+      filter: invert(1);
+      opacity: 0.5;
+      cursor: pointer;
+    }
+  }
+
+  .input-decoration {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background: linear-gradient(to right, #ff6b6b, #ffd93d);
+    transition: width 0.3s ease;
+  }
+
+  input:focus + .input-decoration {
+    width: 100%;
+  }
 }
 
-.card-client-view {
-  margin: 15px 0;
+.selected-client {
+  position: relative;
+  margin-top: 12px;
+}
+
+.change-client {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: linear-gradient(135deg, #ff6b6b, #ffd93d);
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 10;
+
+  &:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
+  }
+
+  ion-icon {
+    color: #fff;
+    font-size: 18px;
+  }
+}
+
+.filter-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 32px;
+}
+
+.action-button {
+  position: relative;
+  padding: 12px;
+  border: none;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.3s ease;
+
+  ion-icon {
+    font-size: 18px;
+  }
+
+  &:hover {
+
+    .button-decoration {
+      transform: scale(1.1);
+    }
+  }
+
+  &.reset {
+    color: #fff;
+
+    .button-decoration {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.15);
+    }
+  }
+
+  &.apply {
+    color: #fff;
+    background: linear-gradient(135deg, #ff6b6b, #ffd93d);
+    .button-decoration {
+      background: linear-gradient(135deg, #ff6b6b, #ffd93d);
+    }
+
+    &:hover {
+      box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
+    }
+  }
 }

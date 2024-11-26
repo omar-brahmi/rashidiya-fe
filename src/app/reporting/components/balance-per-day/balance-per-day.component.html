@@ -1,22 +1,40 @@
-<app-filter-balance-per-day (handleBalancePerDay)="handleBalancePerDay($event)"/>
-
-
-<main class="overview">
-  <div class="cash-cards">
-    <div class="cash-card total-cash">
-      <div class="card-header">
-        <span class="card-icon">💰</span>
-        <span class="card-amount">{{ formatNumberToCash(total.totalCash) }}</span>
-      </div>
-      <h3 class="card-title">Total Cash</h3>
+<div class="dashboard">
+  <div class="dashboard-grid">
+    <!-- Filter Section -->
+    <div class="filter-section">
+      <app-filter-balance-per-day (handleBalancePerDay)="handleBalancePerDay($event)"/>
     </div>
-    <div class="cash-card circulation-cash">
-      <div class="card-header">
-        <span class="card-icon">🔄</span>
-        <span class="card-amount">{{ formatNumberToCash(total.circulationCash) }}</span>
+
+    <!-- Overview Section -->
+    <div class="overview-section">
+      <div class="overview-header">
+        <h2>Balance Overview</h2>
+        <div class="header-decoration"></div>
       </div>
-      <h3 class="card-title">Circulation Cash</h3>
+
+      <div class="stats-grid">
+        <!-- Total Cash Card -->
+        <div class="stat-card total">
+          <div class="stat-icon">
+            <ion-icon name="wallet-outline"></ion-icon>
+          </div>
+          <div class="stat-content">
+            <h3>Total Cash</h3>
+            <p class="stat-value">{{ formatNumberToCash(total.totalCash) }}</p>
+          </div>
+        </div>
+
+        <!-- Circulation Cash Card -->
+        <div class="stat-card circulation">
+          <div class="stat-icon">
+            <ion-icon name="repeat-outline"></ion-icon>
+          </div>
+          <div class="stat-content">
+            <h3>Circulation Cash</h3>
+            <p class="stat-value">{{ formatNumberToCash(total.circulationCash) }}</p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-</main>
-
+</div>
