@@ -1,22 +1,22 @@
 <ion-content>
   <div class="login-container">
-    <!-- Animated Background Elements -->
+    <!-- Animated Background -->
     <div class="animated-background">
-      <div class="circle circle-1"></div>
-      <div class="circle circle-2"></div>
-      <div class="circle circle-3"></div>
-      <div class="lines">
-        <div class="line line-1"></div>
-        <div class="line line-2"></div>
-        <div class="line line-3"></div>
+      <div class="particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
       </div>
+      <div class="gradient-overlay"></div>
     </div>
 
     <!-- Login Box -->
     <div class="login-box">
       <!-- Welcome Text -->
       <div class="welcome-text">
-        <h2>Rashidiya</h2>
+        <h1>Rashidiya</h1>
         <p>Enter your credentials to continue</p>
       </div>
 
@@ -40,12 +40,17 @@
           <div class="input-container">
             <ion-icon name="lock-closed-outline"></ion-icon>
             <input
-              type="password"
+              [type]="showPassword ? 'text' : 'password'"
               [(ngModel)]="password"
               name="password"
               required
               placeholder="Password"
             >
+            <ion-icon
+              [name]="showPassword ? 'eye-outline' : 'eye-off-outline'"
+              class="toggle-password"
+              (click)="togglePassword()"
+            ></ion-icon>
             <div class="field-focus-indicator"></div>
           </div>
         </div>

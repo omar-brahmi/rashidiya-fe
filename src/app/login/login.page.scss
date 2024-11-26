@@ -5,7 +5,7 @@
   justify-content: center;
   padding: 20px;
   position: relative;
-  background: linear-gradient(135deg, #13123A 0%, #1A1A40 100%);
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
   overflow: hidden;
 }
 
@@ -14,59 +14,58 @@
   position: absolute;
   inset: 0;
   overflow: hidden;
-  opacity: 0.6;
 }
 
-.circle {
+.particles {
   position: absolute;
-  border-radius: 50%;
-  filter: blur(60px);
+  inset: 0;
 }
 
-.circle-1 {
-  width: 300px;
-  height: 300px;
-  background: linear-gradient(135deg, #FF6B6B 0%, #FFE66D 100%);
-  top: -100px;
-  right: -100px;
+.particle {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background: radial-gradient(circle, #ff6f00 0%, transparent 70%);
+  border-radius: 50%;
+  filter: blur(20px);
   animation: float 15s infinite ease-in-out;
 }
 
-.circle-2 {
-  width: 250px;
-  height: 250px;
-  background: linear-gradient(135deg, #4FACFE 0%, #00F2FE 100%);
-  bottom: -50px;
-  left: -100px;
-  animation: float 20s infinite ease-in-out reverse;
+.particle:nth-child(1) {
+  top: 10%;
+  left: 10%;
+  animation-delay: 0s;
 }
 
-.circle-3 {
-  width: 200px;
-  height: 200px;
-  background: linear-gradient(135deg, #A9C9FF 0%, #FFBBEC 100%);
+.particle:nth-child(2) {
+  top: 70%;
+  left: 80%;
+  animation-delay: -3s;
+}
+
+.particle:nth-child(3) {
   top: 40%;
-  left: 30%;
-  animation: float 17s infinite ease-in-out;
+  left: 40%;
+  animation-delay: -6s;
 }
 
-.lines {
+.particle:nth-child(4) {
+  top: 80%;
+  left: 20%;
+  animation-delay: -9s;
+}
+
+.particle:nth-child(5) {
+  top: 20%;
+  left: 70%;
+  animation-delay: -12s;
+}
+
+.gradient-overlay {
   position: absolute;
   inset: 0;
-  opacity: 0.1;
+  background: radial-gradient(circle at center, transparent 0%, #1a1a2e 70%);
 }
-
-.line {
-  position: absolute;
-  width: 100%;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-  animation: moveLine 8s infinite linear;
-}
-
-.line-1 { top: 20%; animation-delay: 0s; }
-.line-2 { top: 50%; animation-delay: -2s; }
-.line-3 { top: 80%; animation-delay: -4s; }
 
 /* Login Box */
 .login-box {
@@ -99,7 +98,7 @@
   position: absolute;
   inset: 0;
   border-radius: 50%;
-  border: 2px solid rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 111, 0, 0.3);
   animation: rotateLogo 10s linear infinite;
 
   &::before {
@@ -110,7 +109,7 @@
     background: conic-gradient(
         from 0deg,
         transparent,
-        rgba(255, 255, 255, 0.5),
+        #ff6f00,
         transparent 60%
     );
     animation: rotateLogo 3s linear infinite;
@@ -120,7 +119,7 @@
 .logo-container ion-icon {
   position: relative;
   font-size: 40px;
-  color: #ffffff;
+  color: #ff6f00;
   line-height: 80px;
   animation: pulse 2s infinite ease-in-out;
 }
@@ -128,7 +127,7 @@
 .logo-section h1 {
   font-size: 32px;
   font-weight: 700;
-  background: linear-gradient(135deg, #FFFFFF 0%, #A5A5A5 100%);
+  background: linear-gradient(135deg, #ff6f00, #ff9100);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   margin: 0;
@@ -139,9 +138,9 @@
   text-align: center;
   margin-bottom: 40px;
 
-  h2 {
-    font-size: 24px;
-    color: #ffffff;
+  h1 {
+    font-size: 40px;
+    color: #ff6f00;
     margin: 0 0 8px;
   }
 
@@ -171,6 +170,12 @@
     font-size: 20px;
     color: rgba(255, 255, 255, 0.5);
     transition: color 0.3s ease;
+
+    &.toggle-password {
+      left: auto;
+      right: 16px;
+      cursor: pointer;
+    }
   }
 
   input {
@@ -193,7 +198,7 @@
       }
 
       & ~ ion-icon {
-        color: #FFE66D;
+        color: #ff6f00;
       }
     }
   }
@@ -205,7 +210,7 @@
   left: 0;
   right: 0;
   height: 2px;
-  background: linear-gradient(90deg, #FF6B6B, #FFE66D);
+  background: linear-gradient(90deg, #ff6f00, #ff9100);
   transform: scaleX(0);
   opacity: 0;
   transition: all 0.3s ease;
@@ -248,7 +253,7 @@
   .button-glow {
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, #FF6B6B, #FFE66D);
+    background: linear-gradient(135deg, #ff6f00, #ff9100);
     opacity: 0.8;
     transition: all 0.5s ease;
   }
@@ -294,11 +299,6 @@
 @keyframes float {
   0%, 100% { transform: translate(0, 0) rotate(0deg); }
   50% { transform: translate(-30px, 30px) rotate(10deg); }
-}
-
-@keyframes moveLine {
-  0% { transform: translateX(-100%); }
-  100% { transform: translateX(100%); }
 }
 
 @keyframes rotateLogo {
