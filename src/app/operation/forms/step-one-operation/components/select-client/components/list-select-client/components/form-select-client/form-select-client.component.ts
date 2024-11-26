@@ -1,19 +1,22 @@
-import {Component, EventEmitter, inject, Input, OnInit, Output, ViewChild} from '@angular/core';
+import {Component, EventEmitter, inject, Input, OnDestroy, OnInit, Output, ViewChild} from '@angular/core';
 import {BasicComponent} from "../../../../../../../../../shared/forms/generics/forms/basic.component";
 import {Client} from "../../../../../../../../../core/models/client.model";
 import {ClientService} from "../../../../../../../../../services/client.service";
 import {PhoneNumbersComponent} from "../../../../../phone-numbers/phone-numbers.component";
 import {ToastService} from "../../../../../../../../../shared/services/toast.service";
 import {FormField} from "../../../../../../../../../shared/models/form-field.model";
-import {IonModal, NavController} from "@ionic/angular";
+import {IonModal, NavController, Platform} from "@ionic/angular";
 import {ProcessImageState} from "../../../../../../../../../shared/utils/getPhoto";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-form-select-client',
   templateUrl: './form-select-client.component.html',
   styleUrls: ['./form-select-client.component.scss'],
 })
-export class FormSelectClientComponent extends BasicComponent<Client, ClientService> implements OnInit {
+export class FormSelectClientComponent extends BasicComponent<Client, ClientService> implements OnInit, OnDestroy {
+
+  @ViewChild(IonModal) modal!: IonModal;
 
   @Input() modalName: string = "create";
   @Input() client: Client | null = null;
@@ -23,7 +26,9 @@ export class FormSelectClientComponent extends BasicComponent<Client, ClientServ
   protected readonly ProcessImageState = ProcessImageState;
 
   #toastService: ToastService = inject(ToastService);
+  #platform: Platform = inject(Platform);
 
+  private backButtonSubscription?: Subscription;
   protected formFields: FormField[] = [
     {
       fieldName: 'card',
@@ -64,6 +69,13 @@ export class FormSelectClientComponent extends BasicComponent<Client, ClientServ
   ngOnInit() {
     this.buildForm().then(() => {
       this.patchValueClient();
+    });
+
+    // Handle hardware back button
+    this.backButtonSubscription = this.#platform.backButton.subscribeWithPriority(10, () => {
+      if (this.modal?.isOpen) {
+        this.modal.dismiss();
+      }
     });
   }
 
@@ -146,6 +158,12 @@ export class FormSelectClientComponent extends BasicComponent<Client, ClientServ
         this.#toastService.error("Error updating Client.");
       }
     });
+  }
+
+  ngOnDestroy() {
+    if (this.backButtonSubscription) {
+      this.backButtonSubscription.unsubscribe();
+    }
   }
 
 }
