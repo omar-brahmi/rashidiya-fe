@@ -31,6 +31,9 @@ import {CardClientComponent} from "../client/list-client/components/card-client/
     SharedModule,
     AutoHyphenDirective
   ],
+  exports: [
+    CardClientComponent
+  ],
   declarations: [ReportingPage, ReminderComponent, CardReminderComponent, ConsultationComponent, BalancePerDayComponent, CardClientComponent, FilterBalancePerDayComponent]
 })
 export class ReportingPageModule {

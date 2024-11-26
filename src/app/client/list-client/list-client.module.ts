@@ -1,18 +1,18 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {FormsModule} from '@angular/forms';
 
-import { IonicModule } from '@ionic/angular';
+import {IonicModule} from '@ionic/angular';
 
-import { ListClientPageRoutingModule } from './list-client-routing.module';
+import {ListClientPageRoutingModule} from './list-client-routing.module';
 
-import { ListClientPage } from './list-client.page';
+import {ListClientPage} from './list-client.page';
 import {ListPageModule} from "../../operation/list/list.module";
 import {HomePageModule} from "../../home/home.module";
 import {FilterClientComponent} from "./components/filter-client/filter-client.component";
 import {AutoHyphenDirective} from "../../core/directives/auto-hyphen.directive";
-import {CardClientComponent} from "./components/card-client/card-client.component";
 import {SharedModule} from "../../shared/shared.module";
+import {ReportingPageModule} from "../../reporting/reporting.module";
 
 @NgModule({
   imports: [
@@ -23,11 +23,13 @@ import {SharedModule} from "../../shared/shared.module";
     ListPageModule,
     HomePageModule,
     AutoHyphenDirective,
-    SharedModule
+    SharedModule,
+    ReportingPageModule
   ],
   exports: [
     FilterClientComponent
   ],
-  declarations: [ListClientPage, FilterClientComponent, CardClientComponent]
+  declarations: [ListClientPage, FilterClientComponent]
 })
-export class ListClientPageModule {}
+export class ListClientPageModule {
+}
