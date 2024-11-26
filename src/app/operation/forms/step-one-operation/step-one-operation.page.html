@@ -1,15 +1,23 @@
-<app-header [title]="isUpdate ? 'Update Operation': 'Add New Operation'"
-            [backUrl]="isUpdate?'/operations/view/'+operation?.operationID:'/operations'"/>
+<ion-header>
+  <app-header [title]="isUpdate ? 'Update Operation': 'Add New Operation'"
+              [backUrl]="isUpdate?'/operations/view/'+operation?.operationID:'/operations'"/>
+</ion-header>
 
 <ion-content class="ion-padding">
-
   <form [formGroup]="form">
+    <div class="client-section">
+      <app-select-client (handleSelectedClient)="selectedClient($event)"/>
 
-    <app-select-client (handleSelectedClient)="selectedClient($event)"/>
-
-    @if (form.get('client')?.value) {
-      <app-card-select-client [client]="form.get('client')?.value"/>
-    }
+      @if (form.get('client')?.value) {
+        <div class="selected-client-container">
+          <app-card-select-client [client]="form.get('client')?.value"/>
+          <ion-button class="update-client-button" expand="block" id="open-modal-form-client-update">
+            <ion-icon size="large" name="create-outline"></ion-icon>
+          </ion-button>
+        </div>
+        <app-form-select-client [client]="form.get('client')?.value" modalName="update" (handleSelectedClient)="selectedClient($event)"/>
+      }
+    </div>
 
     <app-upload-contract [imageUrl]="operation?.contract"
                          [processImage]="operation?.contract ? ProcessImageState.HAS_FINISHED : ProcessImageState.UPLOAD_IMAGE"
@@ -49,16 +57,14 @@
       </ion-toggle>
     </div>
 
-    <button (click)="save()" style="margin-bottom: 200px" class="btn-stepper">
+    <button (click)="save()" class="save-button">
       @if (isUpdate) {
         Update
       } @else {
         Save
       }
     </button>
-
   </form>
-
 </ion-content>
 
 <app-footer/>

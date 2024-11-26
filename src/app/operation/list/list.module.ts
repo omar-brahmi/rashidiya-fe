@@ -57,7 +57,8 @@ import {
     PhoneNumbersComponent,
     ListReimbursementComponent,
     SelectClientComponent,
-    CardSelectClientComponent
+    CardSelectClientComponent,
+    FormSelectClientComponent
   ],
   declarations: [ListPage, HeaderComponent, UploadCardIdComponent, UploadContractComponent, PhoneNumbersComponent, ListReimbursementComponent, ModalReimbursementComponent, FilterOperationsComponent, SelectClientComponent, ListSelectClientComponent, FilterSelectClientComponent, CardSelectClientComponent, FormSelectClientComponent]
 })

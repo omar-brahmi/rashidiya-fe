@@ -1,9 +1,8 @@
-import {Component, EventEmitter, inject, OnInit, Output, ViewChild} from '@angular/core';
+import {Component, EventEmitter, inject, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {BasicComponent} from "../../../../../../../../../shared/forms/generics/forms/basic.component";
 import {Client} from "../../../../../../../../../core/models/client.model";
 import {ClientService} from "../../../../../../../../../services/client.service";
 import {PhoneNumbersComponent} from "../../../../../phone-numbers/phone-numbers.component";
-import {ActivatedRoute} from "@angular/router";
 import {ToastService} from "../../../../../../../../../shared/services/toast.service";
 import {FormField} from "../../../../../../../../../shared/models/form-field.model";
 import {IonModal, NavController} from "@ionic/angular";
@@ -16,12 +15,13 @@ import {ProcessImageState} from "../../../../../../../../../shared/utils/getPhot
 })
 export class FormSelectClientComponent extends BasicComponent<Client, ClientService> implements OnInit {
 
+  @Input() modalName: string = "create";
+  @Input() client: Client | null = null;
   @Output() handleSelectedClient = new EventEmitter<Client>();
 
   @ViewChild(PhoneNumbersComponent) phoneNumbersComponent!: PhoneNumbersComponent;
   protected readonly ProcessImageState = ProcessImageState;
 
-  #activatedRoute: ActivatedRoute = inject(ActivatedRoute);
   #toastService: ToastService = inject(ToastService);
 
   protected formFields: FormField[] = [
@@ -50,8 +50,6 @@ export class FormSelectClientComponent extends BasicComponent<Client, ClientServ
   isAlertOpen = false;
   alertButtons = ['Close'];
 
-  client: Client | null = null;
-
   isUpdate: boolean = false;
 
   errorMessage = {
@@ -64,18 +62,16 @@ export class FormSelectClientComponent extends BasicComponent<Client, ClientServ
   }
 
   ngOnInit() {
-    this.buildForm();
-  }
-
-  ionViewWillEnter() {
-    this.getClient();
+    this.buildForm().then(() => {
+      this.patchValueClient();
+    });
   }
 
   save(modal: IonModal) {
     this.populatedObject().then(entity => {
       this.entity = entity;
       if (this.isUpdate) {
-        this.isUpdateClient();
+        this.isUpdateClient(modal);
       } else {
         this.isCreateClient(modal);
       }
@@ -114,21 +110,11 @@ export class FormSelectClientComponent extends BasicComponent<Client, ClientServ
     this.isAlertOpen = isOpen;
   }
 
-  getClient() {
-    const cardID = this.#activatedRoute.snapshot.paramMap.get("cardID");
-    if (cardID) {
-      this.clientService.getOneObservable(cardID).subscribe({
-        next: value => {
-          this.isUpdate = true;
-          this.client = value;
-          this.patchValueClient(value);
-        }
-      })
+  patchValueClient() {
+    if (this.client) {
+      this.isUpdate = true;
+      this.form.patchValue(this.client);
     }
-  }
-
-  patchValueClient(client: Client) {
-    this.form.patchValue(client);
   }
 
   private isCreateClient(modal: IonModal) {
@@ -147,10 +133,10 @@ export class FormSelectClientComponent extends BasicComponent<Client, ClientServ
     });
   }
 
-  private isUpdateClient() {
+  private isUpdateClient(modal: IonModal) {
     this.update().then(value => {
       this.#toastService.success("Client updated successfully.");
-      this.navController.navigateRoot("/list-client");
+      modal.dismiss();
     }).catch(error => {
       if (error.status === 409) {
         this.errorMessage.title = error.error.error;
