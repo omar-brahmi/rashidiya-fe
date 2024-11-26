@@ -1,18 +1,34 @@
 <app-header title="Reporting"/>
 
 <ion-content class="ion-padding">
+  <div class="segment-container">
+    <div class="segment-wrapper">
+      <div class="segment-track">
+        <ion-segment [(ngModel)]="segment" mode="ios" class="custom-segment">
+          <ion-segment-button value="consultation" class="segment-button">
+            <div class="segment-button-content">
+              <ion-icon name="document-text-outline"></ion-icon>
+              <span>Consultation</span>
+            </div>
+          </ion-segment-button>
 
-  <ion-segment [(ngModel)]="segment" mode="ios">
-    <ion-segment-button value="consultation">
-      <ion-label>Consultation</ion-label>
-    </ion-segment-button>
-    <ion-segment-button value="balancePerDay">
-      <ion-label>Balance Per Day</ion-label>
-    </ion-segment-button>
-    <ion-segment-button value="reminder">
-      <ion-label>Reminder</ion-label>
-    </ion-segment-button>
-  </ion-segment>
+          <ion-segment-button value="balancePerDay" class="segment-button">
+            <div class="segment-button-content">
+              <ion-icon name="wallet-outline"></ion-icon>
+              <span>Balance</span>
+            </div>
+          </ion-segment-button>
+
+          <ion-segment-button value="reminder" class="segment-button">
+            <div class="segment-button-content">
+              <ion-icon name="notifications-outline"></ion-icon>
+              <span>Reminder</span>
+            </div>
+          </ion-segment-button>
+        </ion-segment>
+      </div>
+    </div>
+  </div>
 
   <div *ngIf="segment === 'consultation'" @creativeSegmentAnimation>
     <app-consultation></app-consultation>
@@ -23,7 +39,6 @@
   <div *ngIf="segment === 'reminder'" @creativeSegmentAnimation>
     <app-reminder></app-reminder>
   </div>
-
 </ion-content>
 
 <app-footer/>

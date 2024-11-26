@@ -1,0 +1,98 @@
+.segment-container {
+  padding: 8px 0;
+  margin-bottom: 20px;
+}
+
+.segment-wrapper {
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  padding: 8px;
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.1),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+.segment-track {
+  position: relative;
+  z-index: 1;
+}
+
+.custom-segment {
+  background: transparent;
+  border-radius: 12px;
+  --background: transparent;
+
+  &::before {
+    display: none;
+  }
+}
+
+.segment-button {
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 12px;
+  overflow: hidden;
+  --background: transparent;
+  --background-checked: transparent;
+  --background-hover: transparent;
+  --background-focused: transparent;
+  --background-activated: transparent;
+  --color: rgba(255, 255, 255, 0.6);
+  --color-checked: #ffffff;
+  --indicator-color: transparent;
+  min-height: 48px;
+  margin: 0 4px;
+
+  &.segment-button-checked {
+    background: linear-gradient(135deg, #4f46e5, #7c3aed);
+    box-shadow:
+      0 4px 15px rgba(124, 58, 237, 0.35),
+      inset 0 1px rgba(255, 255, 255, 0.1);
+
+    .segment-button-content {
+      ion-icon {
+        transform: translateY(-2px);
+        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+      }
+
+      span {
+        transform: translateY(2px);
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      }
+    }
+  }
+
+  &:not(.segment-button-checked) {
+    background: rgba(255, 255, 255, 0.1);
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.15);
+      transform: translateY(-1px);
+    }
+  }
+}
+
+.segment-button-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 0;
+
+  ion-icon {
+    font-size: 20px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  span {
+    font-size: 12px;
+    font-weight: 600;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    letter-spacing: 0.5px;
+  }
+}

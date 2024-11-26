@@ -1,15 +1,27 @@
 <app-header title="Operations"/>
 
 <ion-content class="ion-padding">
+  <div class="segment-container">
+    <div class="segment-wrapper">
+      <div class="segment-track">
+        <ion-segment value="all" mode="ios" class="custom-segment" (ionChange)="onSegmentChange($event)">
+          <ion-segment-button value="all" class="segment-button">
+            <div class="segment-button-content">
+              <ion-icon name="list-outline"></ion-icon>
+              <span>All</span>
+            </div>
+          </ion-segment-button>
 
-  <ion-segment value="all" mode="ios" color="primary" (ionChange)="onSegmentChange($event)">
-    <ion-segment-button value="all">
-      <ion-label>All</ion-label>
-    </ion-segment-button>
-    <ion-segment-button value="day">
-      <ion-label>Day</ion-label>
-    </ion-segment-button>
-  </ion-segment>
+          <ion-segment-button value="day" class="segment-button">
+            <div class="segment-button-content">
+              <ion-icon name="today-outline"></ion-icon>
+              <span>Today</span>
+            </div>
+          </ion-segment-button>
+        </ion-segment>
+      </div>
+    </div>
+  </div>
 
   <ion-button (click)="redirectToNewOperation()" style="margin-bottom: 0;">
     Add New Operation
@@ -37,7 +49,6 @@
     </div>
   }
 
-
   @if (!showSpinner && !operationsPage.last) {
     <ion-infinite-scroll (ionInfinite)="loadMore($event)">
       <ion-infinite-scroll-content
@@ -46,7 +57,6 @@
       </ion-infinite-scroll-content>
     </ion-infinite-scroll>
   }
-
 </ion-content>
 
 <app-footer/>

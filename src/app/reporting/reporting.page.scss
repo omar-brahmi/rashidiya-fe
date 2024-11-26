@@ -1,20 +1,92 @@
-ion-segment {
-  display: flex;
-  justify-content: space-around;
-  background: linear-gradient(135deg, #ff6f00, #ffab00);
-  border-radius: 15px;
-  padding: 3px 0;
+.segment-container {
+  padding: 8px 0;
+  margin-bottom: 20px;
 }
 
-ion-segment-button {
+.segment-wrapper {
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  padding: 8px;
+}
+
+.segment-track {
+  position: relative;
+  z-index: 1;
+}
+
+.custom-segment {
   background: transparent;
-  padding: 5px 0;
-  font-weight: 600;
-  font-size: 3.5vw;
+  border-radius: 12px;
+  --background: transparent;
+
+  &::before {
+    display: none;
+  }
 }
 
-.segment-button-checked {
-  --indicator-color: #fff;
-  color: #ff6f00;
-  transition: background 0.3s ease;
+.segment-button {
+  position: relative;
+  transition: all 0.3s ease;
+  border-radius: 12px;
+  overflow: hidden;
+  --background: transparent;
+  --background-checked: transparent;
+  --background-hover: transparent;
+  --background-focused: transparent;
+  --background-activated: transparent;
+  --color: rgba(255, 255, 255, 0.6);
+  --color-checked: #ffffff;
+  --indicator-color: transparent;
+  min-height: 50px;
+  margin: 0 4px;
+
+  &.segment-button-checked {
+    background: linear-gradient(135deg, #ff6b6b, #ffd93d);
+    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.35);
+
+    .segment-button-content {
+      ion-icon {
+        transform: scale(1.2);
+        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+      }
+
+      span {
+        transform: scale(1.1);
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      }
+    }
+  }
+
+  &:not(.segment-button-checked) {
+    background: rgba(255, 255, 255, 0.1);
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.15);
+    }
+  }
+}
+
+.segment-button-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 0;
+
+  ion-icon {
+    font-size: 22px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  span {
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    letter-spacing: 0.3px;
+  }
 }
