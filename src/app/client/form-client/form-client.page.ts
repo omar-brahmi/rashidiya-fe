@@ -49,6 +49,7 @@ export class FormClientPage extends BasicComponent<Client, ClientService> implem
 
   isAlertOpen = false;
   alertButtons = ['Close'];
+  isLoading = false;
 
   client: Client | null = null;
 
@@ -72,6 +73,7 @@ export class FormClientPage extends BasicComponent<Client, ClientService> implem
   }
 
   save() {
+    this.isLoading = true;
     this.populatedObject().then(entity => {
       this.entity = entity;
       if (this.isUpdate) {
@@ -133,9 +135,11 @@ export class FormClientPage extends BasicComponent<Client, ClientService> implem
 
   private isCreateClient() {
     this.create().then(value => {
+      this.isLoading = false;
       this.#toastService.success("Client saved successfully.");
       this.navController.navigateRoot("/list-client");
     }).catch(error => {
+      this.isLoading = false;
       if (error.status === 409) {
         this.errorMessage.title = error.error.error;
         this.errorMessage.description = error.error.details;
@@ -148,9 +152,11 @@ export class FormClientPage extends BasicComponent<Client, ClientService> implem
 
   private isUpdateClient() {
     this.update().then(value => {
+      this.isLoading = false;
       this.#toastService.success("Client updated successfully.");
       this.navController.navigateRoot("/list-client");
     }).catch(error => {
+      this.isLoading = false;
       if (error.status === 409) {
         this.errorMessage.title = error.error.error;
         this.errorMessage.description = error.error.details;

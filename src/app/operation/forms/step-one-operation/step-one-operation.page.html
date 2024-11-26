@@ -57,11 +57,15 @@
       </ion-toggle>
     </div>
 
-    <button (click)="save()" class="save-button">
-      @if (isUpdate) {
-        Update
+    <button (click)="save()" class="save-button" [disabled]="isLoading">
+      @if (isLoading) {
+        <div class="spinner"></div>
       } @else {
-        Save
+        @if (isUpdate) {
+          Update
+        } @else {
+          Save
+        }
       }
     </button>
   </form>

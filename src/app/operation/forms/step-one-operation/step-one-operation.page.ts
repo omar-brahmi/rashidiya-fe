@@ -63,8 +63,8 @@ export class StepOneOperationPage extends BasicComponent<OperationClass, Operati
   ];
 
   operation: Operation | null = this.operationService.getOperationSubjectValue();
-
   isUpdate: boolean = false;
+  isLoading: boolean = false;
 
   constructor(private operationService: OperationService, private navController: NavController) {
     super(operationService);
@@ -100,6 +100,7 @@ export class StepOneOperationPage extends BasicComponent<OperationClass, Operati
   }
 
   save() {
+    this.isLoading = true;
     this.populatedObject().then(entity => {
       this.entity = entity;
       this.create().then(value => {
@@ -111,7 +112,9 @@ export class StepOneOperationPage extends BasicComponent<OperationClass, Operati
           this.#toastService.success("Operation saved successfully.");
           this.navController.navigateRoot("/operations");
         }
+        this.isLoading = false;
       }).catch(error => {
+        this.isLoading = false;
         if (this.isUpdate) {
           this.#toastService.error("Error updating operation");
         } else {
@@ -142,5 +145,4 @@ export class StepOneOperationPage extends BasicComponent<OperationClass, Operati
   selectedClient($event: Client) {
     this.form.get('client')?.setValue($event);
   }
-
 }
