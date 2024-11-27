@@ -3,6 +3,7 @@ import {Operation} from "../../../core/models/operation.model";
 import {formatNumberToCash} from "../../../core/directives/cash-format.directive";
 import {OperationService} from "../../../services/operation.service";
 import {Router} from "@angular/router";
+import {Status} from "../../../core/models/enumerations/status.enum";
 
 @Component({
   selector: 'app-card-operation',
@@ -37,4 +38,6 @@ export class CardOperationComponent {
       this.router.navigate(['/operations/cancel/' + this.operation.operationID]);
     }
   }
+
+  protected readonly Status = Status;
 }
