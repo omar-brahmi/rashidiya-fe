@@ -1,7 +1,118 @@
-<ion-content [fullscreen]="true">
+<ion-content>
+  <div class="home-container">
+    <!-- Header Section -->
+    <div class="welcome-header">
+      <div class="user-greeting">
+        <h1>Welcome Back!</h1>
+        <p>Here's what's happening today</p>
+      </div>
+      <button class="profile-button">
+        <ion-icon name="person-outline"></ion-icon>
+      </button>
+    </div>
 
-  <h1>Dashboard</h1>
+    <!-- Today's Operations Section -->
+    <div class="section">
+      <div class="section-header">
+        <h2>Today's Operations</h2>
+        <button class="view-all" (click)="redirectTo('/operations?day=true')">
+          <span>View All</span>
+          <ion-icon name="arrow-forward-outline"></ion-icon>
+        </button>
+      </div>
 
+      <swiper-container [slidesPerView]="1.2" [spaceBetween]="16" class="operations-slider">
+        @for (operation of operations; track operation) {
+          <swiper-slide>
+            <app-card-home-operation [operation]="operation"/>
+          </swiper-slide>
+        }
+        @if (operations.length === 0) {
+          <swiper-slide>
+            <div class="empty-slide">
+              <ion-icon name="document-text-outline"></ion-icon>
+              <p>No operations today</p>
+            </div>
+          </swiper-slide>
+        }
+      </swiper-container>
+
+
+    </div>
+
+    <!-- Reminders Section -->
+    <div class="section">
+      <div class="section-header">
+        <h2>Reminders</h2>
+        <button class="view-all" (click)="redirectTo('/reporting')">
+          <span>View All</span>
+          <ion-icon name="arrow-forward-outline"></ion-icon>
+        </button>
+      </div>
+
+      <swiper-container [slidesPerView]="1.2" [spaceBetween]="16" class="reminders-slider">
+        @for (reminder of reminders; track reminder) {
+          <swiper-slide>
+            <div class="reminder-card">
+              <div class="reminder-header">
+                <div class="reminder-avatar">
+                  {{ reminder.operationFirstName?.charAt(0) }}{{ reminder.operationLastName?.charAt(0) }}
+                </div>
+                <div class="reminder-info">
+                  <h3>{{ reminder.operationFirstName }} {{ reminder.operationLastName }}</h3>
+                  <p>{{ formatNumberToCash(reminder.cash) }}</p>
+                </div>
+              </div>
+              <div class="reminder-footer">
+                <span class="reminder-date">
+                  <ion-icon name="calendar-outline"></ion-icon>
+                  {{ reminder.createdAt | date:'mediumDate' }}
+                </span>
+                <button class="action-button" (click)="viewReminder(reminder)">
+                  <ion-icon name="eye-outline"></ion-icon>
+                </button>
+              </div>
+            </div>
+          </swiper-slide>
+        }
+        @if (reminders.length === 0) {
+          <swiper-slide>
+            <div class="empty-slide">
+              <ion-icon name="notifications-outline"></ion-icon>
+              <p>No reminders</p>
+            </div>
+          </swiper-slide>
+        }
+      </swiper-container>
+    </div>
+
+    <!-- Recent Clients Section -->
+    <div class="section">
+      <div class="section-header">
+        <h2>Recent Clients</h2>
+        <button class="view-all" (click)="redirectTo('/list-client')">
+          <span>View All</span>
+          <ion-icon name="arrow-forward-outline"></ion-icon>
+        </button>
+      </div>
+
+      <swiper-container [slidesPerView]="1.2" [spaceBetween]="16" [loop]="true" class="clients-slider">
+        @for (client of clients; track client) {
+          <swiper-slide>
+            <app-card-home-client [client]="client"/>
+          </swiper-slide>
+        }
+        @if (clients.length === 0) {
+          <swiper-slide>
+            <div class="empty-slide">
+              <ion-icon name="people-outline"></ion-icon>
+              <p>No recent clients</p>
+            </div>
+          </swiper-slide>
+        }
+      </swiper-container>
+    </div>
+  </div>
 </ion-content>
 
 <app-footer/>

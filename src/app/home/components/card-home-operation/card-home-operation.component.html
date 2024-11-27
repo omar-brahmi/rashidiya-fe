@@ -1,0 +1,33 @@
+<div class="card">
+  <!-- Main Content -->
+  <div class="card-content">
+    <!-- Header with Name and Date -->
+    <div class="card-header">
+      <div class="name-section">
+        <div class="initials">
+          {{ operation?.operationFirstName?.charAt(0) }}{{ operation?.operationLastName?.charAt(0) }}
+        </div>
+        <div class="name-info">
+          <h2>{{ operation?.operationFirstName }} {{ operation?.operationLastName }}</h2>
+          <span class="date">{{ operation?.createdAt | date: 'dd/MM/yyyy' }}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Info Section -->
+    <div class="info-section">
+      <div class="info-row">
+        <ion-icon name="card-outline"></ion-icon>
+        <span>{{ operation?.idCard }}</span>
+      </div>
+      <a href="tel:{{ operation?.phoneNumbers?.[0]?.number }}" class="info-row">
+        <ion-icon name="call-outline"></ion-icon>
+        <span>{{ operation?.phoneNumbers?.[0]?.number }}</span>
+      </a>
+      <div class="info-row">
+        <ion-icon name="wallet-outline"></ion-icon>
+        <span>{{ formatNumberToCash(operation?.cash) }}</span>
+      </div>
+    </div>
+  </div>
+</div>
