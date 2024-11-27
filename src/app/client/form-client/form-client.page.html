@@ -7,22 +7,50 @@
                         [processImage]="client?.card ? ProcessImageState.HAS_FINISHED : ProcessImageState.UPLOAD_IMAGE"
                         (cardScanned)="handleCardScanned($event)"/>
 
-    <div class="input-group">
-      <label class="input-group__label" for="myInput">Card ID:</label>
-      <input type="text" id="myInput" formControlName="idCard" class="input-group__input"
-             appAutoHyphen placeholder="000-0000-0000000-0"/>
+    <div class="form-group">
+      <div class="input-label">
+        <ion-icon name="card-outline"></ion-icon>
+        <span>Card ID</span>
+      </div>
+      <div class="input-container">
+        <input
+          type="text"
+          formControlName="idCard"
+          appAutoHyphen
+          placeholder="000-0000-0000000-0"
+        >
+        <div class="focus-indicator"></div>
+      </div>
     </div>
 
-    <div class="input-group">
-      <label class="input-group__label" for="firstName">First name</label>
-      <input type="text" id="firstName" formControlName="firstname" class="input-group__input"
-             placeholder="First name"/>
+    <div class="form-group">
+      <div class="input-label">
+        <ion-icon name="person-outline"></ion-icon>
+        <span>First Name</span>
+      </div>
+      <div class="input-container">
+        <input
+          type="text"
+          formControlName="firstname"
+          placeholder="Enter first name"
+        >
+        <div class="focus-indicator"></div>
+      </div>
     </div>
 
-    <div class="input-group">
-      <label class="input-group__label" for="lastName">Last name</label>
-      <input type="text" id="lastName" formControlName="lastname" class="input-group__input"
-             placeholder="Last name"/>
+    <div class="form-group">
+      <div class="input-label">
+        <ion-icon name="person-outline"></ion-icon>
+        <span>Last Name</span>
+      </div>
+      <div class="input-container">
+        <input
+          type="text"
+          formControlName="lastname"
+          placeholder="Enter last name"
+        >
+        <div class="focus-indicator"></div>
+      </div>
     </div>
 
     <app-phone-numbers [phoneNumbers]="client?.phoneNumberDTOs"/>

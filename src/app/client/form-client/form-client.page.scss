@@ -23,3 +23,64 @@
     transform: rotate(360deg);
   }
 }
+.form-group {
+  margin-top: 25px;
+  .input-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+
+    ion-icon {
+      font-size: 18px;
+      color: #3b82f6;
+    }
+
+    span {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 14px;
+    }
+  }
+
+  .input-container {
+    position: relative;
+
+    input {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 12px 16px;
+      color: white;
+      font-size: 16px;
+      transition: all 0.3s ease;
+
+      &:focus {
+        outline: none;
+        background: rgba(255, 255, 255, 0.08);
+
+        & + .focus-indicator {
+          transform: scaleX(1);
+          opacity: 1;
+        }
+      }
+
+      &::placeholder {
+        color: rgba(255, 255, 255, 0.3);
+      }
+    }
+
+    .focus-indicator {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+      transform: scaleX(0);
+      opacity: 0;
+      transition: all 0.3s ease;
+      transform-origin: left;
+    }
+  }
+}
