@@ -4,7 +4,7 @@
   <div class="segment-container">
     <div class="segment-wrapper">
       <div class="segment-track">
-        <ion-segment value="all" mode="ios" class="custom-segment" (ionChange)="onSegmentChange($event)">
+        <ion-segment [value]="selectedSegment" mode="ios" class="custom-segment" (ionChange)="onSegmentChange($event)">
           <ion-segment-button value="all" class="segment-button">
             <div class="segment-button-content">
               <ion-icon name="list-outline"></ion-icon>

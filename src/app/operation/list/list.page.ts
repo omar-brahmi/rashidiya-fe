@@ -3,7 +3,7 @@ import {OperationService} from "../../services/operation.service";
 import {Operation} from "../../core/models/operation.model";
 import {GetAllPage} from "../../shared/models/getAllPage.model";
 import {Pageable} from "../../shared/models/pageable.model";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {NavController} from "@ionic/angular";
 
 @Component({
@@ -14,6 +14,7 @@ import {NavController} from "@ionic/angular";
 export class ListPage {
 
   #operationService: OperationService = inject(OperationService);
+  #activatedRoute: ActivatedRoute = inject(ActivatedRoute);
   #router: Router = inject(Router);
 
   operationsPage!: GetAllPage<Operation>;
@@ -35,6 +36,7 @@ export class ListPage {
   }
 
   ionViewWillEnter() {
+    this.getSegmentParam();
     this.loadAllOperationsByFilter();
   }
 
@@ -106,6 +108,14 @@ export class ListPage {
   redirectToNewOperation() {
     this.#operationService.destroyOperationSubject();
     this.nav.navigateRoot("/form/step-one-operation");
+  }
+
+  getSegmentParam() {
+    this.selectedSegment = 'all';
+    const dayParam = this.#activatedRoute.snapshot.queryParamMap.get('day');
+    if (dayParam == "true") {
+      this.selectedSegment = 'day';
+    }
   }
 
 }

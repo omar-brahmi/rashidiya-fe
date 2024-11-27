@@ -110,7 +110,7 @@ export class StepOneOperationPage extends BasicComponent<OperationClass, Operati
           this.navController.navigateRoot("/operations/view/" + value.operationID);
         } else {
           this.#toastService.success("Operation saved successfully.");
-          this.navController.navigateRoot("/operations");
+          this.navController.navigateRoot("/operations?day=true");
         }
         this.isLoading = false;
       }).catch(error => {
