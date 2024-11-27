@@ -1,59 +1,79 @@
-<app-header title="Operations"/>
-
-<ion-content class="ion-padding">
-  <div class="segment-container">
-    <div class="segment-wrapper">
-      <div class="segment-track">
-        <ion-segment [value]="selectedSegment" mode="ios" class="custom-segment" (ionChange)="onSegmentChange($event)">
-          <ion-segment-button value="all" class="segment-button">
-            <div class="segment-button-content">
-              <ion-icon name="list-outline"></ion-icon>
-              <span>All</span>
-            </div>
-          </ion-segment-button>
-
-          <ion-segment-button value="day" class="segment-button">
-            <div class="segment-button-content">
-              <ion-icon name="today-outline"></ion-icon>
-              <span>Today</span>
-            </div>
-          </ion-segment-button>
-        </ion-segment>
+<ion-content>
+  <!-- Floating Header -->
+  <div class="floating-header">
+    <div class="header-content">
+      <h1>Operations</h1>
+      <div class="header-actions">
+        <button class="action-button filter-button" id="open-modal-filter">
+          <ion-icon name="funnel-outline"></ion-icon>
+          <div class="pulse-ring"></div>
+        </button>
+        <button class="action-button add-button" (click)="redirectToNewOperation()">
+          <ion-icon name="add-outline"></ion-icon>
+          <div class="pulse-ring"></div>
+        </button>
       </div>
+    </div>
+
+    <!-- Segment Control -->
+    <div class="segment-container">
+      <ion-segment [value]="selectedSegment" mode="ios" (ionChange)="onSegmentChange($event)">
+        <ion-segment-button value="all">
+          <div class="segment-content">
+            <ion-icon name="list-outline"></ion-icon>
+            <span>All</span>
+          </div>
+        </ion-segment-button>
+        <ion-segment-button value="day">
+          <div class="segment-content">
+            <ion-icon name="today-outline"></ion-icon>
+            <span>Today</span>
+          </div>
+        </ion-segment-button>
+      </ion-segment>
     </div>
   </div>
 
-  <ion-button (click)="redirectToNewOperation()" style="margin-bottom: 0;">
-    Add New Operation
-  </ion-button>
+  <!-- Main Content -->
+  <div class="main-content">
+    <!-- Filter Component -->
+    <app-filter-operations (filterApplied)="onFilterApplied($event)"/>
 
-  <app-filter-operations (filterApplied)="onFilterApplied($event)"/>
-
-  @for (operation of operations; track operation; let i = $index) {
-    <app-card-operation
-      [operation]="operation"
-    />
-  }
-
-  @if (showSpinner) {
-    <app-spinner/>
-  }
-
-  @if (!showSpinner && operations.length === 0) {
-    <div class="not-found-container">
-      <ion-icon name="search-outline" class="not-found-icon"></ion-icon>
-      <h2 class="not-found-title">No Operations Found!</h2>
+    <!-- Operations List -->
+    <div class="operations-list">
+      @for (operation of operations; track operation) {
+        <app-card-operation [operation]="operation"/>
+      }
     </div>
-  }
 
-  @if (!showSpinner && !operationsPage.last) {
-    <ion-infinite-scroll (ionInfinite)="loadMore($event)">
-      <ion-infinite-scroll-content
-        loadingSpinner="bubbles"
-        loadingText="Loading more operations...">
-      </ion-infinite-scroll-content>
-    </ion-infinite-scroll>
-  }
+    <!-- Loading State -->
+    @if (showSpinner) {
+      <div class="loading-state">
+        <app-spinner/>
+      </div>
+    }
+
+    <!-- Empty State -->
+    @if (!showSpinner && operations.length === 0) {
+      <div class="empty-state">
+        <div class="empty-state-content">
+          <ion-icon name="search-outline"></ion-icon>
+          <h2>No Operations Found</h2>
+          <p>Try adjusting your filters or add a new operation</p>
+        </div>
+      </div>
+    }
+
+    <!-- Infinite Scroll -->
+    @if (!showSpinner && !operationsPage.last) {
+      <ion-infinite-scroll (ionInfinite)="loadMore($event)">
+        <ion-infinite-scroll-content
+          loadingSpinner="bubbles"
+          loadingText="Loading more operations...">
+        </ion-infinite-scroll-content>
+      </ion-infinite-scroll>
+    }
+  </div>
 </ion-content>
 
 <app-footer/>

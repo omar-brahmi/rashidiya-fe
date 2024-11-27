@@ -1,14 +1,4 @@
 <div class="filter-container">
-  <!-- Animated Filter Button -->
-  <ion-button class="filter-trigger" expand="block" id="open-modal-filter">
-    <ion-icon name="funnel-outline" class="primary-icon"></ion-icon>
-    Filter Operations
-    <div class="active-filters" *ngIf="hasActiveFilters()">
-      <span class="count">{{ getActiveFiltersCount() }}</span>
-      <span class="pulse"></span>
-    </div>
-  </ion-button>
-
   <!-- Active Filters Display -->
   <div class="active-filters-container" *ngIf="hasActiveFilters()">
     <div class="filters-header">
