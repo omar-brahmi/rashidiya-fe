@@ -1,9 +1,9 @@
-import {Component, HostListener, inject} from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {OperationService} from "../../services/operation.service";
 import {Operation} from "../../core/models/operation.model";
 import {GetAllPage} from "../../shared/models/getAllPage.model";
 import {Pageable} from "../../shared/models/pageable.model";
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute} from "@angular/router";
 import {NavController} from "@ionic/angular";
 
 @Component({
@@ -15,7 +15,6 @@ export class ListPage {
 
   #operationService: OperationService = inject(OperationService);
   #activatedRoute: ActivatedRoute = inject(ActivatedRoute);
-  #router: Router = inject(Router);
 
   operationsPage!: GetAllPage<Operation>;
   operations: Operation[] = [];
@@ -23,7 +22,6 @@ export class ListPage {
   selectedSegment: string = 'all';
 
   disableScroll: boolean = false;
-  flippedCardIndex: number | null = null;
 
   filter: { cardID: string; phoneNumbers: string } = {
     cardID: "",
@@ -74,25 +72,6 @@ export class ListPage {
     setTimeout(() => {
       $event.target.complete();
     }, 1000);
-  }
-
-  toggleCard(index: number) {
-    if (this.selectedSegment === "all") {
-      if (this.flippedCardIndex != index) {
-        this.flippedCardIndex = this.flippedCardIndex === index ? null : index;
-      }
-    } else {
-      this.#operationService.updateOperationSubject(this.operations[index]);
-      this.#router.navigate(['/operations/view/' + this.operations[index].operationID]);
-    }
-  }
-
-  @HostListener('document:click', ['$event'])
-  handleClickOutside(event: MouseEvent) {
-    const target = event.target as HTMLElement;
-    if (!target.closest('.three-d-card')) {
-      this.flippedCardIndex = null;
-    }
   }
 
   onFilterApplied($event: { cardID: string; phoneNumbers: string }) {

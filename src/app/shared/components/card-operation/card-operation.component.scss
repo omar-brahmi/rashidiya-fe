@@ -1,89 +1,188 @@
-ion-card {
-  background: linear-gradient(135deg, #2a3a5b, #4a5570);
+.card {
+  background: linear-gradient(135deg, #2d3748, #1a202c);
+  border-radius: 16px;
+  margin: 12px 0;
+  padding: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  &.expanded {
+    transform: scale(1.02);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    background: linear-gradient(135deg, #2d3748, #1e293b);
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.1), transparent 70%);
+    pointer-events: none;
+  }
 }
 
-.card-text {
+.card-header {
+  margin-bottom: 16px;
+  position: relative;
+}
+
+.name-section {
   display: flex;
-  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
 }
 
-.three-d-card {
-  position: relative;
+.initials {
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, #3b82f6, #60a5fa);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 600;
+  color: #fff;
+  text-transform: uppercase;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
 }
 
-.header-card {
-  position: absolute;
-  top: 19px;
-  right: 16px;
-  font-size: 17px;
-  text-align: right;
+.name-info {
+  flex: 1;
+
+  h2 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: #fff;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .date {
+    font-size: 13px;
+    color: #a0aec0;
+    display: block;
+    margin-top: 4px;
+  }
 }
 
-
-.unread-indicator {
-  background: var(--ion-color-primary);
-
-  width: 10px;
-  height: 10px;
-
-  border-radius: 100%;
-
-  position: absolute;
-
-  inset-inline-start: 12px;
-  top: 12px;
+.info-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 20px 0;
 }
 
-.flipped .hydrated {
-  height: 85%;
+.info-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(8px);
+  transition: all 0.3s ease;
+  text-decoration: none;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateX(4px);
+  }
+
+  ion-icon {
+    font-size: 20px;
+    color: #60a5fa;
+  }
+
+  span {
+    color: #e2e8f0;
+    font-size: 14px;
+    font-weight: 500;
+  }
 }
 
-.hydrated {
-  margin: 0;
+.action-buttons {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-/* Container styling for the 3D card */
-.three-d-card {
-  perspective: 1000px;
-  width: 100%;
-  height: 150px;
+.action-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 12px;
+  border: none;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+
+  ion-icon {
+    font-size: 22px;
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+
+  &.details {
+    color: #60a5fa;
+    &:hover {
+      background: rgba(96, 165, 250, 0.1);
+    }
+  }
+
+  &.cancel {
+    color: #f87171;
+    &:hover {
+      background: rgba(248, 113, 113, 0.1);
+    }
+  }
+
+  &.reimburse {
+    color: #34d399;
+    &:hover {
+      background: rgba(52, 211, 153, 0.1);
+    }
+  }
 }
 
-.card-wrapper {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  transition: transform 0.6s;
-  transform-style: preserve-3d;
-}
+@media (max-width: 360px) {
+  .action-buttons {
+    grid-template-columns: 1fr;
+  }
 
-.card-wrapper.flipped {
-  transform: rotateY(180deg);
-}
+  .action-btn {
+    flex-direction: row;
+    justify-content: center;
+    padding: 14px;
+    gap: 8px;
+  }
 
-.card-face {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
-}
+  .info-row {
+    padding: 10px;
+  }
 
-.front {
-  z-index: 2;
-}
+  .initials {
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+  }
 
-.back {
-  transform: rotateY(180deg);
-  z-index: 1;
-}
-
-button {
-  background: #fff;
-  color: #000;
-  border-radius: 10px;
-  padding: 10px;
-  width: 100%;
-  margin: 0;
-  font-size: 16px;
-  font-weight: 700;
+  .name-info h2 {
+    font-size: 16px;
+  }
 }

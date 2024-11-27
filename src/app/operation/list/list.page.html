@@ -32,9 +32,6 @@
   @for (operation of operations; track operation; let i = $index) {
     <app-card-operation
       [operation]="operation"
-      [index]="i"
-      [isFlipped]="flippedCardIndex === i"
-      (click)="toggleCard(i)"
     />
   }
 

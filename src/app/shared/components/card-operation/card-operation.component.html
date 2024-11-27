@@ -1,43 +1,49 @@
-<div class="three-d-card">
-  <div class="card-wrapper" [class.flipped]="isFlipped">
-    <!-- Front Face -->
-    <div class="card-face front">
-      <ion-card>
-        <ion-card-header style="padding-bottom: 0;">
-          <ion-card-title>{{ operation?.operationFirstName + ' ' + operation?.operationLastName }}</ion-card-title>
-          <ion-card-subtitle class="header-card">{{ operation?.createdAt | date: 'dd/MM/yyyy' }}</ion-card-subtitle>
-          <div class="unread-indicator-wrapper" slot="start">
-            <div class="unread-indicator"></div>
-          </div>
-        </ion-card-header>
-        <ion-card-content>
-          <ion-text class="card-text">
-            <span>Phone number</span>
-            <span>{{ operation?.phoneNumbers?.[0]!.number }}</span>
-          </ion-text>
-          <ion-text class="card-text">
-            <span>Card ID</span>
-            <span>{{ operation?.idCard }}</span>
-          </ion-text>
-          <ion-text class="card-text">
-            <span>Cash</span>
-            <span>{{ formatNumberToCash(operation?.cash) }}</span>
-          </ion-text>
-        </ion-card-content>
-      </ion-card>
+<div class="card">
+  <!-- Main Content -->
+  <div class="card-content">
+    <!-- Header with Name and Date -->
+    <div class="card-header">
+      <div class="name-section">
+        <div class="initials">
+          {{ operation?.operationFirstName?.charAt(0) }}{{ operation?.operationLastName?.charAt(0) }}
+        </div>
+        <div class="name-info">
+          <h2>{{ operation?.operationFirstName }} {{ operation?.operationLastName }}</h2>
+          <span class="date">{{ operation?.createdAt | date: 'dd/MM/yyyy' }}</span>
+        </div>
+      </div>
     </div>
 
-    <!-- Back Face -->
-    <div class="card-face back">
-      <ion-card>
-        <ion-card-content>
-          <div style="display: flex">
-            <button (click)="redirectToView()" style="margin-right: 15px">More details</button>
-            <button (click)="redirectToCancel()">Cancel</button>
-          </div>
-          <button (click)="redirectToReimbursement()" style="margin-top: 15px">Reimbursement</button>
-        </ion-card-content>
-      </ion-card>
+    <!-- Info Section -->
+    <div class="info-section">
+      <div class="info-row">
+        <ion-icon name="card-outline"></ion-icon>
+        <span>{{ operation?.idCard }}</span>
+      </div>
+      <a href="tel:{{ operation?.phoneNumbers?.[0]?.number }}" class="info-row">
+        <ion-icon name="call-outline"></ion-icon>
+        <span>{{ operation?.phoneNumbers?.[0]?.number }}</span>
+      </a>
+      <div class="info-row">
+        <ion-icon name="wallet-outline"></ion-icon>
+        <span>{{ formatNumberToCash(operation?.cash) }}</span>
+      </div>
     </div>
+  </div>
+
+  <!-- Action Buttons -->
+  <div class="action-buttons">
+    <button class="action-btn details" (click)="redirectToView(); $event.stopPropagation()">
+      <ion-icon name="eye-outline"></ion-icon>
+      Details
+    </button>
+    <button class="action-btn reimburse" (click)="redirectToReimbursement(); $event.stopPropagation()">
+      <ion-icon name="cash-outline"></ion-icon>
+      Reimburse
+    </button>
+    <button class="action-btn cancel" (click)="redirectToCancel(); $event.stopPropagation()">
+      <ion-icon name="close-outline"></ion-icon>
+      Cancel
+    </button>
   </div>
 </div>
