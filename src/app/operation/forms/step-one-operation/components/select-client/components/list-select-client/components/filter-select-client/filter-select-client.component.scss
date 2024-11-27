@@ -5,19 +5,34 @@
 /* Filter Trigger Button */
 .filter-trigger {
   width: 100%;
-  --background: linear-gradient(135deg, #4f46e5, #7c3aed);
+  position: relative;
   border: none;
-  border-radius: 16px;
-  margin: 0;
+  margin-top: 0;
+  border-radius: 20px;
   cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  --background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  overflow: hidden;
+  transition: transform 0.3s ease;
+
+  .primary-icon {
+    margin-right: 10px;
+  }
 
   &:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(124, 58, 237, 0.2);
+
+    .button-background {
+      transform: scale(1.1);
+    }
+
+    .secondary-icon {
+      transform: rotate(180deg);
+    }
   }
 
   .button-content {
+    position: relative;
+    z-index: 1;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -25,24 +40,79 @@
     color: white;
     font-size: 16px;
     font-weight: 600;
+  }
 
-    ion-icon {
-      font-size: 20px;
+  .button-background {
+    position: absolute;
+    inset: 0;
+    transition: transform 0.3s ease;
+  }
+
+  .icon-wrapper {
+    position: relative;
+    width: 24px;
+    height: 24px;
+
+    .primary-icon,
+    .secondary-icon {
+      position: absolute;
+      left: 0;
+      top: 0;
+      font-size: 24px;
+      transition: all 0.3s ease;
+    }
+
+    .secondary-icon {
+      opacity: 0;
+      transform: rotate(-90deg);
+    }
+  }
+
+  &:hover {
+    .secondary-icon {
+      opacity: 1;
+      transform: rotate(0);
     }
   }
 
   .active-filters {
+    position: relative;
     background: rgba(255, 255, 255, 0.2);
-    padding: 2px 8px;
+    padding: 4px 12px;
     border-radius: 12px;
     font-size: 12px;
     font-weight: 500;
+    margin-left: 10px;
+    .pulse {
+      position: absolute;
+      inset: 0;
+      border-radius: 12px;
+      border: 2px solid rgba(255, 255, 255, 0.5);
+      animation: pulse 2s infinite;
+    }
   }
 }
 
-/* Active Filter Chips */
+/* Active Filters Display */
 .active-filters-container {
-  margin-top: 16px;
+  margin-top: 20px;
+  background: rgba(59, 130, 246, 0.1);
+  border-radius: 16px;
+  padding: 16px;
+}
+
+.filters-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 14px;
+  margin-bottom: 12px;
+
+  ion-icon {
+    font-size: 18px;
+    color: #3b82f6;
+  }
 }
 
 .filter-chips {
@@ -52,56 +122,74 @@
 }
 
 .chip {
-  position: relative;
   display: flex;
   align-items: center;
   gap: 8px;
+  background: rgba(59, 130, 246, 0.15);
   padding: 8px 12px;
   border-radius: 12px;
-  background: rgba(255, 255, 255, 0.05);
   cursor: pointer;
-  overflow: hidden;
   transition: all 0.3s ease;
 
   &:hover {
+    background: rgba(59, 130, 246, 0.2);
     transform: translateY(-1px);
 
-    .chip-background {
-      opacity: 0.1;
+    .hover-effect {
+      opacity: 1;
+      transform: scale(1);
     }
+  }
+
+  .chip-content {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: white;
 
     ion-icon {
-      color: #ef4444;
+      font-size: 16px;
+      color: #3b82f6;
+    }
+
+    span {
+      font-size: 14px;
     }
   }
 
-  .chip-label {
-    color: white;
-    font-size: 14px;
-    font-weight: 500;
-    z-index: 1;
-  }
+  .remove-icon {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
 
-  ion-icon {
-    font-size: 18px;
-    color: rgba(255, 255, 255, 0.6);
-    transition: color 0.3s ease;
-    z-index: 1;
-  }
+    ion-icon {
+      font-size: 18px;
+      color: rgba(255, 255, 255, 0.6);
+      transition: color 0.3s ease;
+      z-index: 1;
+    }
 
-  .chip-background {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, #4f46e5, #7c3aed);
-    opacity: 0.05;
-    transition: opacity 0.3s ease;
+    .hover-effect {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at center,
+        rgba(239, 68, 68, 0.2),
+        transparent 70%
+      );
+      opacity: 0;
+      transform: scale(0.5);
+      transition: all 0.3s ease;
+    }
   }
 }
 
 /* Modal Styles */
 .modal-content {
   padding: 24px;
-  background: linear-gradient(135deg, #1a1a40, #2a003e);
+  background: linear-gradient(135deg, #1e293b, #0f172a);
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -113,33 +201,49 @@
   justify-content: space-between;
   margin-bottom: 24px;
 
-  h2 {
-    color: white;
-    font-size: 24px;
-    font-weight: 600;
-    margin: 0;
-  }
-
-  .close-button {
-    background: rgba(255, 255, 255, 0.1);
-    border: none;
-    width: 36px;
-    height: 36px;
-    border-radius: 12px;
+  .header-content {
     display: flex;
     align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
-
-    &:hover {
-      background: rgba(255, 255, 255, 0.15);
-      transform: rotate(90deg);
-    }
+    gap: 12px;
 
     ion-icon {
       font-size: 24px;
+      color: #3b82f6;
+    }
+
+    h2 {
       color: white;
+      font-size: 20px;
+      font-weight: 600;
+      margin: 0;
+    }
+  }
+
+  .close-button {
+    position: relative;
+    width: 36px;
+    height: 36px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    overflow: hidden;
+
+    ion-icon {
+      position: relative;
+      z-index: 1;
+      font-size: 24px;
+      color: white;
+    }
+
+    .button-background {
+      position: absolute;
+      inset: 0;
+      background: rgba(255, 255, 255, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    &:hover .button-background {
+      transform: scale(1.2);
     }
   }
 }
@@ -147,42 +251,66 @@
 .filter-form {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 24px;
 }
 
 .form-group {
-  label {
+  .input-label {
     display: flex;
     align-items: center;
     gap: 8px;
-    color: rgba(255, 255, 255, 0.7);
-    font-size: 14px;
     margin-bottom: 8px;
 
     ion-icon {
       font-size: 18px;
-      color: #7c3aed;
+      color: #3b82f6;
+    }
+
+    span {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 14px;
     }
   }
 
-  input {
-    width: 100%;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 12px;
-    padding: 12px 16px;
-    color: white;
-    font-size: 16px;
-    transition: all 0.3s ease;
+  .input-container {
+    position: relative;
 
-    &:focus {
-      outline: none;
-      border-color: #7c3aed;
-      background: rgba(255, 255, 255, 0.08);
+    input {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 12px 16px;
+      color: white;
+      font-size: 16px;
+      transition: all 0.3s ease;
+
+      &:focus {
+        outline: none;
+        background: rgba(255, 255, 255, 0.08);
+
+        & + .focus-indicator {
+          transform: scaleX(1);
+          opacity: 1;
+        }
+      }
+
+      &::placeholder {
+        color: rgba(255, 255, 255, 0.3);
+      }
     }
 
-    &::placeholder {
-      color: rgba(255, 255, 255, 0.3);
+    .focus-indicator {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+      transform: scaleX(0);
+      opacity: 0;
+      transition: all 0.3s ease;
+      transform-origin: left;
     }
   }
 }
@@ -194,39 +322,63 @@
 }
 
 .action-button {
+  position: relative;
   flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
   padding: 14px;
-  border-radius: 12px;
   border: none;
+  border-radius: 12px;
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s ease;
+  overflow: hidden;
 
   ion-icon {
     font-size: 20px;
   }
 
+  span {
+    position: relative;
+    z-index: 1;
+  }
+
+  .button-background {
+    position: absolute;
+    inset: 0;
+    transition: transform 0.3s ease;
+  }
+
+  &:hover .button-background {
+    transform: scale(1.1);
+  }
+
   &.reset {
-    background: rgba(255, 255, 255, 0.1);
     color: white;
 
-    &:hover {
-      background: rgba(255, 255, 255, 0.15);
+    .button-background {
+      background: rgba(255, 255, 255, 0.1);
     }
   }
 
   &.apply {
-    background: linear-gradient(135deg, #4f46e5, #7c3aed);
     color: white;
 
-    &:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(124, 58, 237, 0.2);
+    .button-background {
+      background: linear-gradient(135deg, #3b82f6, #8b5cf6);
     }
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
   }
 }

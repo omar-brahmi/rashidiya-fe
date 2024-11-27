@@ -1,29 +1,65 @@
-<ion-button style="margin-bottom: 0" expand="block" id="open-modal-form-client-create">
-  Add New Client
-</ion-button>
-<app-form-select-client (handleSelectedClient)="selectedClient($event)"/>
-<app-filter-select-client (filterApplied)="handleFilterApplied($event)"/>
-
-@for (client of clients; track client; ) {
-  <app-card-select-client [client]="client" (click)="selectedClient(client)"/>
-}
-
-@if (showSpinner) {
-  <app-spinner/>
-}
-
-@if (!showSpinner && clients.length === 0) {
-  <div class="not-found-container">
-    <ion-icon name="search-outline" class="not-found-icon"></ion-icon>
-    <h2 class="not-found-title">No Clients Found!</h2>
+<ion-content>
+  <!-- Floating Header -->
+  <div class="floating-header">
+    <div class="header-content">
+      <span style="display: flex ; align-items: center;">
+        <button (click)="handlecloseModal.emit(false)" class="close-button">
+        <ion-icon name="chevron-back-outline" role="img" class="md flip-rtl hydrated"></ion-icon>
+      </button>
+      <h1>Select Client</h1>
+      </span>
+      <div class="header-actions">
+        <button class="action-button filter-button" id="open-modal-filter-client">
+          <ion-icon name="funnel-outline"></ion-icon>
+          <div class="pulse-ring"></div>
+        </button>
+        <button class="action-button add-button" id="open-modal-form-client-create">
+          <ion-icon name="add-outline"></ion-icon>
+          <div class="pulse-ring"></div>
+        </button>
+        <app-form-select-client (handleSelectedClient)="selectedClient($event)"/>
+      </div>
+    </div>
   </div>
-}
 
-@if (!showSpinner && !clientPage.last) {
-  <ion-infinite-scroll (ionInfinite)="loadMore($event)">
-    <ion-infinite-scroll-content
-      loadingSpinner="bubbles"
-      loadingText="Loading more operations...">
-    </ion-infinite-scroll-content>
-  </ion-infinite-scroll>
-}
+  <!-- Main Content -->
+  <div class="main-content">
+    <!-- Filter Component -->
+    <app-filter-select-client (filterApplied)="handleFilterApplied($event)"/>
+
+    <!-- Clients List -->
+    <div class="clients-list">
+      @for (client of clients; track client) {
+        <app-card-select-client [client]="client" (click)="selectedClient(client)"/>
+      }
+    </div>
+
+    <!-- Loading State -->
+    @if (showSpinner) {
+      <div class="loading-state">
+        <app-spinner/>
+      </div>
+    }
+
+    <!-- Empty State -->
+    @if (!showSpinner && clients.length === 0) {
+      <div class="empty-state">
+        <div class="empty-state-content">
+          <ion-icon name="search-outline"></ion-icon>
+          <h2>No Clients Found</h2>
+          <p>Try adjusting your filters or add a new client</p>
+        </div>
+      </div>
+    }
+
+    <!-- Infinite Scroll -->
+    @if (!showSpinner && !clientPage.last) {
+      <ion-infinite-scroll (ionInfinite)="loadMore($event)">
+        <ion-infinite-scroll-content
+          loadingSpinner="bubbles"
+          loadingText="Loading more clients...">
+        </ion-infinite-scroll-content>
+      </ion-infinite-scroll>
+    }
+  </div>
+</ion-content>

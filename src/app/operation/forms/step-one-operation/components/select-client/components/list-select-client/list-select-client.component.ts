@@ -13,6 +13,7 @@ import {Pageable} from "../../../../../../../shared/models/pageable.model";
 export class ListSelectClientComponent implements OnInit {
 
   @Output() handleSelectedClient = new EventEmitter<Client>();
+  @Output() handlecloseModal = new EventEmitter<boolean>();
 
   #clientService: ClientService = inject(ClientService);
 
