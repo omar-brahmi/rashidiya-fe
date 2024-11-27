@@ -54,6 +54,7 @@ export class FormSelectClientComponent extends BasicComponent<Client, ClientServ
 
   isAlertOpen = false;
   alertButtons = ['Close'];
+  isLoading = false;
 
   isUpdate: boolean = false;
 
@@ -80,6 +81,7 @@ export class FormSelectClientComponent extends BasicComponent<Client, ClientServ
   }
 
   save(modal: IonModal) {
+    this.isLoading = true;
     this.populatedObject().then(entity => {
       this.entity = entity;
       if (this.isUpdate) {
@@ -133,8 +135,10 @@ export class FormSelectClientComponent extends BasicComponent<Client, ClientServ
     this.create().then(value => {
       this.handleSelectedClient.emit(value);
       this.#toastService.success("Client saved successfully.");
+      this.isLoading = false;
       modal.dismiss();
     }).catch(error => {
+      this.isLoading = false;
       if (error.status === 409) {
         this.errorMessage.title = error.error.error;
         this.errorMessage.description = error.error.details;
@@ -149,8 +153,10 @@ export class FormSelectClientComponent extends BasicComponent<Client, ClientServ
     this.update().then(value => {
       this.handleSelectedClient.emit(value);
       this.#toastService.success("Client updated successfully.");
+      this.isLoading = false;
       modal.dismiss();
     }).catch(error => {
+      this.isLoading = false;
       if (error.status === 409) {
         this.errorMessage.title = error.error.error;
         this.errorMessage.description = error.error.details;

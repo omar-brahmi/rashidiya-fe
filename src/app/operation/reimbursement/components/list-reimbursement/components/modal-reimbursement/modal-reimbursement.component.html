@@ -16,7 +16,13 @@
         <div class="modal-actions">
           <ion-button class="btn-modal" size="small" color="dark" fill="outline" (click)="cancel(modal)">Cancel
           </ion-button>
-          <ion-button color="dark" size="small" class="btn-modal" (click)="save(modal)">Add</ion-button>
+          <ion-button [disabled]="isLoading" color="dark" size="small" class="btn-modal" (click)="save(modal)">
+            @if (isLoading) {
+              <div class="spinner"></div>
+            } @else {
+              Add
+            }
+          </ion-button>
         </div>
       </div>
     </form>

@@ -50,6 +50,7 @@ export class CancelPage extends BasicComponent<OperationClass, OperationService>
   #router: Router = inject(Router);
 
   operation: Operation | null = this.#operationService.getOperationSubjectValue();
+  isLoading = false;
 
   constructor(private operationService: OperationService) {
     super(operationService);
@@ -65,13 +66,16 @@ export class CancelPage extends BasicComponent<OperationClass, OperationService>
   }
 
   cancelOperation() {
+    this.isLoading = true;
     this.populatedObject().then(entity => {
       this.entity = entity;
       this.operationService.cancelOperation(this.entity).subscribe({
         next: value => {
+          this.isLoading = false;
           this.#toastService.success("Operation Canceled successfully.");
           this.#router.navigate(['/operations']);
         }, error: err => {
+          this.isLoading = false;
           this.#toastService.error("Error Canceling operation !!!");
         }
       })

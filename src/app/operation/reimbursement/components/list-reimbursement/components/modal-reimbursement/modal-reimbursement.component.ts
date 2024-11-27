@@ -21,6 +21,7 @@ export class ModalReimbursementComponent extends BasicComponent<Reimbursement, R
   #activatedRoute: ActivatedRoute = inject(ActivatedRoute);
 
   operationID: string | null = null;
+  isLoading = false;
 
   protected formFields: FormField[] = [
     {
@@ -44,17 +45,20 @@ export class ModalReimbursementComponent extends BasicComponent<Reimbursement, R
   }
 
   save(modal: IonModal) {
+    this.isLoading = true;
     this.entity = this.createObject();
     this.entity.capital = unformatCash(this.entity.capital);
     this.entity.interest = unformatCash(this.entity.interest);
     this.reimbursementService.save(this.entity, this.operationID).subscribe({
       next: data => {
+        this.isLoading = false;
         this.#toastService.success("Reimbursement saved successfully.");
         this.reimbursementSaved.emit(this.entity.capital);
         modal.dismiss().then(() => {
           this.form.reset();
         });
       }, error: error => {
+        this.isLoading = false;
         this.#toastService.error(error.status === 409 ? "There was an issue saving the reimbursement. Please try again." : "Error saving reimbursement.");
       }
     });

@@ -46,8 +46,16 @@
 
         <app-phone-numbers [phoneNumbers]="client?.phoneNumberDTOs"/>
 
-        <button (click)="save(modal)" style="margin-bottom: 200px" class="btn-stepper">
-          {{ isUpdate ? 'Update' : 'Save' }}
+        <button (click)="save(modal)" style="margin-bottom: 200px" class="btn-stepper" [disabled]="isLoading">
+          @if (isLoading) {
+            <div class="spinner"></div>
+          } @else {
+            @if (isUpdate) {
+              Update
+            } @else {
+              Save
+            }
+          }
         </button>
 
       </form>

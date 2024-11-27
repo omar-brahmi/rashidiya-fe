@@ -24,9 +24,13 @@
       <ion-label>Operation Date</ion-label>
       <ion-text slot="end" color="dark">{{ operation?.createdAt | date: 'dd-MM-yyyy' }}</ion-text>
     </ion-item>
-    <ion-item style="--border-color: transparent;">
+    <ion-item>
       <ion-label>Cash</ion-label>
       <ion-text slot="end" color="dark">{{ formatNumberToCash(operation?.cash) }}</ion-text>
+    </ion-item>
+    <ion-item style="--border-color: transparent;">
+      <ion-label>Remaining</ion-label>
+      <ion-text slot="end" color="dark">{{ formatNumberToCash(operation?.remainingToReimburse) }}</ion-text>
     </ion-item>
   </ion-list>
 
@@ -42,7 +46,8 @@
             <ion-icon size="large" name="create-outline"></ion-icon>
           </ion-button>
         </div>
-        <app-form-select-client [client]="form.get('client')?.value" modalName="update" (handleSelectedClient)="selectedClient($event)"/>
+        <app-form-select-client [client]="form.get('client')?.value" modalName="update"
+                                (handleSelectedClient)="selectedClient($event)"/>
       }
     </div>
 
@@ -63,7 +68,18 @@
              placeholder="00.00"/>
     </div>
 
-    <button (click)="cancelOperation()" style="margin-bottom: 200px" class="btn-stepper">Cancel Operation</button>
+    <div class="input-group">
+      <label class="input-group__label" for="cash">Cash</label>
+      <input appCashFormat type="text" formControlName="cash" id="Cash" class="input-group__input" placeholder="00.00"/>
+    </div>
+
+    <button (click)="cancelOperation()" style="margin-bottom: 200px" class="btn-stepper" [disabled]="isLoading">
+      @if (isLoading) {
+        <div class="spinner"></div>
+      } @else {
+        Cancel Operation
+      }
+    </button>
   </form>
 
   <div style="margin-top: 100px"></div>

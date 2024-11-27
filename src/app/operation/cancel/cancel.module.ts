@@ -12,20 +12,22 @@ import {ListPageModule} from "../list/list.module";
 import {NgxIonicImageViewerModule} from "@herdwatch-apps/ngx-ionic-image-viewer";
 import {AutoHyphenDirective} from "../../core/directives/auto-hyphen.directive";
 import {WeightInputDirective} from "../../core/directives/weight-input.directive";
+import {CashFormatDirective} from "../../core/directives/cash-format.directive";
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    CancelPageRoutingModule,
-    HomePageModule,
-    ListPageModule,
-    NgxIonicImageViewerModule,
-    ReactiveFormsModule,
-    AutoHyphenDirective,
-    WeightInputDirective
-  ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        IonicModule,
+        CancelPageRoutingModule,
+        HomePageModule,
+        ListPageModule,
+        NgxIonicImageViewerModule,
+        ReactiveFormsModule,
+        AutoHyphenDirective,
+        WeightInputDirective,
+        CashFormatDirective
+    ],
   declarations: [CancelPage]
 })
 export class CancelPageModule {}
