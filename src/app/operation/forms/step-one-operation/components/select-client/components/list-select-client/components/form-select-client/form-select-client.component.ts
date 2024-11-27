@@ -147,6 +147,7 @@ export class FormSelectClientComponent extends BasicComponent<Client, ClientServ
 
   private isUpdateClient(modal: IonModal) {
     this.update().then(value => {
+      this.handleSelectedClient.emit(value);
       this.#toastService.success("Client updated successfully.");
       modal.dismiss();
     }).catch(error => {

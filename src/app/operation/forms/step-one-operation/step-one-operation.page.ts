@@ -145,4 +145,5 @@ export class StepOneOperationPage extends BasicComponent<OperationClass, Operati
   selectedClient($event: Client) {
     this.form.get('client')?.setValue($event);
   }
+
 }
