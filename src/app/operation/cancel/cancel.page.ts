@@ -8,6 +8,7 @@ import {FormField} from "../../shared/models/form-field.model";
 import {unformatWeight} from "../../core/directives/weight-input.directive";
 import {PhoneNumbersComponent} from "../forms/step-one-operation/components/phone-numbers/phone-numbers.component";
 import {ToastService} from "../../shared/services/toast.service";
+import {Client} from "../../core/models/client.model";
 
 @Component({
   selector: 'app-cancel',
@@ -26,28 +27,8 @@ export class CancelPage extends BasicComponent<OperationClass, OperationService>
       value: null,
     },
     {
-      fieldName: 'operationFirstName',
+      fieldName: 'client',
       value: null,
-    },
-    {
-      fieldName: 'operationLastName',
-      value: null,
-    },
-    {
-      fieldName: 'contract',
-      value: null,
-    },
-    {
-      fieldName: 'card',
-      value: null,
-    },
-    {
-      fieldName: 'idCard',
-      value: null,
-    },
-    {
-      fieldName: 'phoneNumbers',
-      value: [],
     },
     {
       fieldName: 'karat',
@@ -59,14 +40,6 @@ export class CancelPage extends BasicComponent<OperationClass, OperationService>
     },
     {
       fieldName: 'cash',
-      value: null,
-    },
-    {
-      fieldName: 'flag',
-      value: true,
-    },
-    {
-      fieldName: 'description',
       value: null,
     }
   ];
@@ -121,7 +94,6 @@ export class CancelPage extends BasicComponent<OperationClass, OperationService>
         const entity: OperationClass = this.createObject();
         entity.weight = unformatWeight(entity.weight);
         entity.cash = unformatCash(entity.cash);
-        entity.phoneNumbers = this.getPhoneNumbers();
         resolve(entity);
       } catch (error) {
         reject(error);
@@ -129,8 +101,8 @@ export class CancelPage extends BasicComponent<OperationClass, OperationService>
     });
   }
 
-  getPhoneNumbers() {
-    return this.phoneNumbersComponent.phoneNumbers;
+  selectedClient($event: Client) {
+    this.form.get('client')?.setValue($event);
   }
 
 }

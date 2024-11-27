@@ -3,10 +3,12 @@
 
 <ion-content class="ion-padding">
 
-  <ion-button class="update-button" (click)="redirectToUpdate()">
-    <ion-icon name="sparkles-outline" slot="start"></ion-icon>
-    <span>Update Operation</span>
-  </ion-button>
+  @if (operation?.status === Status.DRAFT) {
+    <ion-button class="update-button" (click)="redirectToUpdate()">
+      <ion-icon name="sparkles-outline" slot="start"></ion-icon>
+      <span>Update Operation</span>
+    </ion-button>
+  }
 
   <ion-list-header>Operation: {{ operation?.operationFirstName + ' ' + operation?.operationLastName }}</ion-list-header>
   <ion-list style="margin: 0">

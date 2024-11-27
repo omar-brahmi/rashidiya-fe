@@ -31,28 +31,23 @@
   </ion-list>
 
   <form [formGroup]="form">
-    <app-phone-numbers [phoneNumbers]="operation?.phoneNumbers"/>
 
-    <div class="input-group">
-      <label class="input-group__label" for="firstName">First name</label>
-      <input type="text" id="firstName" formControlName="operationFirstName" class="input-group__input"
-             placeholder="First name"/>
+    <div class="client-section">
+      <app-select-client (handleSelectedClient)="selectedClient($event)"/>
+
+      @if (form.get('client')?.value) {
+        <div class="selected-client-container">
+          <app-card-select-client [client]="form.get('client')?.value"/>
+          <ion-button class="update-client-button" expand="block" id="open-modal-form-client-update">
+            <ion-icon size="large" name="create-outline"></ion-icon>
+          </ion-button>
+        </div>
+        <app-form-select-client [client]="form.get('client')?.value" modalName="update" (handleSelectedClient)="selectedClient($event)"/>
+      }
     </div>
 
     <div class="input-group">
-      <label class="input-group__label" for="lastName">Last name</label>
-      <input type="text" id="lastName" formControlName="operationLastName" class="input-group__input"
-             placeholder="Last name"/>
-    </div>
-
-    <div class="input-group">
-      <label class="input-group__label" for="myInput">Card ID:</label>
-      <input type="text" id="myInput" formControlName="idCard" class="input-group__input"
-             appAutoHyphen placeholder="000-0000-0000000-0"/>
-    </div>
-
-    <div class="input-group">
-      <label class="input-group__label" for="lastName">Accounts</label>
+      <label class="input-group__label" for="defaultSelect">Accounts</label>
       <select id="defaultSelect" formControlName="karat" class="form-select">
         <option [value]="null">Select Accounts</option>
         <option value="18K">18K</option>

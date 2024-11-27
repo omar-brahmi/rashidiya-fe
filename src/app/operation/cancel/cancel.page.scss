@@ -51,3 +51,43 @@ ion-list-header {
   color: #ffffff;
   text-decoration: none;
 }
+
+.client-section {
+  margin-bottom: 2rem;
+}
+
+.selected-client-container {
+  position: relative;
+  margin-top: 1rem;
+}
+
+.update-client-button {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0;
+  --background: linear-gradient(135deg, #ff6b6b, #ffd93d);
+  border: none;
+  border-radius: 12px;
+  color: #000;
+  font-weight: 600;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 10;
+  margin: 0;
+  width: 45px;
+  height: 45px;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  ion-icon {
+    font-size: 30px;
+  }
+}
