@@ -1,22 +1,12 @@
 <div class="reminder-container">
-  <div class="floating-title">
-    <ion-icon name="notifications-outline"></ion-icon>
-    Reminders
-  </div>
+
+  <app-filter-reminder (filterChange)="filterChange($event)"/>
 
   <div class="reminder-list">
 
     @for (reminder of operations; track reminder) {
-      <app-card-reminder/>
+      <app-card-reminder (click)="redirectTo(reminder.operationID)"/>
     }
-
-    <app-card-reminder/>
-    <app-card-reminder/>
-    <app-card-reminder/>
-    <app-card-reminder/>
-    <app-card-reminder/>
-    <app-card-reminder/>
-    <app-card-reminder/>
 
     @if (showSpinner) {
       <app-spinner/>

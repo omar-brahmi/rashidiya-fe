@@ -1,5 +1,6 @@
-import {Component} from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {creativeSegmentAnimation} from "../animations/fadeInOutAnimation";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-reporting',
@@ -10,9 +11,20 @@ import {creativeSegmentAnimation} from "../animations/fadeInOutAnimation";
 })
 export class ReportingPage {
 
+  #activatedRoute: ActivatedRoute = inject(ActivatedRoute);
+
   segment: string = "balancePerDay";
 
   constructor() {
+    this.getSegmentParam();
+  }
+
+  getSegmentParam() {
+    this.segment = 'balancePerDay';
+    const dayParam = this.#activatedRoute.snapshot.queryParamMap.get('reminder');
+    if (dayParam == "true") {
+      this.segment = 'reminder';
+    }
   }
 
 }

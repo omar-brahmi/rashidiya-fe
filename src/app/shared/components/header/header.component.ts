@@ -1,9 +1,9 @@
 import {Component, inject, Input} from '@angular/core';
-import {Router} from "@angular/router";
 import {Operation} from "../../../core/models/operation.model";
 import {OperationService} from "../../../services/operation.service";
 import {ToastService} from "../../services/toast.service";
 import {Status} from "../../../core/models/enumerations/status.enum";
+import {NavController} from "@ionic/angular";
 
 @Component({
   selector: 'app-header',
@@ -14,13 +14,15 @@ export class HeaderComponent {
 
   #operationService: OperationService = inject(OperationService);
   #toastService: ToastService = inject(ToastService);
-  #router: Router = inject(Router);
 
   protected readonly Status = Status;
 
   @Input() title: string = "";
   @Input() backUrl: string = "/home";
   @Input() operation: Operation | null = null;
+
+  constructor(private nav: NavController) {
+  }
 
   public actionSheetButtons = [
     {
@@ -57,7 +59,11 @@ export class HeaderComponent {
   }
 
   backButton() {
-    this.#router.navigate([this.backUrl]);
+    if (this.backUrl.includes("reporting")) {
+      this.nav.navigateBack("/reporting?reminder=true");
+    } else {
+      this.nav.back({animated: true})
+    }
   }
 
 }

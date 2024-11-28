@@ -1,33 +1,63 @@
-<div class="card">
+<div class="operation-card">
   <!-- Main Content -->
-  <div class="card-content">
-    <!-- Header with Name and Date -->
+  <div class="card-inner">
+    <!-- Header -->
     <div class="card-header">
-      <div class="name-section">
-        <div class="initials">
-          {{ operation?.operationFirstName?.charAt(0) }}{{ operation?.operationLastName?.charAt(0) }}
-        </div>
-        <div class="name-info">
-          <h2>{{ operation?.operationFirstName }} {{ operation?.operationLastName }}</h2>
-          <span class="date">{{ operation?.createdAt | date: 'dd/MM/yyyy' }}</span>
+      <div class="user-info">
+        <div class="user-avatar">{{ operation?.operationFirstName?.charAt(0) }}</div>
+        <div class="user-details">
+          <h3>{{ operation?.operationFirstName }} {{ operation?.operationLastName }}</h3>
+          <div class="operation-info">
+            <span class="operation-id">#{{ operation?.operationNumber }}</span>
+            <span class="dot-separator"></span>
+            <span class="operation-date">
+              <ion-icon name="time-outline"></ion-icon>
+              {{ operation?.createdAt | date:'MMM d, y' }}
+            </span>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- Info Section -->
-    <div class="info-section">
-      <div class="info-row">
-        <ion-icon name="card-outline"></ion-icon>
-        <span>{{ operation?.idCard }}</span>
+    <!-- Content -->
+    <div class="card-content">
+      <!-- Amount Box -->
+      <div class="amount-box">
+        <div class="amount-label">
+          <ion-icon name="wallet-outline"></ion-icon>
+          <span>Cash</span>
+        </div>
+        <div class="amount-value">{{ formatNumberToCash(operation?.cash) }}</div>
       </div>
-      <a href="tel:{{ operation?.phoneNumbers?.[0]?.number }}" class="info-row">
-        <ion-icon name="call-outline"></ion-icon>
-        <span>{{ operation?.phoneNumbers?.[0]?.number }}</span>
-      </a>
-      <div class="info-row">
-        <ion-icon name="wallet-outline"></ion-icon>
-        <span>{{ formatNumberToCash(operation?.cash) }}</span>
+
+      <!-- Info Grid -->
+      <div class="info-grid">
+        <div class="info-item">
+          <div class="info-icon">
+            <ion-icon name="card-outline"></ion-icon>
+          </div>
+          <div class="info-text">
+            <label>Card ID</label>
+            <span>{{ operation?.idCard }}</span>
+          </div>
+        </div>
+
+        <div class="info-item">
+          <div class="info-icon">
+            <ion-icon name="call-outline"></ion-icon>
+          </div>
+          <div class="info-text">
+            <label>Phone</label>
+            <a href="tel:{{ operation?.phoneNumbers?.[0]?.number }}">
+              {{ operation?.phoneNumbers?.[0]?.number }}
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </div>
+
+  <!-- Background Decorations -->
+  <div class="card-decoration-1"></div>
+  <div class="card-decoration-2"></div>
 </div>

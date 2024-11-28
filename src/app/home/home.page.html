@@ -44,7 +44,7 @@
     <div class="section">
       <div class="section-header">
         <h2>Reminders</h2>
-        <button class="view-all" (click)="redirectTo('/reporting')">
+        <button class="view-all" (click)="redirectTo('/reporting?reminder=true')">
           <span>View All</span>
           <ion-icon name="arrow-forward-outline"></ion-icon>
         </button>
@@ -68,7 +68,7 @@
                   <ion-icon name="calendar-outline"></ion-icon>
                   {{ reminder.createdAt | date:'mediumDate' }}
                 </span>
-                <button class="action-button" (click)="viewReminder(reminder)">
+                <button class="action-button">
                   <ion-icon name="eye-outline"></ion-icon>
                 </button>
               </div>

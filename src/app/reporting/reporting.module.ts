@@ -19,18 +19,20 @@ import {
   FilterBalancePerDayComponent
 } from "./components/balance-per-day/components/filter-balance-per-day/filter-balance-per-day.component";
 import {CardClientComponent} from "../client/list-client/components/card-client/card-client.component";
+import {FilterReminderComponent} from "./components/reminder/components/filter-reminder/filter-reminder.component";
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    ReportingPageRoutingModule,
-    HomePageModule,
-    ListPageModule,
-    SharedModule,
-    AutoHyphenDirective
-  ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        IonicModule,
+        ReportingPageRoutingModule,
+        HomePageModule,
+        ListPageModule,
+        SharedModule,
+        AutoHyphenDirective,
+        FilterReminderComponent
+    ],
   exports: [
     CardClientComponent
   ],

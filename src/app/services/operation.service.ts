@@ -35,8 +35,8 @@ export class OperationService extends BaseService<Operation> {
     return this.#httpService.get(this.entityName + '/search/daily' + pageable.toQueryString() + `&cardNumber=${filter.cardID}&phoneNumber=${filter.phoneNumbers}`);
   }
 
-  searchReminderOperations(pageable: Pageable = new Pageable()): Observable<any> {
-    return this.#httpService.get(this.entityName + '/reminder' + pageable.toQueryString());
+  searchReminderOperations(pageable: Pageable = new Pageable(), date: string = new Date().toISOString().split('T')[0]): Observable<GetAllPage<Operation>> {
+    return this.#httpService.get(this.entityName + '/reminder' + pageable.toQueryString() + '&LocalDateTime='+date);
   }
 
   findBalancePerDayOperations(operationDate: string = "", cardID: string = "", phoneNumber: string = ""): Observable<any> {

@@ -20,10 +20,13 @@ export class ReimbursementPage {
 
   remaining: number = 0;
 
+  backUrl: string = "operations";
+
   constructor() {
   }
 
   ionViewWillEnter() {
+    this.getBackUrl();
     this.getOperation();
   }
 
@@ -42,6 +45,14 @@ export class ReimbursementPage {
 
   reimbursementSaved($event: number) {
     this.remaining = this.remaining - $event;
+  }
+
+  getBackUrl() {
+    this.backUrl = 'operations';
+    const backUrlParam = this.#activatedRoute.snapshot.queryParamMap.get('backUrl');
+    if (backUrlParam) {
+      this.backUrl = decodeURIComponent(backUrlParam);
+    }
   }
 
 }

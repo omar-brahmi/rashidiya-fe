@@ -67,8 +67,4 @@ export class HomePage implements OnInit {
     this.nav.navigateRoot(url);
   }
 
-  viewReminder(reminder: Operation) {
-    this.#operationService.updateOperationSubject(reminder);
-    this.nav.navigateRoot('/operations/view/' + reminder.operationID);
-  }
 }

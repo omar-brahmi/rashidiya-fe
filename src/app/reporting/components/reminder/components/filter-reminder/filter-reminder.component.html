@@ -1,0 +1,18 @@
+<div class="filter-panel">
+  <div class="filter-header">
+    <h2>Filters</h2>
+    <div class="header-decoration"></div>
+  </div>
+
+  <!-- Date Filter -->
+  <div class="filter-group">
+    <label class="filter-label">
+      <ion-icon name="calendar-outline"></ion-icon>
+      <span>Select Date</span>
+    </label>
+    <div class="date-input">
+      <input type="date" [(ngModel)]="dateFilter" [max]="maxDate" (ngModelChange)="filterChange.emit(dateFilter)">
+      <div class="input-decoration"></div>
+    </div>
+  </div>
+</div>
