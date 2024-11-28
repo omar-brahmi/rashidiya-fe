@@ -2,20 +2,22 @@
   <div class="card__content">
     <div class="card__header">
       <div class="card__initials">
-        {{ client?.firstname?.charAt(0) }}{{client?.lastname?.charAt(0)}}
+        {{ client?.firstname?.charAt(0) }}{{ client?.lastname?.charAt(0) }}
       </div>
       <div class="card__title">
         <h3>{{ client?.firstname }} {{ client?.lastname }}</h3>
         <span class="card__id">{{ client?.idCard }}</span>
       </div>
     </div>
-    <div class="card__phones">
-      <div class="phone-list">
-        @for (phone of client?.phoneNumberDTOs; track phone) {
-          <div class="phone-tag">{{ phone.number }}</div>
-        }
+    @if (client?.phoneNumberDTOs!.length > 0) {
+      <div class="card__phones">
+        <div class="phone-list">
+          @for (phone of client?.phoneNumberDTOs; track phone) {
+            <div class="phone-tag">{{ phone.number }}</div>
+          }
+        </div>
       </div>
-    </div>
+    }
   </div>
   <div class="card__shine"></div>
 </div>

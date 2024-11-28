@@ -9,13 +9,15 @@
         <span class="card__id">{{ client?.idCard }}</span>
       </div>
     </div>
-    <div class="card__phones">
-      <div class="phone-list">
-        @for (phone of client?.phoneNumberDTOs; track phone) {
-          <div class="phone-tag">{{ phone.number }}</div>
-        }
+    @if (client?.phoneNumberDTOs!.length > 0) {
+      <div class="card__phones">
+        <div class="phone-list">
+          @for (phone of client?.phoneNumberDTOs; track phone) {
+            <div class="phone-tag">{{ phone.number }}</div>
+          }
+        </div>
       </div>
-    </div>
+    }
   </div>
   <div class="card__shine"></div>
 </div>
