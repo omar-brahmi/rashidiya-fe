@@ -41,6 +41,14 @@ export class CancelPage extends BasicComponent<OperationClass, OperationService>
     {
       fieldName: 'cash',
       value: null,
+    },
+    {
+      fieldName: 'status',
+      value: null,
+    },
+    {
+      fieldName: 'state',
+      value: null,
     }
   ];
 

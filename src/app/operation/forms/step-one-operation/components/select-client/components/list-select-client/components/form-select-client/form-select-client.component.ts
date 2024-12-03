@@ -8,6 +8,7 @@ import {FormField} from "../../../../../../../../../shared/models/form-field.mod
 import {IonModal, NavController, Platform} from "@ionic/angular";
 import {ProcessImageState} from "../../../../../../../../../shared/utils/getPhoto";
 import {Subscription} from "rxjs";
+import {PhoneNumber} from "../../../../../../../../../core/models/phoneNumber.model";
 
 @Component({
   selector: 'app-form-select-client',
@@ -86,8 +87,12 @@ export class FormSelectClientComponent extends BasicComponent<Client, ClientServ
       this.entity = entity;
       if (this.isUpdate) {
         this.isUpdateClient(modal);
-      } else {
+      } else if (this.entity.idCard) {
         this.isCreateClient(modal);
+      } else {
+        this.errorMessage.title = "ID Card is required";
+        this.errorMessage.description = "ID Card must be not empty";
+        this.setOpen(true);
       }
     })
   }
@@ -116,12 +121,18 @@ export class FormSelectClientComponent extends BasicComponent<Client, ClientServ
     this.form.get('lastname')?.setValue(event.lastName);
   }
 
-  getPhoneNumbers() {
-    return this.phoneNumbersComponent.phoneNumbers;
+  getPhoneNumbers(): PhoneNumber[] {
+    const phoneNumbers: PhoneNumber[] = [];
+    for (let phone of this.phoneNumbersComponent.phoneNumbers) {
+      if (phone.number) {
+        phoneNumbers.push(phone);
+      }
+    }
+    return phoneNumbers;
   }
 
   setOpen(isOpen: boolean) {
-    this.isAlertOpen = isOpen;
+    this.isAlertOpen = this.isLoading = isOpen;
   }
 
   patchValueClient() {

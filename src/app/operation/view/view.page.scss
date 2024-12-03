@@ -90,3 +90,34 @@ ion-list-header {
     --background-hover: linear-gradient(135deg, var(--ion-color-tertiary-shade) 0%, var(--ion-color-primary-shade) 100%);
   }
 }
+/* General Styling for No Card ID Section */
+.no-card-id {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(to right, #6a11cb, #2575fc); /* Cool blue-purple gradient */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Subtle shadow for depth */
+  color: #ffffff; /* White text for contrast */
+  text-align: center;
+  height: 200px;
+}
+
+/* Icon Styling */
+.no-card-icon {
+  font-size: 3rem;
+  color: #ffffff; /* Matches the text color */
+  margin-bottom: 10px;
+}
+
+/* Text Styling */
+.no-card-id p {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+
+

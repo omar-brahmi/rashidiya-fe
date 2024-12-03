@@ -10,7 +10,13 @@
     </ion-button>
   }
 
-  <ion-list-header>Operation: {{ operation?.operationFirstName + ' ' + operation?.operationLastName }}</ion-list-header>
+  @if (operation?.operationFirstName || operation?.operationLastName) {
+    <ion-list-header>
+      Operation: {{ (operation?.operationFirstName || "") + ' ' + (operation?.operationLastName || "") }}
+    </ion-list-header>
+  } @else {
+    <ion-list-header>Operation:</ion-list-header>
+  }
   <ion-list style="margin: 0">
     <ion-item>
       <ion-label>Operation Number</ion-label>
@@ -40,37 +46,59 @@
 
   <ion-list-header>Phone numbers</ion-list-header>
   <div class="phone-numbers-section">
-    <div class="phone-numbers-grid">
-      @for (phoneNumber of operation?.phoneNumbers; track phoneNumber) {
-        <div class="phone-number-card"><a href="tel:{{ phoneNumber.number }}">{{ phoneNumber.number }}</a></div>
-      }
-    </div>
+    @if (operation && operation.phoneNumbers && operation.phoneNumbers.length > 0) {
+      <div class="phone-numbers-grid">
+        @for (phoneNumber of operation.phoneNumbers; track phoneNumber) {
+          <div class="phone-number-card"><a href="tel:{{ phoneNumber.number }}">{{ phoneNumber.number }}</a></div>
+        }
+      </div>
+    } @else {
+      <div class="no-phone-numbers">
+        <ion-icon name="call-outline" class="no-phone-icon"></ion-icon>
+        <p>No phone numbers available for this operation.</p>
+      </div>
+    }
   </div>
 
-
-  <ion-list-header>Description</ion-list-header>
-  <ion-text>{{ operation?.description }}</ion-text>
+  @if (operation?.description) {
+    <ion-list-header>Description</ion-list-header>
+    <ion-text>{{ operation?.description }}</ion-text>
+  }
 
   <div style="margin-top: 50px">
     <ion-list-header>Card ID</ion-list-header>
-    <ion-img-viewer *ngIf="operation?.card"
-                    title="Card ID"
-                    scheme="dark"
-                    [src]="operation?.card"
-                    class="image-upload-viewer"
-    >
-    </ion-img-viewer>
+    @if (operation?.card) {
+      <ion-img-viewer *ngIf="operation?.card"
+                      title="Card ID"
+                      scheme="dark"
+                      [src]="operation?.card"
+                      class="image-upload-viewer"
+      >
+      </ion-img-viewer>
+    } @else {
+      <div class="no-card-id">
+        <ion-icon name="image-outline" class="no-card-icon"></ion-icon>
+        <p>No Card ID image available for this operation.</p>
+      </div>
+    }
   </div>
 
   <div style="margin-top: 50px">
     <ion-list-header>Contract</ion-list-header>
-    <ion-img-viewer *ngIf="operation?.contract"
-                    title="Contract"
-                    scheme="dark"
-                    [src]="operation?.contract"
-                    class="image-upload-viewer"
-    >
-    </ion-img-viewer>
+    @if (operation?.contract) {
+      <ion-img-viewer *ngIf="operation?.contract"
+                      title="Contract"
+                      scheme="dark"
+                      [src]="operation?.contract"
+                      class="image-upload-viewer"
+      >
+      </ion-img-viewer>
+    } @else {
+      <div class="no-card-id">
+        <ion-icon name="image-outline" class="no-card-icon"></ion-icon>
+        <p>No Contract image available for this operation.</p>
+      </div>
+    }
   </div>
 
   <div style="margin-top: 100px"></div>

@@ -10,6 +10,7 @@ import {
 import {ToastService} from "../../shared/services/toast.service";
 import {NavController} from "@ionic/angular";
 import {ActivatedRoute} from "@angular/router";
+import {PhoneNumber} from "../../core/models/phoneNumber.model";
 
 @Component({
   selector: 'app-form-client',
@@ -78,8 +79,12 @@ export class FormClientPage extends BasicComponent<Client, ClientService> implem
       this.entity = entity;
       if (this.isUpdate) {
         this.isUpdateClient();
-      } else {
+      } else if (this.entity.idCard) {
         this.isCreateClient();
+      } else {
+        this.errorMessage.title = "ID Card is required";
+        this.errorMessage.description = "ID Card must be not empty";
+        this.setOpen(true);
       }
     })
   }
@@ -89,6 +94,7 @@ export class FormClientPage extends BasicComponent<Client, ClientService> implem
       try {
         const entity: Client = this.createObject();
         entity.phoneNumberDTOs = this.getPhoneNumbers();
+        console.log(entity.phoneNumberDTOs)
         resolve(entity);
       } catch (error) {
         reject(error);
@@ -108,12 +114,18 @@ export class FormClientPage extends BasicComponent<Client, ClientService> implem
     this.form.get('lastname')?.setValue(event.lastName);
   }
 
-  getPhoneNumbers() {
-    return this.phoneNumbersComponent.phoneNumbers;
+  getPhoneNumbers(): PhoneNumber[] {
+    const phoneNumbers: PhoneNumber[] = [];
+    for (let phone of this.phoneNumbersComponent.phoneNumbers) {
+      if (phone.number) {
+        phoneNumbers.push(phone);
+      }
+    }
+    return phoneNumbers;
   }
 
   setOpen(isOpen: boolean) {
-    this.isAlertOpen = isOpen;
+    this.isAlertOpen = this.isLoading = isOpen;
   }
 
   getClient() {
