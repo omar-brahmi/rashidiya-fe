@@ -21,7 +21,14 @@ export class ModalReimbursementComponent extends BasicComponent<Reimbursement, R
   #activatedRoute: ActivatedRoute = inject(ActivatedRoute);
 
   operationID: string | null = null;
+  isAlertOpen = false;
+  alertButtons = ['Close'];
   isLoading = false;
+
+  errorMessage = {
+    title: '',
+    description: ''
+  }
 
   protected formFields: FormField[] = [
     {
@@ -58,8 +65,13 @@ export class ModalReimbursementComponent extends BasicComponent<Reimbursement, R
           this.form.reset();
         });
       }, error: error => {
-        this.isLoading = false;
-        this.#toastService.error(error.status === 409 ? "There was an issue saving the reimbursement. Please try again." : "Error saving reimbursement.");
+        if (error.status === 409) {
+          this.errorMessage.title = "Error saving reimbursement";
+          this.errorMessage.description = error.error.details;
+          this.setOpen(true);
+        } else {
+          this.#toastService.error("There was an issue saving the reimbursement. Please try again.");
+        }
       }
     });
   }
@@ -68,6 +80,10 @@ export class ModalReimbursementComponent extends BasicComponent<Reimbursement, R
     modal.dismiss().then(() => {
       this.form.reset();
     });
+  }
+
+  setOpen(isOpen: boolean) {
+    this.isAlertOpen = this.isLoading = isOpen;
   }
 
 }

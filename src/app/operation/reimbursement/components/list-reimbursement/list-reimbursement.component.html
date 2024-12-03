@@ -1,6 +1,9 @@
 <ion-list-header>Reimbursements</ion-list-header>
 
-<ion-button id="open-modal" class="btn-add-reimbursement" expand="block">Add Reimbursement</ion-button>
+@if (showAddButton){
+  <ion-button id="open-modal" class="btn-add-reimbursement" expand="block">Add Reimbursement</ion-button>
+  <app-modal-reimbursement (reimbursementSaved)="savedReimbursement($event)"/>
+}
 
 <div class="reimbursements-container">
 
@@ -37,5 +40,3 @@
     loadingText="Loading more operations...">
   </ion-infinite-scroll-content>
 </ion-infinite-scroll>
-
-<app-modal-reimbursement (reimbursementSaved)="savedReimbursement($event)"/>

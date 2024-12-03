@@ -1,4 +1,4 @@
-import {Component, EventEmitter, inject, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, inject, Input, OnInit, Output} from '@angular/core';
 import {ReimbursementService} from "../../../../services/reimbursement.service";
 import {ActivatedRoute} from "@angular/router";
 import {Reimbursement} from "../../../../core/models/Reimbursement.model";
@@ -13,6 +13,7 @@ import {formatNumberToCash} from "../../../../core/directives/cash-format.direct
 })
 export class ListReimbursementComponent implements OnInit {
 
+  @Input() showAddButton: boolean = true;
   @Output() reimbursementSaved: EventEmitter<number> = new EventEmitter<number>();
 
   protected readonly formatNumberToCash = formatNumberToCash;
