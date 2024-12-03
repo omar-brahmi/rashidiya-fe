@@ -50,7 +50,7 @@ export class HeaderComponent {
       this.#operationService.validateOperation(this.operation?.operationID).subscribe({
         next: value => {
           this.#toastService.success("Operation validated successfully!");
-          this.backButton();
+          this.nav.navigateBack("/operations");
         }, error: err => {
           this.#toastService.error("An error occurred while validating the operation.");
         }

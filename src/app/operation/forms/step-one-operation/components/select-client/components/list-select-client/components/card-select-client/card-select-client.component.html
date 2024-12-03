@@ -13,7 +13,7 @@
       <div class="card__phones">
         <div class="phone-list">
           @for (phone of client?.phoneNumberDTOs; track phone) {
-            <div class="phone-tag">{{ phone.number }}</div>
+            <a href="tel:{{ phone.number }}" class="phone-tag">{{ phone.number }}</a>
           }
         </div>
       </div>

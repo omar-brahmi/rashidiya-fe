@@ -7,4 +7,5 @@ export class Client {
   lastname?: string;
   newClient?: boolean;
   phoneNumberDTOs?: PhoneNumber[];
+  oldIdCard?: string;
 }

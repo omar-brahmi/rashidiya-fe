@@ -80,7 +80,7 @@
   font-size: 0.875rem;
   backdrop-filter: blur(8px);
   transition: all 0.3s ease;
-
+  text-decoration: none;
   &:hover {
     background: rgba(255, 255, 255, 0.12);
     transform: translateY(-2px);

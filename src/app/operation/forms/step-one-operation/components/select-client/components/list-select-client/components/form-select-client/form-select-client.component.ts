@@ -1,11 +1,22 @@
-import {Component, EventEmitter, inject, Input, OnDestroy, OnInit, Output, ViewChild} from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  inject,
+  Input,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  Output,
+  SimpleChanges,
+  ViewChild
+} from '@angular/core';
 import {BasicComponent} from "../../../../../../../../../shared/forms/generics/forms/basic.component";
 import {Client} from "../../../../../../../../../core/models/client.model";
 import {ClientService} from "../../../../../../../../../services/client.service";
 import {PhoneNumbersComponent} from "../../../../../phone-numbers/phone-numbers.component";
 import {ToastService} from "../../../../../../../../../shared/services/toast.service";
 import {FormField} from "../../../../../../../../../shared/models/form-field.model";
-import {IonModal, NavController, Platform} from "@ionic/angular";
+import {IonModal, Platform} from "@ionic/angular";
 import {ProcessImageState} from "../../../../../../../../../shared/utils/getPhoto";
 import {Subscription} from "rxjs";
 import {PhoneNumber} from "../../../../../../../../../core/models/phoneNumber.model";
@@ -15,7 +26,7 @@ import {PhoneNumber} from "../../../../../../../../../core/models/phoneNumber.mo
   templateUrl: './form-select-client.component.html',
   styleUrls: ['./form-select-client.component.scss'],
 })
-export class FormSelectClientComponent extends BasicComponent<Client, ClientService> implements OnInit, OnDestroy {
+export class FormSelectClientComponent extends BasicComponent<Client, ClientService> implements OnInit, OnChanges, OnDestroy {
 
   @ViewChild(IonModal) modal!: IonModal;
 
@@ -48,6 +59,10 @@ export class FormSelectClientComponent extends BasicComponent<Client, ClientServ
       value: null,
     },
     {
+      fieldName: 'oldIdCard',
+      value: null,
+    },
+    {
       fieldName: 'phoneNumberDTOs',
       value: [],
     }
@@ -64,21 +79,24 @@ export class FormSelectClientComponent extends BasicComponent<Client, ClientServ
     description: ''
   }
 
-  constructor(private clientService: ClientService, private navController: NavController) {
+  constructor(private clientService: ClientService) {
     super(clientService);
+    this.buildForm();
   }
 
   ngOnInit() {
-    this.buildForm().then(() => {
-      this.patchValueClient();
-    });
-
     // Handle hardware back button
     this.backButtonSubscription = this.#platform.backButton.subscribeWithPriority(10, () => {
       if (this.modal?.isOpen) {
         this.modal.dismiss();
       }
     });
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['client']) {
+      this.patchValueClient();
+    }
   }
 
   save(modal: IonModal) {
@@ -139,6 +157,7 @@ export class FormSelectClientComponent extends BasicComponent<Client, ClientServ
     if (this.client) {
       this.isUpdate = true;
       this.form.patchValue(this.client);
+      this.form.get('oldIdCard')?.setValue(this.client.idCard);
     }
   }
 

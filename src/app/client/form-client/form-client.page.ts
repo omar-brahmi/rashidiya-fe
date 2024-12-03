@@ -45,6 +45,10 @@ export class FormClientPage extends BasicComponent<Client, ClientService> implem
     {
       fieldName: 'phoneNumberDTOs',
       value: [],
+    },
+    {
+      fieldName: 'oldIdCard',
+      value: null,
     }
   ];
 
@@ -143,6 +147,7 @@ export class FormClientPage extends BasicComponent<Client, ClientService> implem
 
   patchValueClient(client: Client) {
     this.form.patchValue(client);
+    this.form.get('oldIdCard')?.setValue(client.idCard);
   }
 
   private isCreateClient() {
