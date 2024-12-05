@@ -3,6 +3,7 @@ import {formatNumberToCash} from "../../core/directives/cash-format.directive";
 import {OperationService} from "../../services/operation.service";
 import {ActivatedRoute} from "@angular/router";
 import {Operation} from "../../core/models/operation.model";
+import {State} from "../../core/models/enumerations/state.enum";
 
 @Component({
   selector: 'app-reimbursement',
@@ -47,6 +48,9 @@ export class ReimbursementPage {
     this.remaining = this.remaining - $event;
     if (this.operation) {
       this.operation.remainingToReimburse = this.remaining;
+      if (this.remaining === 0) {
+        this.operation.state = State.PAID;
+      }
     }
   }
 
