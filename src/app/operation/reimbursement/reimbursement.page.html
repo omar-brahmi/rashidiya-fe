@@ -2,58 +2,7 @@
 
 <ion-content class="ion-padding">
 
-  @if (operation?.operationFirstName || operation?.operationLastName) {
-    <ion-list-header>
-      Operation: {{ (operation?.operationFirstName || "") + ' ' + (operation?.operationLastName || "") }}
-    </ion-list-header>
-  } @else {
-    <ion-list-header>Operation:</ion-list-header>
-  }
-  <ion-list style="margin: 0">
-    <ion-item>
-      <ion-label>Operation Number</ion-label>
-      <ion-text slot="end" color="dark">{{ operation?.operationNumber }}</ion-text>
-    </ion-item>
-    <ion-item>
-      <ion-label>Card Number</ion-label>
-      <ion-text slot="end" color="dark">{{ operation?.idCard }}</ion-text>
-    </ion-item>
-    <ion-item>
-      <ion-label>Karat</ion-label>
-      <ion-text slot="end" color="dark">{{ operation?.karat }}</ion-text>
-    </ion-item>
-    <ion-item>
-      <ion-label>Weight</ion-label>
-      <ion-text slot="end" color="dark">{{ operation?.weight }}</ion-text>
-    </ion-item>
-    <ion-item>
-      <ion-label>Cash</ion-label>
-      <ion-text slot="end" color="dark">{{ formatNumberToCash(operation?.cash) }}</ion-text>
-    </ion-item>
-    <ion-item style="--border-color: transparent;">
-      <ion-label>Operation Date</ion-label>
-      <ion-text slot="end" color="dark">{{ operation?.createdAt | date: 'dd-MM-yyyy' }}</ion-text>
-    </ion-item>
-    <ion-item style="--border-color: transparent;">
-      <ion-label>Remaining</ion-label>
-      <ion-text slot="end" color="dark">{{ formatNumberToCash(remaining) }}</ion-text>
-    </ion-item>
-  </ion-list>
-
-
-  <ion-list-header>Phone Numbers</ion-list-header>
-  @if (operation && operation.phoneNumbers && operation.phoneNumbers.length > 0) {
-    <swiper-container [slidesPerView]="1" [loop]="true" class="phone-swiper">
-      <swiper-slide *ngFor="let phone of operation?.phoneNumbers" class="phone-slide">
-        <div class="phone-item"><a href="tel:{{ phone.number }}">{{ phone.number }}</a></div>
-      </swiper-slide>
-    </swiper-container>
-  } @else {
-    <div class="no-phone-numbers">
-      <ion-icon name="call-outline" class="no-phone-icon"></ion-icon>
-      <p>No phone numbers available for this operation.</p>
-    </div>
-  }
+  <app-operation-detail [operation]="operation" [indexView]="1"/>
 
   <app-list-reimbursement [showAddButton]="remaining > 0" (reimbursementSaved)="reimbursementSaved($event)"/>
 

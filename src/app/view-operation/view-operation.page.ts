@@ -5,7 +5,7 @@ import {formatNumberToCash} from '../core/directives/cash-format.directive';
 import {OperationService} from "../services/operation.service";
 import {ActivatedRoute} from "@angular/router";
 import {NavController} from "@ionic/angular";
-import {getStateDisplayName} from "../core/models/enumerations/state.enum";
+import {getStateDisplayName, State} from "../core/models/enumerations/state.enum";
 
 @Component({
   selector: 'app-view-operation',
@@ -15,7 +15,9 @@ import {getStateDisplayName} from "../core/models/enumerations/state.enum";
 export class ViewOperationPage {
 
   protected readonly formatNumberToCash = formatNumberToCash;
+  protected readonly getStateDisplayName = getStateDisplayName;
   protected readonly Status = Status;
+  protected readonly State = State;
 
   #operationService: OperationService = inject(OperationService);
   #activatedRoute: ActivatedRoute = inject(ActivatedRoute);
@@ -42,6 +44,4 @@ export class ViewOperationPage {
   redirectToUpdate() {
     this.navController.navigateRoot("/form/step-one-operation/" + this.operation?.operationID)
   }
-
-  protected readonly getStateDisplayName = getStateDisplayName;
 }

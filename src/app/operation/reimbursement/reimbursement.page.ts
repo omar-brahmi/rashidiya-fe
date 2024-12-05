@@ -45,6 +45,9 @@ export class ReimbursementPage {
 
   reimbursementSaved($event: number) {
     this.remaining = this.remaining - $event;
+    if (this.operation) {
+      this.operation.remainingToReimburse = this.remaining;
+    }
   }
 
   getBackUrl() {

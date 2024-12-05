@@ -10,17 +10,19 @@ import { ViewOperationPage } from './view-operation.page';
 import {NgxIonicImageViewerModule} from "@herdwatch-apps/ngx-ionic-image-viewer";
 import {HomePageModule} from "../home/home.module";
 import {ListPageModule} from "../operation/list/list.module";
+import {OperationDetailComponent} from "./components/operation-detail/operation-detail.component";
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    ViewOperationPageRoutingModule,
-    NgxIonicImageViewerModule,
-    HomePageModule,
-    ListPageModule
-  ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        IonicModule,
+        ViewOperationPageRoutingModule,
+        NgxIonicImageViewerModule,
+        HomePageModule,
+        ListPageModule,
+        OperationDetailComponent
+    ],
   declarations: [ViewOperationPage]
 })
 export class ViewOperationPageModule {}

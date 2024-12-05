@@ -9,16 +9,18 @@ import {ReimbursementPageRoutingModule} from './reimbursement-routing.module';
 import {ReimbursementPage} from './reimbursement.page';
 import {ListPageModule} from "../list/list.module";
 import {HomePageModule} from "../../home/home.module";
+import {OperationDetailComponent} from "../../view-operation/components/operation-detail/operation-detail.component";
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    ReimbursementPageRoutingModule,
-    ListPageModule,
-    HomePageModule
-  ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        IonicModule,
+        ReimbursementPageRoutingModule,
+        ListPageModule,
+        HomePageModule,
+        OperationDetailComponent
+    ],
   declarations: [ReimbursementPage],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
