@@ -92,9 +92,24 @@
   background: rgba(255, 255, 255, 0.1);
   color: #fff;
 
-  &.validated {
-    background: rgba(34, 197, 94, 0.2);
-    color: #22c55e;
+  &.NEW {
+    background: #fff;
+    color: #000;
+  }
+
+  &.PARTIALLY_PAID {
+    background: #f59e0b;
+    color: #ffffff;
+  }
+
+  &.PAID {
+    background: #16a34a;
+    color: #ffffff;
+  }
+
+  &.CANCELLED {
+    background: #dc2626;
+    color: #ffffff;
   }
 }
 

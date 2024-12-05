@@ -1,10 +1,10 @@
-<div class="operation-card" [ngClass]="operation?.status===Status.DRAFT?'DRAFT':operation?.state" [class.validated]="operation?.status === Status.VALIDATED">
+<div class="operation-card" [ngClass]="operation?.status===Status.DRAFT?'DRAFT':operation?.state">
   <div class="card-header">
     <div class="header-main">
       <div class="operation-number">{{ operation?.operationNumber }}</div>
       <div class="operation-date">{{ operation?.createdAt | date:'dd/MM/yyyy' }}</div>
     </div>
-    <span class="status-badge" [class.validated]="operation?.status === Status.VALIDATED">
+    <span class="status-badge" [ngClass]="operation?.status===Status.DRAFT?'DRAFT':operation?.state">
       @if (operation?.status === Status.DRAFT) {
         Draft
       } @else {

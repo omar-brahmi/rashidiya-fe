@@ -26,6 +26,19 @@ export class ConsultationComponent {
       flag: false
     },
     {
+      operationNumber: 'OP-011',
+      createdAt: new Date('2024-01-15'),
+      operationFirstName: 'John',
+      operationLastName: 'Doe',
+      phoneNumbers: [{number: '+1234567890'}],
+      karat: '18K',
+      cash: 15000,
+      status: Status.VALIDATED,
+      state: State.NEW,
+      idCard: '123-4567-8901234-5',
+      flag: false
+    },
+    {
       operationNumber: 'OP-002',
       createdAt: new Date('2024-01-16'),
       operationFirstName: 'Jane',
@@ -48,6 +61,7 @@ export class ConsultationComponent {
       cash: 35000,
       status: Status.VALIDATED,
       state: State.PAID,
+      idCard: '987-6543-2109876-5',
       flag: false
     },
     {
@@ -60,6 +74,7 @@ export class ConsultationComponent {
       cash: 35000,
       status: Status.VALIDATED,
       state: State.CANCELLED,
+      idCard: '987-6543-2109876-5',
       flag: false
     }
   ];

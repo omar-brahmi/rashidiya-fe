@@ -54,6 +54,10 @@ const routes: Routes = [
   {
     path: 'form-client/:cardID',
     loadChildren: () => import('./client/form-client/form-client.module').then(m => m.FormClientPageModule)
+  },
+  {
+    path: 'view-operation',
+    loadChildren: () => import('./view-operation/view-operation.module').then( m => m.ViewOperationPageModule)
   }
 ];
 
