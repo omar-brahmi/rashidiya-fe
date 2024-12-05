@@ -5,7 +5,7 @@
   <!-- Operations List -->
   <div class="operations-list">
     @for (operation of operations; track operation) {
-      <app-card-consultation [operation]="operation"/>
+      <app-card-consultation (click)="redirectToView(operation)" [operation]="operation"/>
     }
   </div>
 </div>

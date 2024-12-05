@@ -56,7 +56,7 @@ const routes: Routes = [
     loadChildren: () => import('./client/form-client/form-client.module').then(m => m.FormClientPageModule)
   },
   {
-    path: 'view-operation',
+    path: 'view-operation/:operationID',
     loadChildren: () => import('./view-operation/view-operation.module').then( m => m.ViewOperationPageModule)
   }
 ];
