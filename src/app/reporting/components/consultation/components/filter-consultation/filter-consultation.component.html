@@ -1,0 +1,190 @@
+<!-- Header with Search Button -->
+<div class="header">
+  <h2>Operations List</h2>
+  <button class="search-trigger" id="open-search-modal">
+    <ion-icon name="search-outline"></ion-icon>
+    <span>Search</span>
+  </button>
+</div>
+
+<div class="active-filters-container" *ngIf="hasActiveFilters()">
+  <div class="filters-header">
+    <ion-icon name="bookmark-outline"></ion-icon>
+    <span>Active Filters</span>
+  </div>
+
+  <div class="filter-chips">
+    <div class="chip" *ngIf="activeSearchForm.idCard" (click)="clearFilterChip('idCard')">
+      <div class="chip-content">
+        <ion-icon name="card-outline"></ion-icon>
+        <span>{{ activeSearchForm.idCard }}</span>
+      </div>
+      <div class="remove-icon">
+        <ion-icon name="close-circle"></ion-icon>
+        <div class="hover-effect"></div>
+      </div>
+    </div>
+
+    <div class="chip" *ngIf="activeSearchForm.phoneNumbers" (click)="clearFilterChip('phoneNumbers')">
+      <div class="chip-content">
+        <ion-icon name="call-outline"></ion-icon>
+        <span>{{ activeSearchForm.phoneNumbers }}</span>
+      </div>
+      <div class="remove-icon">
+        <ion-icon name="close-circle"></ion-icon>
+        <div class="hover-effect"></div>
+      </div>
+    </div>
+
+    <div class="chip" *ngIf="activeSearchForm.createdAt" (click)="clearFilterChip('createdAt')">
+      <div class="chip-content">
+        <ion-icon name="calendar-outline"></ion-icon>
+        <span>{{ activeSearchForm.createdAt | date:'dd-MM-yyyy' }}</span>
+      </div>
+      <div class="remove-icon">
+        <ion-icon name="close-circle"></ion-icon>
+        <div class="hover-effect"></div>
+      </div>
+    </div>
+
+    <div class="chip" *ngIf="activeSearchForm.cash" (click)="clearFilterChip('cash')">
+      <div class="chip-content">
+        <ion-icon name="cash-outline"></ion-icon>
+        <span>{{ activeSearchForm.cash }}</span>
+      </div>
+      <div class="remove-icon">
+        <ion-icon name="close-circle"></ion-icon>
+        <div class="hover-effect"></div>
+      </div>
+    </div>
+
+    <div class="chip" *ngIf="activeSearchForm.operationFirstName" (click)="clearFilterChip('operationFirstName')">
+      <div class="chip-content">
+        <ion-icon name="person-outline"></ion-icon>
+        <span>{{ activeSearchForm.operationFirstName }}</span>
+      </div>
+      <div class="remove-icon">
+        <ion-icon name="close-circle"></ion-icon>
+        <div class="hover-effect"></div>
+      </div>
+    </div>
+
+    <div class="chip" *ngIf="activeSearchForm.operationLastName" (click)="clearFilterChip('operationLastName')">
+      <div class="chip-content">
+        <ion-icon name="person-outline"></ion-icon>
+        <span>{{ activeSearchForm.operationLastName }}</span>
+      </div>
+      <div class="remove-icon">
+        <ion-icon name="close-circle"></ion-icon>
+        <div class="hover-effect"></div>
+      </div>
+    </div>
+
+    <div class="chip" *ngIf="activeSearchForm.status" (click)="clearFilterChip('status')">
+      <div class="chip-content">
+        <ion-icon name="flag-outline"></ion-icon>
+        @if (activeSearchForm.status === "DRAFT"){
+          <span>Draft</span>
+        } @else {
+          <span>{{ getStateDisplayName(activeSearchForm.status) }}</span>
+        }
+      </div>
+      <div class="remove-icon">
+        <ion-icon name="close-circle"></ion-icon>
+        <div class="hover-effect"></div>
+      </div>
+    </div>
+
+
+  </div>
+</div>
+
+<!-- Search Modal -->
+<ion-modal trigger="open-search-modal">
+  <ng-template>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Search Operations</h3>
+        <button class="close-button" (click)="modal.dismiss()">
+          <ion-icon name="close-outline"></ion-icon>
+        </button>
+      </div>
+
+      <div class="search-form">
+        <div class="form-group">
+          <label>
+            <ion-icon name="calendar-outline"></ion-icon>
+            Date
+          </label>
+          <input type="date" [(ngModel)]="searchForm.createdAt">
+        </div>
+
+        <div class="form-group">
+          <label>
+            <ion-icon name="call-outline"></ion-icon>
+            Phone Number
+          </label>
+          <input type="tel" [(ngModel)]="searchForm.phoneNumbers" placeholder="Enter phone number">
+        </div>
+
+        <div class="form-group">
+          <label>
+            <ion-icon name="card-outline"></ion-icon>
+            ID Card
+          </label>
+          <input type="text" appAutoHyphen [(ngModel)]="searchForm.idCard" placeholder="000-0000-0000000-0">
+        </div>
+
+        <div class="form-group">
+          <label>
+            <ion-icon name="cash-outline"></ion-icon>
+            Cash Amount
+          </label>
+          <input type="text" appCashFormat [(ngModel)]="searchForm.cash" placeholder="Enter amount">
+        </div>
+
+        <div class="form-group">
+          <label>
+            <ion-icon name="person-outline"></ion-icon>
+            First Name
+          </label>
+          <input type="text" [(ngModel)]="searchForm.operationFirstName" placeholder="Enter first name">
+        </div>
+
+        <div class="form-group">
+          <label>
+            <ion-icon name="person-outline"></ion-icon>
+            Last Name
+          </label>
+          <input type="text" [(ngModel)]="searchForm.operationLastName" placeholder="Enter last name">
+        </div>
+
+        <div class="form-group">
+          <label>
+            <ion-icon name="flag-outline"></ion-icon>
+            Status
+          </label>
+          <select [(ngModel)]="searchForm.status">
+            <option value="">All Status</option>
+            <option [value]="Status.DRAFT">Draft</option>
+            <option [value]="State.NEW">New</option>
+            <option [value]="State.PARTIALLY_PAID">Partially paid</option>
+            <option [value]="State.PAID">Paid</option>
+            <option [value]="State.CANCELLED">Cancelled</option>
+          </select>
+        </div>
+
+        <div class="modal-actions">
+          <button class="reset-button" (click)="resetForm()">
+            <ion-icon name="refresh-outline"></ion-icon>
+            Reset
+          </button>
+          <button class="search-button" (click)="search(); modal.dismiss()">
+            <ion-icon name="search-outline"></ion-icon>
+            Search
+          </button>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</ion-modal>

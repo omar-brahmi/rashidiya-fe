@@ -1,0 +1,267 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+
+  h2 {
+    color: #fff;
+    margin: 0;
+    font-size: 24px;
+    font-weight: 600;
+    background: linear-gradient(to right, #fff, #a5a5a5);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+.search-trigger {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #ff6f00, #ff9100);
+  color: #fff;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 111, 0, 0.3);
+  }
+
+  ion-icon {
+    font-size: 20px;
+  }
+}
+
+// Modal Styles
+.modal-content {
+  background: linear-gradient(135deg, #1a1a40, #2a003e);
+  height: 100%;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+  h3 {
+    color: #fff;
+    margin: 0;
+    font-size: 20px;
+    font-weight: 600;
+  }
+
+  .close-button {
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    ion-icon {
+      font-size: 24px;
+    }
+  }
+}
+
+.search-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 14px;
+
+    ion-icon {
+      color: #ff6f00;
+      font-size: 18px;
+    }
+  }
+
+  input, select {
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    color: #fff;
+    font-size: 14px;
+    transition: all 0.3s ease;
+
+    &:focus {
+      outline: none;
+      border-color: #ff6f00;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    &::placeholder {
+      color: rgba(255, 255, 255, 0.3);
+    }
+  }
+}
+
+.modal-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.search-button, .reset-button {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px;
+  border: none;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  ion-icon {
+    font-size: 20px;
+  }
+}
+
+.search-button {
+  background: linear-gradient(135deg, #ff6f00, #ff9100);
+  color: #fff;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 111, 0, 0.3);
+  }
+}
+
+.reset-button {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.15);
+  }
+}
+
+.active-filters-container {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background: rgba(59, 130, 246, 0.1);
+  border-radius: 16px;
+  padding: 16px;
+
+  .filters-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 14px;
+    margin-bottom: 12px;
+
+    ion-icon {
+      font-size: 18px;
+      color: #3b82f6;
+    }
+  }
+}
+
+.filter-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(59, 130, 246, 0.15);
+  padding: 8px 12px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: rgba(59, 130, 246, 0.2);
+    transform: translateY(-1px);
+
+    .hover-effect {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .chip-content {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: white;
+
+    ion-icon {
+      font-size: 16px;
+      color: #3b82f6;
+    }
+
+    span {
+      font-size: 14px;
+    }
+  }
+
+  .remove-icon {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+
+    ion-icon {
+      font-size: 18px;
+      color: #ef4444;
+      z-index: 1;
+    }
+
+    .hover-effect {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at center,
+        rgba(239, 68, 68, 0.2),
+        transparent 70%
+      );
+      opacity: 0;
+      transform: scale(0.5);
+      transition: all 0.3s ease;
+    }
+  }
+}

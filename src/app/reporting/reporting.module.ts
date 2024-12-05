@@ -20,23 +20,31 @@ import {
 } from "./components/balance-per-day/components/filter-balance-per-day/filter-balance-per-day.component";
 import {CardClientComponent} from "../client/list-client/components/card-client/card-client.component";
 import {FilterReminderComponent} from "./components/reminder/components/filter-reminder/filter-reminder.component";
+import {
+    FilterConsultationComponent
+} from "./components/consultation/components/filter-consultation/filter-consultation.component";
+import {
+  CardConsultationComponent
+} from "./components/consultation/components/card-consultation/card-consultation.component";
+import {CashFormatDirective} from "../core/directives/cash-format.directive";
 
 @NgModule({
-    imports: [
-        CommonModule,
-        FormsModule,
-        IonicModule,
-        ReportingPageRoutingModule,
-        HomePageModule,
-        ListPageModule,
-        SharedModule,
-        AutoHyphenDirective,
-        FilterReminderComponent
-    ],
+  imports: [
+    CommonModule,
+    FormsModule,
+    IonicModule,
+    ReportingPageRoutingModule,
+    HomePageModule,
+    ListPageModule,
+    SharedModule,
+    AutoHyphenDirective,
+    FilterReminderComponent,
+    CashFormatDirective
+  ],
   exports: [
     CardClientComponent
   ],
-  declarations: [ReportingPage, ReminderComponent, CardReminderComponent, ConsultationComponent, BalancePerDayComponent, CardClientComponent, FilterBalancePerDayComponent]
+  declarations: [ReportingPage, ReminderComponent, CardReminderComponent, ConsultationComponent, BalancePerDayComponent, CardClientComponent, FilterBalancePerDayComponent, FilterConsultationComponent, CardConsultationComponent]
 })
 export class ReportingPageModule {
 }

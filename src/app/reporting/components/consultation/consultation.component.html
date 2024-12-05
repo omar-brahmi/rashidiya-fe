@@ -1,14 +1,11 @@
-<p>
-  consultation works!
-</p>
-<p>
-  consultation works!
-</p>
-<p>
-  consultation works!
-</p>
-<p>
-  consultation works!
-</p>
+<div class="consultation-container">
 
-<app-spinner/>
+  <app-filter-consultation/>
+
+  <!-- Operations List -->
+  <div class="operations-list">
+    @for (operation of operations; track operation) {
+      <app-card-consultation [operation]="operation"/>
+    }
+  </div>
+</div>

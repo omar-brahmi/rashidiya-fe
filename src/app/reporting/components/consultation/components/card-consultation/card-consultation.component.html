@@ -1,0 +1,53 @@
+<div class="operation-card" [ngClass]="operation?.status===Status.DRAFT?'DRAFT':operation?.state" [class.validated]="operation?.status === Status.VALIDATED">
+  <div class="card-header">
+    <div class="header-main">
+      <div class="operation-number">{{ operation?.operationNumber }}</div>
+      <div class="operation-date">{{ operation?.createdAt | date:'dd/MM/yyyy' }}</div>
+    </div>
+    <span class="status-badge" [class.validated]="operation?.status === Status.VALIDATED">
+      @if (operation?.status === Status.DRAFT) {
+        Draft
+      } @else {
+        {{ getStateDisplayName(operation?.state) }}
+      }
+          </span>
+  </div>
+
+  <div class="card-content">
+    <div class="info-group">
+      <div class="info-item">
+        <ion-icon name="person-outline"></ion-icon>
+        <span>{{ operation?.operationFirstName }} {{ operation?.operationLastName }}</span>
+      </div>
+      <div class="info-item">
+        <ion-icon name="call-outline"></ion-icon>
+        <span>{{ operation?.phoneNumbers?.[0]?.number }}</span>
+      </div>
+    </div>
+
+    <div class="info-group">
+      <div class="info-item">
+        <ion-icon name="diamond-outline"></ion-icon>
+        <span>{{ operation?.karat }}</span>
+      </div>
+      <div class="info-item">
+        <ion-icon name="cash-outline"></ion-icon>
+        <span>{{ formatNumberToCash(operation?.cash) }}</span>
+      </div>
+    </div>
+
+    <div class="info-group">
+      <div class="info-item">
+        <ion-icon name="card-outline"></ion-icon>
+        <span>{{ operation?.idCard }}</span>
+      </div>
+      <!--      <div class="info-item received-status">-->
+      <!--        <span>Received</span>-->
+      <!--        <ion-icon [name]="operation?.received ? 'checkmark-circle' : 'close-circle'"-->
+      <!--                  [class.received]="operation?.received"-->
+      <!--                  [class.not-received]="!operation?.received">-->
+      <!--        </ion-icon>-->
+      <!--      </div>-->
+    </div>
+  </div>
+</div>

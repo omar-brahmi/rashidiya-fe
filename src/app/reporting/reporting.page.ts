@@ -13,14 +13,14 @@ export class ReportingPage {
 
   #activatedRoute: ActivatedRoute = inject(ActivatedRoute);
 
-  segment: string = "balancePerDay";
+  segment: string = "consultation";
 
   constructor() {
     this.getSegmentParam();
   }
 
   getSegmentParam() {
-    this.segment = 'balancePerDay';
+    this.segment = 'consultation';
     const dayParam = this.#activatedRoute.snapshot.queryParamMap.get('reminder');
     if (dayParam == "true") {
       this.segment = 'reminder';

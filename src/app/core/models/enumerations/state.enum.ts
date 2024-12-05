@@ -6,7 +6,7 @@ export enum State {
 }
 
 // Utility to get display names for the State enum
-export const getStateDisplayName = (state: State): string => {
+export const getStateDisplayName = (state: State | string | undefined): string => {
   switch (state) {
     case State.NEW:
       return 'New';
@@ -17,6 +17,6 @@ export const getStateDisplayName = (state: State): string => {
     case State.PARTIALLY_PAID:
       return 'Partially Paid';
     default:
-      return state;
+      return "";
   }
 };
