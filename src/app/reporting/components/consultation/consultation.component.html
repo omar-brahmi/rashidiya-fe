@@ -1,11 +1,39 @@
 <div class="consultation-container">
 
-  <app-filter-consultation/>
+  <app-filter-consultation (filterApplied)="filterApplied($event)"/>
 
   <!-- Operations List -->
   <div class="operations-list">
     @for (operation of operations; track operation) {
       <app-card-consultation (click)="redirectToView(operation)" [operation]="operation"/>
+    }
+
+
+    @if (showSpinner) {
+      <div class="loading-state">
+        <app-spinner/>
+      </div>
+    }
+
+    <!-- Empty State -->
+    @if (!showSpinner && operations.length === 0) {
+      <div class="empty-state">
+        <div class="empty-state-content">
+          <ion-icon name="search-outline"></ion-icon>
+          <h2>No Operations Found</h2>
+          <p>Try adjusting your filters or add a new operation</p>
+        </div>
+      </div>
+    }
+
+    <!-- Infinite Scroll -->
+    @if (!showSpinner && !operationsPage.last) {
+      <ion-infinite-scroll (ionInfinite)="loadMore($event)">
+        <ion-infinite-scroll-content
+          loadingSpinner="bubbles"
+          loadingText="Loading more operations...">
+        </ion-infinite-scroll-content>
+      </ion-infinite-scroll>
     }
   </div>
 </div>

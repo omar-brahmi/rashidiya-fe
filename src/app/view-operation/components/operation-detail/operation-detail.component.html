@@ -161,7 +161,7 @@
             <div class="button-background"></div>
           </button>
         }
-        @if (operation?.status === Status.VALIDATED) {
+        @if (operation?.status === Status.VALIDATED && operation?.state !== State.PAID && operation?.state !== State.CANCELLED) {
           <div class="action-group">
             <button class="action-button reimburse" (click)="redirectToReimbursement()">
               <div class="button-content">

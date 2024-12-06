@@ -156,43 +156,6 @@ ion-content {
   padding-bottom: 4rem;
 }
 
-// Empty State
-.empty-state {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 50vh;
-  text-align: center;
-
-  .empty-state-content {
-    ion-icon {
-      font-size: 4rem;
-      color: rgba(255, 255, 255, 0.2);
-      margin-bottom: 1rem;
-    }
-
-    h2 {
-      color: #fff;
-      font-size: 1.25rem;
-      margin: 0 0 0.5rem;
-    }
-
-    p {
-      color: rgba(255, 255, 255, 0.6);
-      margin: 0;
-      font-size: 0.875rem;
-    }
-  }
-}
-
-// Loading State
-.loading-state {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 20vh;
-}
-
 // Animations
 @keyframes pulse {
   0% {

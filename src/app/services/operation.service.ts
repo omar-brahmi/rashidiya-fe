@@ -5,6 +5,7 @@ import {HttpService} from "../shared/forms/generics/services/http.service";
 import {GetAllPage} from "../shared/models/getAllPage.model";
 import {BehaviorSubject, Observable} from "rxjs";
 import {Pageable} from "../shared/models/pageable.model";
+import {unformatCash} from "../core/directives/cash-format.directive";
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +29,24 @@ export class OperationService extends BaseService<Operation> {
     return this.#httpService.get(this.entityName + '/search/validated' + pageable.toQueryString() + `&cardNumber=${filter.cardID}&phoneNumber=${filter.phoneNumbers}`);
   }
 
+  findAll(filter: any, pageable: Pageable = new Pageable()): Observable<GetAllPage<Operation>> {
+    const queryString = [
+      pageable.toQueryString(),
+      filter.idCard ? `idCard=${filter.idCard}` : '',
+      filter.phoneNumbers ? `phoneNumber=${filter.phoneNumbers}` : '',
+      filter.createdAt ? `creationDate=${filter.createdAt}` : '',
+      filter.cash ? `cash=${unformatCash(filter.cash)}` : '',
+      filter.operationFirstName ? `firstname=${filter.operationFirstName}` : '',
+      filter.operationLastName ? `lastname=${filter.operationLastName}` : '',
+      filter.status ? (filter.status === 'DRAFT' ? `status=DRAFT` : `status=VALIDATED&state=${filter.status}`) : ''
+    ]
+      .filter(param => param !== '')
+      .join('&');
+
+    return this.#httpService.get(`${this.entityName}/search-all?${queryString}`);
+  }
+
+
   getAllDraftByFilter(filter: {
     cardID: string;
     phoneNumbers: string
@@ -36,7 +55,7 @@ export class OperationService extends BaseService<Operation> {
   }
 
   searchReminderOperations(pageable: Pageable = new Pageable(), date: string = new Date().toISOString().split('T')[0]): Observable<GetAllPage<Operation>> {
-    return this.#httpService.get(this.entityName + '/reminder' + pageable.toQueryString() + '&LocalDateTime='+date);
+    return this.#httpService.get(this.entityName + '/reminder' + pageable.toQueryString() + '&LocalDateTime=' + date);
   }
 
   findBalancePerDayOperations(operationDate: string = "", cardID: string = "", phoneNumber: string = ""): Observable<any> {
