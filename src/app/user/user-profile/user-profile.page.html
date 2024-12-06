@@ -1,5 +1,74 @@
 <ion-content>
+  <div class="profile-container">
+    <!-- Profile Header -->
+    <div class="profile-header">
 
+      <!-- Back Button -->
+      <button class="back-button" (click)="goBack()">
+        <ion-icon name="chevron-back-outline"></ion-icon>
+      </button>
+
+      <div class="profile-info">
+        <div class="avatar-container">
+          <div class="avatar">
+            <span>AE</span>
+            <div class="status-badge"></div>
+          </div>
+          <div class="avatar-ring"></div>
+        </div>
+
+        <h1 class="user-name">Amir Elghribi</h1>
+        <span class="user-role">Administrator</span>
+      </div>
+    </div>
+
+    <!-- Profile Details -->
+    <div class="profile-details">
+      <h2 class="section-title">
+        <ion-icon name="person-outline"></ion-icon>
+        Personal Information
+      </h2>
+
+      <div class="info-grid">
+        <div class="info-item">
+          <div class="info-label">
+            <ion-icon name="person-outline"></ion-icon>
+            <span>Username</span>
+          </div>
+          <p>amirelghribi</p>
+        </div>
+
+        <div class="info-item">
+          <div class="info-label">
+            <ion-icon name="mail-outline"></ion-icon>
+            <span>Email</span>
+          </div>
+          <p>amir.elghribi&#64;example.com</p>
+        </div>
+
+        <div class="info-item">
+          <div class="info-label">
+            <ion-icon name="shield-outline"></ion-icon>
+            <span>Role</span>
+          </div>
+          <p class="role-badge">Administrator</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="action-buttons">
+      <button class="action-button edit">
+        <ion-icon name="create-outline"></ion-icon>
+        <span>Edit Profile</span>
+      </button>
+
+      <button class="action-button logout">
+        <ion-icon name="log-out-outline"></ion-icon>
+        <span>Logout</span>
+      </button>
+    </div>
+  </div>
 </ion-content>
 
 <app-footer/>
