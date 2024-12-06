@@ -58,6 +58,10 @@ const routes: Routes = [
   {
     path: 'view-operation/:operationID',
     loadChildren: () => import('./view-operation/view-operation.module').then( m => m.ViewOperationPageModule)
+  },
+  {
+    path: 'user-profile',
+    loadChildren: () => import('./user/user-profile/user-profile.module').then( m => m.UserProfilePageModule)
   }
 ];
 

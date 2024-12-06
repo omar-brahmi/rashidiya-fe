@@ -6,6 +6,7 @@ import {ClientService} from "../services/client.service";
 import {NavController} from "@ionic/angular";
 import {Pageable} from "../shared/models/pageable.model";
 import {formatNumberToCash} from "../core/directives/cash-format.directive";
+import {GetAllPage} from "../shared/models/getAllPage.model";
 
 @Component({
   selector: 'app-home',
@@ -20,7 +21,9 @@ export class HomePage implements OnInit {
 
   operations: Operation[] = [];
   reminders: Operation[] = [];
+  clientPage!: GetAllPage<Client>
   clients: Client[] = [];
+  today: Date = new Date();
 
   constructor(private nav: NavController) {
   }
@@ -58,6 +61,7 @@ export class HomePage implements OnInit {
       lastName: ""
     }, new Pageable()).subscribe({
       next: data => {
+        this.clientPage = data;
         this.clients = data.content;
       }
     });
@@ -67,4 +71,7 @@ export class HomePage implements OnInit {
     this.nav.navigateRoot(url);
   }
 
+  redirectToUserProfile() {
+    this.redirectTo('user-profile');
+  }
 }

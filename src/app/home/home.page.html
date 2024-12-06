@@ -1,16 +1,53 @@
 <ion-content>
-  <div class="home-container">
-    <!-- Header Section -->
-    <div class="welcome-header">
-      <div class="user-greeting">
-        <h1>Welcome Back!</h1>
-        <p>Here's what's happening today</p>
+  <!-- Modern Header Section -->
+  <div class="header-container">
+    <div class="header-content">
+      <!-- Profile Section -->
+      <div class="profile-section">
+        <div class="greeting-container">
+          <div class="greeting-text">
+            <span class="greeting">Welcome back</span>
+            <h1 class="username">Amir Elghribi</h1>
+          </div>
+          <div class="date-badge">
+            <ion-icon name="calendar-outline"></ion-icon>
+            <span>{{ today | date:'MMM d, y' }}</span>
+          </div>
+        </div>
+        <button class="profile-button" (click)="redirectToUserProfile()">
+          <div class="avatar">AE</div>
+          <div class="status-dot"></div>
+        </button>
       </div>
-      <button class="profile-button">
-        <ion-icon name="person-outline"></ion-icon>
-      </button>
+
+      <!-- Quick Stats -->
+      <div class="quick-stats">
+        <div class="stat-card">
+          <div class="stat-icon">
+            <ion-icon name="file-tray-stacked-outline"></ion-icon>
+          </div>
+          <div class="stat-info">
+            <span class="stat-value">24</span>
+            <span class="stat-label">Total Operations</span>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon">
+            <ion-icon name="people-outline"></ion-icon>
+          </div>
+          <div class="stat-info">
+            <span class="stat-value">{{clientPage && clientPage.totalElements ? clientPage.totalElements: 0}}</span>
+            <span class="stat-label">Total Clients</span>
+          </div>
+        </div>
+      </div>
     </div>
 
+  </div>
+
+  <!-- Rest of the content remains unchanged -->
+  <div class="main-content">
     <!-- Today's Operations Section -->
     <div class="section">
       <div class="section-header">
@@ -36,8 +73,6 @@
           </swiper-slide>
         }
       </swiper-container>
-
-
     </div>
 
     <!-- Reminders Section -->
