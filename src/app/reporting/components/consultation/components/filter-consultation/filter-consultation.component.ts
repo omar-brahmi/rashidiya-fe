@@ -22,6 +22,8 @@ export class FilterConsultationComponent {
 
   @ViewChild(IonModal) modal!: IonModal;
 
+  protected readonly getStateDisplayName = getStateDisplayName;
+  protected readonly State = State;
   protected readonly Status = Status;
 
   searchForm = {
@@ -43,6 +45,8 @@ export class FilterConsultationComponent {
     operationFirstName: '',
     operationLastName: ''
   };
+
+  maxDate: string = new Date().toISOString().split('T')[0];
 
   search() {
     this.filterApplied.emit(this.searchForm);
@@ -73,6 +77,4 @@ export class FilterConsultationComponent {
     this.activeSearchForm = {...this.searchForm};
   }
 
-  protected readonly State = State;
-  protected readonly getStateDisplayName = getStateDisplayName;
 }
