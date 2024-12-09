@@ -1,13 +1,17 @@
-import { Component, OnInit } from '@angular/core';
-import { Role, User } from '../../core/models/user.model';
-import { NavController } from '@ionic/angular';
+import {Component, inject} from '@angular/core';
+import {Role, User} from '../../core/models/user.model';
+import {NavController} from '@ionic/angular';
+import {AuthenticationService} from "../../services/authentication.service";
 
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.page.html',
   styleUrls: ['./user-profile.page.scss'],
 })
-export class UserProfilePage implements OnInit {
+export class UserProfilePage {
+
+  #authenticationService: AuthenticationService = inject(AuthenticationService);
+
   user: User = {
     id: 1,
     firstname: 'Amir',
@@ -18,14 +22,7 @@ export class UserProfilePage implements OnInit {
     password: ''
   };
 
-  stats = {
-    operations: 2451,
-    clients: 1257
-  };
-
-  constructor(private navController: NavController) { }
-
-  ngOnInit() {
+  constructor(private navController: NavController) {
   }
 
   getInitials(): string {
@@ -42,7 +39,7 @@ export class UserProfilePage implements OnInit {
   }
 
   logout() {
-    // Implement logout logic
-    console.log('Logout clicked');
+    this.#authenticationService.logOut();
   }
+
 }

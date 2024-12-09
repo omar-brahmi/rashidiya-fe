@@ -58,12 +58,12 @@
 
     <!-- Action Buttons -->
     <div class="action-buttons">
-      <button class="action-button edit">
+      <button style="visibility: hidden" class="action-button edit">
         <ion-icon name="create-outline"></ion-icon>
         <span>Edit Profile</span>
       </button>
 
-      <button class="action-button logout">
+      <button (click)="logout()" class="action-button logout">
         <ion-icon name="log-out-outline"></ion-icon>
         <span>Logout</span>
       </button>

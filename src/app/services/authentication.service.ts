@@ -117,7 +117,7 @@ export class AuthenticationService {
   logOut() {
     localStorage.clear();
     this.loggedUserSubject.next(null);
-    this.navCtrl.navigateRoot(['/auth/login'], {replaceUrl: true});
+    this.navCtrl.navigateRoot(['/login'], {replaceUrl: true});
   }
 
   redirectToHomePage() {
