@@ -1,4 +1,4 @@
-import {NgModule} from '@angular/core';
+import {APP_INITIALIZER, NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {RouteReuseStrategy} from '@angular/router';
 
@@ -7,8 +7,14 @@ import {AnimationController, IonicModule, IonicRouteStrategy} from '@ionic/angul
 import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
 import {FadeAnimation} from "./animations/fadeAnimation";
-import {provideHttpClient, withInterceptorsFromDi} from "@angular/common/http";
+import {provideHttpClient, withInterceptors} from "@angular/common/http";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {AuthenticationService} from "./services/authentication.service";
+import {AuthInterceptor} from "./core/interceptors/auth.interceptor";
+
+export function initializeApp(authService: AuthenticationService): () => Promise<void> {
+  return (): Promise<void> => authService.setLoggedUser();
+}
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,10 +24,21 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
       return fadeAnimationService.createAnimation(baseEl, opts);
     }
   }), AppRoutingModule],
-  providers: [{
-    provide: RouteReuseStrategy,
-    useClass: IonicRouteStrategy
-  }, FadeAnimation, provideHttpClient(withInterceptorsFromDi())],
+  providers: [
+    {
+      provide: RouteReuseStrategy,
+      useClass: IonicRouteStrategy
+    },
+    FadeAnimation,
+    provideHttpClient(withInterceptors([AuthInterceptor])),
+    AuthenticationService,
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initializeApp,
+      deps: [AuthenticationService],
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

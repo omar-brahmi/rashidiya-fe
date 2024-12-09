@@ -21,14 +21,14 @@
       </div>
 
       <!-- Login Form -->
-      <form (ngSubmit)="signIn()" class="login-form">
+      <form [formGroup]="form" (ngSubmit)="signIn()" class="login-form">
         <div class="form-field">
           <div class="input-container">
             <ion-icon name="person-outline"></ion-icon>
             <input
               type="text"
-              [(ngModel)]="email"
-              name="email"
+              formControlName="username"
+              name="username"
               required
               placeholder="Username"
             >
@@ -41,7 +41,7 @@
             <ion-icon name="lock-closed-outline"></ion-icon>
             <input
               [type]="showPassword ? 'text' : 'password'"
-              [(ngModel)]="password"
+              formControlName="password"
               name="password"
               required
               placeholder="Password"
