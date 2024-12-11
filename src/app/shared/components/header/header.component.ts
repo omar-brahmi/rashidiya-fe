@@ -66,4 +66,8 @@ export class HeaderComponent {
     }
   }
 
+  redirectToUserProfile() {
+    this.nav.navigateRoot('user-profile');
+  }
+
 }

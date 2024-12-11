@@ -2,7 +2,7 @@ import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
   appId: 'io.ionic.starter',
-  appName: 'rashidiya-fe',
+  appName: 'Rashidiya',
   webDir: 'www',
   server: {
     cleartext: true,

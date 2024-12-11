@@ -7,6 +7,8 @@ import {NavController} from "@ionic/angular";
 import {Pageable} from "../shared/models/pageable.model";
 import {formatNumberToCash} from "../core/directives/cash-format.directive";
 import {GetAllPage} from "../shared/models/getAllPage.model";
+import {User} from "../core/models/user.model";
+import {AuthenticationService} from "../services/authentication.service";
 
 @Component({
   selector: 'app-home',
@@ -24,6 +26,8 @@ export class HomePage implements OnInit {
   clientPage!: GetAllPage<Client>
   clients: Client[] = [];
   today: Date = new Date();
+
+  loggedUser: User | null = inject(AuthenticationService).getLoggedUser();
 
   constructor(private nav: NavController) {
   }
@@ -74,4 +78,5 @@ export class HomePage implements OnInit {
   redirectToUserProfile() {
     this.redirectTo('user-profile');
   }
+
 }

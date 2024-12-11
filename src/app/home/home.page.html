@@ -7,7 +7,7 @@
         <div class="greeting-container">
           <div class="greeting-text">
             <span class="greeting">Welcome back</span>
-            <h1 class="username">Amir Elghribi</h1>
+            <h1 class="username">{{ loggedUser?.firstname }} {{ loggedUser?.lastname }}</h1>
           </div>
           <div class="date-badge">
             <ion-icon name="calendar-outline"></ion-icon>
@@ -15,7 +15,7 @@
           </div>
         </div>
         <button class="profile-button" (click)="redirectToUserProfile()">
-          <div class="avatar">AE</div>
+          <div class="avatar">{{ loggedUser?.firstname?.charAt(0) }}{{ loggedUser?.lastname?.charAt(0) }}</div>
           <div class="status-dot"></div>
         </button>
       </div>
