@@ -27,6 +27,8 @@ export class HomePage implements OnInit {
   clients: Client[] = [];
   today: Date = new Date();
 
+  countOperation: number = 0;
+
   loggedUser: User | null = inject(AuthenticationService).getLoggedUser();
 
   constructor(private nav: NavController) {
@@ -36,6 +38,7 @@ export class HomePage implements OnInit {
     this.loadTodayOperations();
     this.loadReminders();
     this.loadRecentClients();
+    this.loadCountOperation();
   }
 
   loadTodayOperations() {
@@ -69,6 +72,14 @@ export class HomePage implements OnInit {
         this.clients = data.content;
       }
     });
+  }
+
+  loadCountOperation() {
+    this.#operationService.countOperations().subscribe({
+      next: value => {
+        this.countOperation = value;
+      }
+    })
   }
 
   redirectTo(url: string) {

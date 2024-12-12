@@ -70,6 +70,10 @@ export class OperationService extends BaseService<Operation> {
     return this.#httpService.patch<Operation, any>(this.entityName + `/cancel`, operation);
   }
 
+  countOperations(): Observable<number> {
+    return this.#httpService.get<number>(this.entityName + `/count`);
+  }
+
   updateOperationSubject(operation: OperationClass): void {
     this.operationSubject.next(operation);
   }
