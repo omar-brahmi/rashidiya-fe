@@ -88,6 +88,7 @@ export class FormSelectClientComponent extends BasicComponent<Client, ClientServ
     // Handle hardware back button
     this.backButtonSubscription = this.#platform.backButton.subscribeWithPriority(10, () => {
       if (this.modal?.isOpen) {
+        this.form.reset();
         this.modal.dismiss();
       }
     });
@@ -203,5 +204,9 @@ export class FormSelectClientComponent extends BasicComponent<Client, ClientServ
     }
   }
 
+  closeModal(modal: IonModal) {
+    modal.dismiss();
+    this.form.reset();
+  }
 }
 
