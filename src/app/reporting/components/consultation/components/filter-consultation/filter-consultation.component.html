@@ -83,7 +83,7 @@
     <div class="chip" *ngIf="activeSearchForm.status" (click)="clearFilterChip('status')">
       <div class="chip-content">
         <ion-icon name="flag-outline"></ion-icon>
-        @if (activeSearchForm.status === "DRAFT"){
+        @if (activeSearchForm.status === "DRAFT") {
           <span>Draft</span>
         } @else {
           <span>{{ getStateDisplayName(activeSearchForm.status) }}</span>
@@ -116,7 +116,7 @@
             <ion-icon name="calendar-outline"></ion-icon>
             Date
           </label>
-          <input type="date" [max]="maxDate" [(ngModel)]="searchForm.createdAt">
+          <input style="width: 100%" type="date" [max]="maxDate" [(ngModel)]="searchForm.createdAt">
         </div>
 
         <div class="form-group">
